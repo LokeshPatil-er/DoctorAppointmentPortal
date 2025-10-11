@@ -1,0 +1,93 @@
+
+<div class="landing-container d-flex flex-column justify-content-between min-vh-100">
+
+  
+    <nav class="navbar navbar-expand-lg bg-white shadow-sm fixed-top py-3">
+      <div class="container">
+        <a class="navbar-brand fw-bold text-primary fs-3" href="#">CareConnect</a>
+  
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarNav"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+  
+        <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+          <ul class="navbar-nav me-3">
+            <li class="nav-item"><a class="nav-link fw-semibold" href="#features">Features</a></li>
+            <li class="nav-item"><a class="nav-link fw-semibold" href="#industries">Industries</a></li>
+         
+          </ul>
+          <button class="btn btn-outline-primary me-2">Login</button>
+         
+        </div>
+      </div>
+    </nav>
+  
+
+    <section class="hero-section d-flex align-items-center">
+      <div class="container text-center text-md-start">
+        <div class="row align-items-center">
+          <div class="col-md-6 mt-5">
+            <h1 class="fw-bold display-5 mb-3">Doctor Appointment App</h1>
+            <p class="lead text-muted mb-4">
+              Simplify scheduling, eliminate wait times, and keep your healthcare workflow efficient. 
+              Designed for doctors, hospitals, and patients.
+            </p>
+            <button class="btn btn-danger btn-lg me-2">Book Appointment</button>
+          </div>
+  
+          <div class="col-md-6 text-center mt-5">
+            <img src="assets/doctor-illustration.svg" alt="Doctor Illustration" class="img-fluid hero-img shadow-sm" />
+          </div>
+        </div>
+      </div>
+    </section>
+  
+    
+    <section id="features" class="features-section py-5 bg-white">
+      <div class="container text-center">
+        <h2 class="fw-bold mb-4">Powerful Features for Modern Healthcare</h2>
+        <div class="row g-4">
+          <div class="col-md-6">
+            <div class="card border-0 shadow-sm p-4 h-100">
+              <i class="bi bi-calendar-check text-primary fs-1 mb-3"></i>
+              <h5 class="fw-semibold">Online Booking</h5>
+              <p class="text-muted">Patients can easily book, or schedule appointments online — anytime.</p>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="card border-0 shadow-sm p-4 h-100">
+              <i class="bi bi-bell text-primary fs-1 mb-3"></i>
+              <h5 class="fw-semibold">Smart Notifications</h5>
+              <p class="text-muted">SMS & email reminders reduce no-shows and keep patients informed.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  
+    <!-- Industries Section -->
+    <section id="industries" class="industries-section py-5 bg-light">
+      <div class="container text-center">
+        <h2 class="fw-bold mb-4">Trusted by Healthcare Providers Across Industries</h2>
+        <div class="row g-4">
+          <div class="col-md-3"><div class="p-4 border rounded-3 bg-white h-100">🏥 Hospitals</div></div>
+          <div class="col-md-3"><div class="p-4 border rounded-3 bg-white h-100">🩺 Clinics</div></div>
+          <div class="col-md-3"><div class="p-4 border rounded-3 bg-white h-100">💻 Telemedicine</div></div>
+          <div class="col-md-3"><div class="p-4 border rounded-3 bg-white h-100">🧬 Diagnostic Centers</div></div>
+        </div>
+      </div>
+    </section>
+  
+    <!-- Footer -->
+    <footer id="contact" class="footer bg-white  text-center py-4 border-top">
+      <div class="container">
+        <p class="mb-0 small">© {{ currentYear | date:"yyyy" }} CareConnect | All Rights Reserved</p>
+      </div>
+    </footer>
+  </div>
+  

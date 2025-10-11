@@ -1,0 +1,38 @@
+.landing-container {
+    background-color: #f8f6ff;
+    overflow-x: hidden;
+  }
+  
+  .hero-section {
+    min-height: 90vh;
+    padding-top: 100px;
+    padding-bottom: 60px;
+  }
+  
+  .hero-img {
+    max-width: 90%;
+    height: auto;
+    transition: transform 0.3s ease;
+  }
+  .hero-img:hover {
+    transform: scale(1.03);
+  }
+  
+  .features-section h2,
+  .industries-section h2 {
+    color: #343a40;
+  }
+  
+  .card {
+    border-radius: 1rem;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+  .card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+  }
+  
+  .footer {
+    background: #1a1a2e;
+  }
+  

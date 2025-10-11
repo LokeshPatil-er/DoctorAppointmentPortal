@@ -1,0 +1,19 @@
+
+<app-navbar></app-navbar>
+
+
+<div class="d-flex" style="margin-top: 56px; min-height: calc(100vh - 56px);">
+
+  <app-sidebar *ngIf="isLogin"></app-sidebar>
+
+ 
+  <div class="flex-grow-1 d-flex flex-column">
+    
+    <main class="flex-grow-1 p-4">
+      <router-outlet></router-outlet>
+    </main>
+
+  
+    <app-footer></app-footer>
+  </div>
+</div>

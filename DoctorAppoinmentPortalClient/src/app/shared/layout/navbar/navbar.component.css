@@ -1,0 +1,17 @@
+.nav-link:hover{
+    color: rgb(41, 200, 253);
+    font-weight: 600;
+}
+
+.navbar-collapse{
+    margin-left: 65px;
+}
+
+.navbar-brand{
+    margin-left: 35px;
+    color: cornflowerblue;
+}
+
+.loginBtn{
+    margin-right: 35px;
+}

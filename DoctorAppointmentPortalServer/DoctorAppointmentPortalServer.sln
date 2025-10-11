@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.13.35919.96 d17.13
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DoctorAppointmentPortalServer", "DoctorAppointmentPortalServer\DoctorAppointmentPortalServer.csproj", "{0250BBC7-B282-434F-9996-C5D924F136FC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DAPServerLibrary", "DAPClassLibrary\DAPServerLibrary.csproj", "{4C95264C-FC38-4673-9571-2714732090B1}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{0250BBC7-B282-434F-9996-C5D924F136FC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0250BBC7-B282-434F-9996-C5D924F136FC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0250BBC7-B282-434F-9996-C5D924F136FC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0250BBC7-B282-434F-9996-C5D924F136FC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4C95264C-FC38-4673-9571-2714732090B1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4C95264C-FC38-4673-9571-2714732090B1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4C95264C-FC38-4673-9571-2714732090B1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4C95264C-FC38-4673-9571-2714732090B1}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {4CF5BABD-90AC-4789-BE4A-966C9E0EDCCF}
+	EndGlobalSection
+EndGlobal

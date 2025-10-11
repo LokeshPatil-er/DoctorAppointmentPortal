@@ -1,0 +1,78 @@
+<div class="login-container d-flex align-items-center justify-content-center min-vh-100">
+    <div class="row w-100 m-0 align-items-center justify-content-center">
+      
+      <!-- Left Side Illustration -->
+      <div class="col-lg-6 d-none d-lg-flex justify-content-center">
+        <img
+          src="assets/login-page.svg"
+          alt="Doctor Illustration"
+          class="login-illustration img-fluid"
+        />
+      </div>
+  
+      <!-- Right Side Login Card -->
+      <div class="col-lg-5 col-md-8 col-sm-10">
+        <div class="card login-card mx-auto p-4 p-md-5 rounded-4">
+          <div class="text-center mb-4">
+            <img src="assets/logo.png" alt="CareConnect Logo" width="50" class="mb-3" />
+            <h4 class="fw-bold text-primary mb-1">Welcome Back</h4>
+            <p class="text-muted small">Access your CareConnect dashboard</p>
+          </div>
+  
+          <form #loginForm="ngForm" (ngSubmit)="onLogin(loginForm)">
+            <!-- Email -->
+            <div class="mb-3">
+              <label for="email" class="form-label small fw-semibold">Email Address</label>
+              <input
+                type="email"
+                id="email"
+                name="email"
+                ngModel
+                required
+                class="form-control rounded-3 py-2"
+                placeholder="Enter your email"
+                [class.is-invalid]="loginForm.submitted && !loginForm.controls['email'].valid"
+              />
+              <div *ngIf="loginForm.submitted && !loginForm.controls['email']?.valid"
+                class="invalid-feedback d-block">
+                Please enter a valid email.
+              </div>
+            </div>
+  
+            <!-- Password -->
+            <div class="mb-3 position-relative">
+              <label for="password" class="form-label small fw-semibold">Password</label>
+              <input
+                type="password"
+                id="password"
+                name="password"
+                ngModel
+                required
+                minlength="6"
+                class="form-control rounded-3 py-2 pe-5"
+                placeholder="Enter your password"
+                [class.is-invalid]="loginForm.submitted && !loginForm.controls['password'].valid"
+              />
+             
+              <div *ngIf="loginForm.submitted && !loginForm.controls['password']?.valid"
+                class="invalid-feedback d-block">
+                Password must be at least 6 characters.
+              </div>
+            </div>
+  
+          
+  
+
+  
+            <!-- Submit -->
+            <button type="submit" class="btn btn-primary w-100 py-2 fw-semibold rounded-3 shadow-sm mt-3 mb-4">
+              Login
+            </button>
+  
+           
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+  
