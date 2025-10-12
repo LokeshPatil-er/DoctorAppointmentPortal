@@ -1,19 +1,27 @@
-
-<app-navbar></app-navbar>
-
-
-<div class="d-flex" style="margin-top: 56px; min-height: calc(100vh - 56px);">
-
-  <app-sidebar *ngIf="isLogin"></app-sidebar>
-
- 
-  <div class="flex-grow-1 d-flex flex-column">
+<div class="d-flex flex-column vh-100">
+  <div class="d-flex flex-grow-1 overflow-hidden main-container">
     
-    <main class="flex-grow-1 p-4">
-      <router-outlet></router-outlet>
-    </main>
+    <!-- Sidebar: Now passes the state using the Angular Input property -->
+    <!-- The [ngClass] part is only needed if you want layout.component.css to manage sidebar width. 
+         We primarily use the [isMinimized] Input now, but keeping [ngClass] is fine for CSS linking. -->
+    <app-sidebar 
+      [isMinimized]="isSidebarMinimized" 
+      [ngClass]="{'minimized': isSidebarMinimized}">
+    </app-sidebar>
 
-  
-    <app-footer></app-footer>
+    <!-- Main Content Area: Must be a flex-column to stack Navbar, Content, and Footer -->
+    <main class="flex-grow-1 d-flex flex-column overflow-hidden content-area"> 
+      
+      <!-- Navbar: Sits at the top of the main area and emits the toggle event -->
+      <app-navbar (toggleSidebarEvent)="toggleSidebar()"></app-navbar>
+
+      <!-- Router Outlet: Main content area, takes up all available vertical space -->
+      <div class="flex-grow-1 p-4 overflow-auto">
+        <router-outlet></router-outlet>
+      </div>
+
+      <!-- Footer: Sits at the bottom of the main area (will use margin-top: auto in its CSS) -->
+      <app-footer></app-footer>
+    </main>
   </div>
 </div>
