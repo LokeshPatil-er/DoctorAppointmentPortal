@@ -1,24 +1,41 @@
-<div class="sidebar bg-light  border-end vh-100 position-fixed shadow-sm">
-    <div class="text-center py-3 border-bottom">
-      <h5 class="fw-bold text-primary mb-0">Menu</h5>
-    </div>
-  
-    <ul class="nav flex-column mt-3">
-      <li class="nav-item">
-        <a routerLink="/dashboard" routerLinkActive="active" class="nav-link d-flex align-items-center px-3 py-2">
-          <i class="bi bi-speedometer2 me-2"></i> Dashboard
-        </a>
-      </li>
-      <li class="nav-item">
-        <a routerLink="/users" routerLinkActive="active" class="nav-link d-flex align-items-center px-3 py-2">
-          <i class="bi bi-people me-2"></i> Users
-        </a>
-      </li>
-      <li class="nav-item">
-        <a routerLink="/reports" routerLinkActive="active" class="nav-link d-flex align-items-center px-3 py-2">
-          <i class="bi bi-file-earmark-bar-graph me-2"></i> Reports
-        </a>
-      </li>
-    </ul>
+<div class="d-flex flex-column vh-100 pt-3 pb-2 sidebar-dark" [ngClass]="{'minimized': isMinimized}">
+  <div class="text-center mb-4 logo-section">
+    <h5 class="fw-bold full-brand text-primary" *ngIf="!isMinimized">CareConnect</h5>
+   <img src="assets/careConnect-logo.png" alt="Logo" width="40" class="mini-logo" [ngClass]="{'visible': isMinimized}" />
   </div>
-  
+
+  <ul class="nav flex-column sidebar-nav flex-grow-1 px-3">
+    <li class="nav-item-title text-uppercase mt-2 mb-2" *ngIf="!isMinimized">MENU</li>
+
+    <li class="nav-item">
+      <a routerLink="/dashboard" routerLinkActive="active" class="nav-link d-flex align-items-center">
+        <i class="bi bi-speedometer2 me-2 fs-5"></i>
+        <span *ngIf="!isMinimized">Dashboard</span>
+      </a>
+    </li>
+    <li class="nav-item">
+      <a routerLink="/appointments" routerLinkActive="active" class="nav-link d-flex align-items-center">
+        <i class="bi bi-calendar-check me-2 fs-5"></i>
+        <span *ngIf="!isMinimized">Appointments</span>
+      </a>
+    </li>
+    <li class="nav-item">
+      <a routerLink="/patients" routerLinkActive="active" class="nav-link d-flex align-items-center">
+        <i class="bi bi-person me-2 fs-5"></i>
+        <span *ngIf="!isMinimized">Patients</span>
+      </a>
+    </li>
+    <li class="nav-item">
+      <a routerLink="/doctors" routerLinkActive="active" class="nav-link d-flex align-items-center">
+        <i class="bi bi-person-badge me-2 fs-5"></i>
+        <span *ngIf="!isMinimized">Doctors</span>
+      </a>
+    </li>
+    <li class="nav-item">
+      <a routerLink="/reports" routerLinkActive="active" class="nav-link d-flex align-items-center">
+        <i class="bi bi-file-earmark-bar-graph me-2 fs-5"></i>
+        <span *ngIf="!isMinimized">Reports</span>
+      </a>
+    </li>
+  </ul>
+</div>

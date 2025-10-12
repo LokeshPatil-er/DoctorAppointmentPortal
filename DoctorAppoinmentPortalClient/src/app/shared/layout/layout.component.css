@@ -1,0 +1,24 @@
+
+main {
+  width: calc(100% - 260px);
+  transition: all 0.3s ease-in-out;
+  background-color: #f8f9fa; 
+}
+
+.minimized + main {
+  width: calc(100% - 70px);
+}
+
+
+app-sidebar {
+  width: 260px;
+  min-width: 260px;
+  transition: width 0.3s ease-in-out;
+  background-color: #212529; 
+  box-shadow: 2px 0 10px rgba(0, 0, 0, 0.2);
+}
+
+app-sidebar.minimized {
+  width: 70px;
+  min-width: 70px;
+}

@@ -7,6 +7,12 @@ import { Component } from '@angular/core';
 })
 export class LayoutComponent {
 
+   isSidebarMinimized = false;
+
+  toggleSidebar() {
+    this.isSidebarMinimized = !this.isSidebarMinimized;
+  }
+
   isLogin:boolean;
 
   ngOnInit():void{

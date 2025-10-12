@@ -5,7 +5,9 @@ import { LandingPageComponent } from './features/landing-page/landing-page.compo
 import { LoginComponent } from './features/Auth/login/login.component';
 
 const routes: Routes = [
-  { path: '', component: LoginComponent}
+  
+  { path: '', component: LayoutComponent},
+  {path:'login',component:LoginComponent}
 ];
 
 @NgModule({
