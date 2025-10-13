@@ -27,9 +27,10 @@ namespace DAPClassLibrary
                 var descriptor = new SecurityTokenDescriptor
                 {
                     Subject = new ClaimsIdentity(new[] {
-                    new Claim(ClaimTypes.NameIdentifier, userId.ToString()),
-                    new Claim(ClaimTypes.Name, userEmail),
-                    new Claim(ClaimTypes.Role,userRoleShortCode)
+                    new Claim("userId", userId.ToString()),
+                    new Claim("email", userEmail),
+                    new Claim("role",userRoleShortCode)
+                    
                 }),
                     Expires = DateTime.UtcNow.AddMinutes(expiry),
                     SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(secretKey), SecurityAlgorithms.HmacSha256Signature)

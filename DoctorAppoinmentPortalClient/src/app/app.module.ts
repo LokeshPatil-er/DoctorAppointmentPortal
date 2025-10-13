@@ -10,6 +10,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { LayoutModule } from './shared/layout/layout.module';
 import { LandingPageComponent } from './features/landing-page/landing-page.component';
 import { FormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { FormsModule } from '@angular/forms';
     AppRoutingModule,
     NgbModule,
     LayoutModule,
-    FormsModule
+    FormsModule,
+    HttpClientModule
   ],
   providers: [
     provideClientHydration()

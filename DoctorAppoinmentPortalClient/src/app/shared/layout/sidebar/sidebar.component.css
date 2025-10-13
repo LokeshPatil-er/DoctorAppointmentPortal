@@ -7,6 +7,8 @@
   transition: all 0.3s ease-in-out;
   flex-shrink: 0;
   box-shadow: 2px 0 10px rgba(0, 0, 0, 0.03); 
+  border-right: 1px solid #e3e6f0; 
+ 
 }
 
 .sidebar-dark.minimized {
@@ -17,7 +19,7 @@
 }
 
 .sidebar-dark.minimized .logo-section {
-  padding-bottom: 20px;
+  padding-bottom: 7px;
 }
 
 .sidebar-dark.minimized .full-brand {
@@ -27,6 +29,7 @@
 .sidebar-dark.minimized .mini-logo {
   display: block !important;
   margin: 0 auto;
+  margin-top: 0px;
 }
 
 .sidebar-dark.minimized .nav-item-title,
@@ -51,7 +54,7 @@
 }
 
 .logo-section {
-  padding: 11px 0;
+  padding: 15px 0;
   border-bottom: 1px solid #e3e6f0; 
 }
 

@@ -1,6 +1,9 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, NgForm, Validators } from '@angular/forms';
-import { Router } from 'express';
+import { LoginService } from './login.service';
+import { AuthService } from '../../../core/serves/auth.service';
+import { UserRoles } from '../../../core/models/user-roles.enum';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -8,25 +11,37 @@ import { Router } from 'express';
   styleUrl: './login.component.css'
 })
 export class LoginComponent {
-  showPassword = false;
-  selectedRole: 'doctor' | 'admin' | null = null;
+ 
+  constructor(private loginService:LoginService,private authService:AuthService,private router:Router){
+
+  }
+  
+    userEmail:string='';
+    userPassword:string='';
 
   onLogin(form: NgForm) {
-    if (form.invalid || !this.selectedRole) {
+    if (form.invalid ) {
       form.control.markAllAsTouched();
-      alert('Please fill all fields and select a role.');
       return;
     }
 
-    const { email, password } = form.value;
-    console.log('Logging in:', { email, password, role: this.selectedRole });
-
-    // Role-based redirect
-    if (this.selectedRole === 'doctor') {
-      // Navigate to doctor dashboard
-    } else {
-      // Navigate to admin dashboard
-    }
-  }
+    this.loginService.loginVerify({Email:this.userEmail,Password:this.userPassword}).subscribe(res=>{
+      if(res.success && res.token)
+      {
+         this.authService.setAuthData(res.token);
+         const userRole=this.authService.getUserRole();
+         if(userRole===UserRoles.Admin)
+         {
+            this.router.navigate(['admin/dashboard'])
+         }
+         else if(userRole === UserRoles.Doctor)
+         {
+          this.router.navigate(['doctor/dashboard'])
+         }
+      }
+       
+    })
+   
+  } 
 
 }
