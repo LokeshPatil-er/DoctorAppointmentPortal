@@ -1,4 +1,4 @@
-<div class="d-flex flex-column vh-100 pt-3 pb-2 sidebar-dark" [ngClass]="{'minimized': isMinimized}">
+<div class="d-flex flex-column vh-100 pt-2 pb-2 sidebar-dark border-right" [ngClass]="{'minimized': isMinimized}">
   <div class="text-center mb-4 logo-section">
     <h5 class="fw-bold full-brand text-primary" *ngIf="!isMinimized">CareConnect</h5>
    <img src="assets/careConnect-logo.png" alt="Logo" width="40" class="mini-logo" [ngClass]="{'visible': isMinimized}" />
@@ -31,11 +31,6 @@
         <span *ngIf="!isMinimized">Doctors</span>
       </a>
     </li>
-    <li class="nav-item">
-      <a routerLink="/reports" routerLinkActive="active" class="nav-link d-flex align-items-center">
-        <i class="bi bi-file-earmark-bar-graph me-2 fs-5"></i>
-        <span *ngIf="!isMinimized">Reports</span>
-      </a>
-    </li>
+    
   </ul>
 </div>

@@ -3,18 +3,6 @@
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
 }
 
-.search-bar {
-  max-width: 300px;
-  border-radius: 8px;
-  overflow: hidden;
-}
-
-.search-bar input.form-control,
-.search-bar .input-group-text {
-  background-color: #f0f2f5 !important;
-  border: none !important;
-  color: #495057;
-}
 
 .btn-light {
   background-color: #f0f2f5 !important;
