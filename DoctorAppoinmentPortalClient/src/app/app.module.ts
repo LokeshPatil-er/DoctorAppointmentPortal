@@ -12,6 +12,7 @@ import { LandingPageComponent } from './features/landing-page/landing-page.compo
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 
+
 @NgModule({
   declarations: [
     AppComponent,
