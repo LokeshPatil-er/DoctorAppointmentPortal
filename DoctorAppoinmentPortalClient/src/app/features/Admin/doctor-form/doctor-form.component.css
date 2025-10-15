@@ -1,4 +1,51 @@
-.invalid-feedback {
-    display: block;
-  }
-  
+/* 🌈 Soft background for section headers */
+.section-header {
+  background-color: #f8f9fa;
+  color: #333;
+  font-weight: 600;
+  padding: 10px 15px;
+  border-left: 4px solid #6c757d;
+  border-radius: 4px;
+  margin-bottom: 10px;
+}
+
+/* 🎨 Card styling */
+.doctor-form-card {
+  border: none;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+/* Header area */
+.form-header {
+  background-color: #e9f0fa;
+  color: #004085;
+  font-weight: 600;
+  padding: 15px;
+}
+
+/* Inputs */
+.form-control,
+.form-select {
+  border-radius: 6px;
+}
+
+/* Buttons */
+button.btn {
+  border-radius: 6px;
+  font-weight: 500;
+}
+
+/* Spacing and typography */
+label.form-label {
+  font-weight: 500;
+  color: #333;
+}
+
+h4 {
+  font-weight: 600;
+}
+
+.row {
+  margin-bottom: 5px;
+}

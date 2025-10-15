@@ -7,7 +7,7 @@ import { Component } from '@angular/core';
 })
 export class DoctorFormComponent {
 
-  doctor: any = {};
+ doctor: any = {};
   slots: any[] = [];
 
   countries = [];
@@ -30,26 +30,22 @@ export class DoctorFormComponent {
 
   onCountryChange(event: any) {
     console.log('Country changed:', event.target.value);
-    // Load states
   }
 
   onStateChange(event: any) {
     console.log('State changed:', event.target.value);
-    // Load districts
   }
 
   onDistrictChange(event: any) {
     console.log('District changed:', event.target.value);
-    // Load talukas
   }
 
   onSubmit(form: any) {
     if (form.valid) {
       const payload = { ...this.doctor, slots: this.slots };
       console.log('Doctor Data:', payload);
-      // call service here
     } else {
-      alert('Please fill all required fields');
+      alert('Please fill all required fields!');
     }
   }
 }

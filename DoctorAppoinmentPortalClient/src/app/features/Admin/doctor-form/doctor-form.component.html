@@ -1,7 +1,7 @@
-<div class="container-fluid py-3">
-  <div class="card shadow-sm">
-    <div class="card-header bg-primary text-white d-flex justify-content-between align-items-center">
-      <h4 class="mb-0">Add Doctor</h4>
+<div class="container-fluid py-4">
+  <div class="card doctor-form-card shadow-sm">
+    <div class="card-header form-header d-flex justify-content-between align-items-center">
+      <h4 class="mb-0">Doctor Details</h4>
       <button class="btn btn-light btn-sm" routerLink="/doctors/list">
         <i class="bi bi-arrow-left"></i> Back
       </button>
@@ -9,8 +9,8 @@
 
     <div class="card-body">
       <form #doctorForm="ngForm" (ngSubmit)="onSubmit(doctorForm)">
-        <!-- 🧍‍♂️ Basic Info -->
-        <h5 class="text-primary mb-3 border-bottom pb-2">Basic Information</h5>
+        <!-- 🧍‍♂️ Basic Information -->
+        <div class="section-header">Basic Information</div>
         <div class="row gy-3">
           <div class="col-md-4">
             <label class="form-label">First Name</label>
@@ -66,7 +66,7 @@
               maxlength="10"
               pattern="^[0-9]{10}$"
               class="form-control"
-              placeholder="Enter contact number"
+              placeholder="Enter 10-digit contact"
             />
           </div>
           <div class="col-md-4">
@@ -78,13 +78,41 @@
               class="form-select"
             >
               <option value="">Select Blood Group</option>
-              
+             
             </select>
           </div>
         </div>
 
+        <!-- ✉️ Login Information -->
+        <div class="section-header mt-4">Login Information</div>
+        <div class="row gy-3">
+          <div class="col-md-6">
+            <label class="form-label">Email</label>
+            <input
+              type="email"
+              name="email"
+              [(ngModel)]="doctor.email"
+              required
+              class="form-control"
+              placeholder="Enter email address"
+            />
+          </div>
+          <div class="col-md-6">
+            <label class="form-label">Password</label>
+            <input
+              type="password"
+              name="password"
+              [(ngModel)]="doctor.password"
+              required
+              minlength="6"
+              class="form-control"
+              placeholder="Enter password (min 6 chars)"
+            />
+          </div>
+        </div>
+
         <!-- 🎓 Qualification -->
-        <h5 class="text-primary mt-4 mb-3 border-bottom pb-2">Qualification</h5>
+        <div class="section-header mt-4">Qualification</div>
         <div class="row gy-3">
           <div class="col-md-6">
             <label class="form-label">Qualification</label>
@@ -95,7 +123,7 @@
               class="form-select"
             >
               <option value="">Select Qualification</option>
-              
+             
             </select>
           </div>
           <div class="col-md-6">
@@ -111,7 +139,7 @@
         </div>
 
         <!-- 💼 Specialization -->
-        <h5 class="text-primary mt-4 mb-3 border-bottom pb-2">Specialization</h5>
+        <div class="section-header mt-4">Specialization</div>
         <div class="row gy-3">
           <div class="col-md-6">
             <label class="form-label">Specialization</label>
@@ -122,7 +150,7 @@
               class="form-select"
             >
               <option value="">Select Specialization</option>
-              
+            
             </select>
           </div>
           <div class="col-md-6">
@@ -139,7 +167,7 @@
         </div>
 
         <!-- 💰 Consultancy -->
-        <h5 class="text-primary mt-4 mb-3 border-bottom pb-2">Consultancy</h5>
+        <div class="section-header mt-4">Consultancy</div>
         <div class="row gy-3">
           <div class="col-md-4">
             <label class="form-label">Consultancy Fee (₹)</label>
@@ -155,7 +183,7 @@
         </div>
 
         <!-- 🏠 Address -->
-        <h5 class="text-primary mt-4 mb-3 border-bottom pb-2">Address</h5>
+        <div class="section-header mt-4">Address</div>
         <div class="row gy-3">
           <div class="col-md-6">
             <label class="form-label">Address Line</label>
@@ -187,8 +215,8 @@
               name="countryId"
               [(ngModel)]="doctor.countryId"
               (change)="onCountryChange($event)"
-              class="form-select"
               required
+              class="form-select"
             >
               <option value="">Select Country</option>
              
@@ -200,11 +228,11 @@
               name="stateId"
               [(ngModel)]="doctor.stateId"
               (change)="onStateChange($event)"
-              class="form-select"
               required
+              class="form-select"
             >
               <option value="">Select State</option>
-             
+              
             </select>
           </div>
           <div class="col-md-4">
@@ -213,11 +241,11 @@
               name="districtId"
               [(ngModel)]="doctor.districtId"
               (change)="onDistrictChange($event)"
-              class="form-select"
               required
+              class="form-select"
             >
               <option value="">Select District</option>
-              
+             
             </select>
           </div>
           <div class="col-md-4">
@@ -225,22 +253,22 @@
             <select
               name="talukaId"
               [(ngModel)]="doctor.talukaId"
-              class="form-select"
               required
+              class="form-select"
             >
               <option value="">Select Taluka</option>
-              
+             
             </select>
           </div>
         </div>
 
         <!-- 🕒 Available Slots -->
-        <h5 class="text-primary mt-4 mb-3 border-bottom pb-2 d-flex justify-content-between align-items-center">
-          Available Slots
-          <button type="button" class="btn btn-outline-primary btn-sm" (click)="addSlot()">
+        <div class="section-header mt-4 d-flex justify-content-between align-items-center">
+          <span>Available Slots</span>
+          <button type="button" class="btn btn-outline-success btn-sm" (click)="addSlot()">
             <i class="bi bi-plus-circle"></i> Add Slot
           </button>
-        </h5>
+        </div>
 
         <div *ngFor="let slot of slots; let i = index" class="row gy-3 align-items-end mb-2">
           <div class="col-md-3">
@@ -284,7 +312,7 @@
           </div>
         </div>
 
-        <!-- ✅ Submit -->
+        <!-- ✅ Buttons -->
         <div class="text-end mt-4">
           <button type="reset" class="btn btn-outline-secondary me-2">Reset</button>
           <button type="submit" class="btn btn-success" [disabled]="doctorForm.invalid">
