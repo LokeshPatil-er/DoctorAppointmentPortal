@@ -67,22 +67,31 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Class1.cs" />
+    <Compile Include="DAL\BloodGroupsOps.cs" />
+    <Compile Include="DAL\CountriesOps.cs" />
+    <Compile Include="DAL\DistrictsOps.cs" />
+    <Compile Include="DAL\GendersOps.cs" />
+    <Compile Include="DAL\QualificationsOps.cs" />
+    <Compile Include="DAL\SpecializationsOps.cs" />
+    <Compile Include="DAL\StatesOps.cs" />
+    <Compile Include="DAL\TalukasOps.cs" />
     <Compile Include="DAL\UsersOps.cs" />
     <Compile Include="Helpers\TokenServices.cs" />
+    <Compile Include="Models\Genders.cs" />
     <Compile Include="Models\Roles.cs" />
     <Compile Include="Models\Users.cs" />
-<Compile Include="Models\States.cs" />
-<Compile Include="Models\Districts.cs" />
-<Compile Include="Models\Countries.cs" />
-<Compile Include="Models\Talukas.cs" />
-<Compile Include="Models\BloodGroups.cs" />
-<Compile Include="Models\Addresses.cs" />
-<Compile Include="Models\Specializations.cs" />
-<Compile Include="Models\Qualifications.cs" />
-<Compile Include="Models\DoctorSpecializations.cs" />
-<Compile Include="Models\DoctorQualifications.cs" />
-<Compile Include="Models\DoctorAvailableSlots.cs" />
-<Compile Include="Models\Doctors.cs" />
+    <Compile Include="Models\States.cs" />
+    <Compile Include="Models\Districts.cs" />
+    <Compile Include="Models\Countries.cs" />
+    <Compile Include="Models\Talukas.cs" />
+    <Compile Include="Models\BloodGroups.cs" />
+    <Compile Include="Models\Addresses.cs" />
+    <Compile Include="Models\Specializations.cs" />
+    <Compile Include="Models\Qualifications.cs" />
+    <Compile Include="Models\DoctorSpecializations.cs" />
+    <Compile Include="Models\DoctorQualifications.cs" />
+    <Compile Include="Models\DoctorAvailableSlots.cs" />
+    <Compile Include="Models\Doctors.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

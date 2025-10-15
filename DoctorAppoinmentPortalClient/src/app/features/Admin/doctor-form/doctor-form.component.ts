@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { DoctorFormService } from './doctor-form.service';
+import { DoctorInfo } from '../../../core/models/doctor-info.model';
 
 @Component({
   selector: 'app-doctor-form',
@@ -7,7 +9,7 @@ import { Component } from '@angular/core';
 })
 export class DoctorFormComponent {
 
- doctor: any = {};
+  doctor: any = {};
   slots: any[] = [];
 
   countries = [];
@@ -20,12 +22,31 @@ export class DoctorFormComponent {
   genders = [];
   daysOfWeek = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
 
+  doctorDetails:DoctorInfo=new DoctorInfo();
+
+  constructor(private doctorFormService:DoctorFormService){}
+
+  ngOnInit():void{
+     
+      this.doctorFormService.getAllDropDownLists().subscribe(response=>{
+          console.log(response)
+          this.countries=response.CountriesList;
+          this.states=response.StatesList;
+          this.districts=response.DistrictsList;
+          this.talukas=response.TalukasList;
+          this.bloodGroups=response.BloodGroupsList;
+          this.genders=response.GendersList;
+          this.qualifications=response.QualificationsList;
+          this.specializations=response.SpecializationsList;
+      })
+  }
+
   addSlot() {
-    this.slots.push({ dayOfWeek: '', startTime: '', endTime: '' });
+    this.doctorDetails.AvaliableSlotesList.push({ dayOfWeek: '', startTime: '', endTime: '' });
   }
 
   removeSlot(index: number) {
-    this.slots.splice(index, 1);
+    this.doctorDetails.AvaliableSlotesList.splice(index, 1);
   }
 
   onCountryChange(event: any) {
@@ -42,8 +63,8 @@ export class DoctorFormComponent {
 
   onSubmit(form: any) {
     if (form.valid) {
-      const payload = { ...this.doctor, slots: this.slots };
-      console.log('Doctor Data:', payload);
+   
+      console.log('Doctor Data:', this.doctorDetails);
     } else {
       alert('Please fill all required fields!');
     }

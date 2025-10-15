@@ -2,14 +2,12 @@
   <div class="card doctor-form-card shadow-sm">
     <div class="card-header form-header d-flex justify-content-between align-items-center">
       <h4 class="mb-0">Doctor Details</h4>
-      <button class="btn btn-light btn-sm" routerLink="/doctors/list">
-        <i class="bi bi-arrow-left"></i> Back
-      </button>
+      
     </div>
 
     <div class="card-body">
       <form #doctorForm="ngForm" (ngSubmit)="onSubmit(doctorForm)">
-        <!-- 🧍‍♂️ Basic Information -->
+       
         <div class="section-header">Basic Information</div>
         <div class="row gy-3">
           <div class="col-md-4">
@@ -17,7 +15,7 @@
             <input
               type="text"
               name="firstName"
-              [(ngModel)]="doctor.firstName"
+              [(ngModel)]="doctorDetails.firstName"
               required
               class="form-control"
               placeholder="Enter first name"
@@ -28,7 +26,7 @@
             <input
               type="text"
               name="lastName"
-              [(ngModel)]="doctor.lastName"
+              [(ngModel)]="doctorDetails.lastName"
               required
               class="form-control"
               placeholder="Enter last name"
@@ -38,30 +36,30 @@
             <label class="form-label">Date of Birth</label>
             <input
               type="date"
-              name="dob"
-              [(ngModel)]="doctor.dob"
+              name="dateOfBirth"
+              [(ngModel)]="doctorDetails.dateOfBirth"
               required
               class="form-control"
             />
           </div>
           <div class="col-md-4">
             <label class="form-label">Gender</label>
-            <select
-              name="genderId"
-              [(ngModel)]="doctor.genderId"
-              required
-              class="form-select"
+            <ng-select
+            [items]="genders"
+            name="genderId"
+            bindLabel="Gender"
+            bindValue="GenderId"
+            placeholder="Select your Gender"
+            [(ngModel)]="doctorDetails.genderId"
             >
-              <option value="">Select Gender</option>
-             
-            </select>
+          </ng-select>
           </div>
           <div class="col-md-4">
             <label class="form-label">Contact No</label>
             <input
               type="text"
               name="contactNo"
-              [(ngModel)]="doctor.contactNo"
+              [(ngModel)]="doctorDetails.contactNo"
               required
               maxlength="10"
               pattern="^[0-9]{10}$"
@@ -71,27 +69,38 @@
           </div>
           <div class="col-md-4">
             <label class="form-label">Blood Group</label>
-            <select
-              name="bloodGroupId"
-              [(ngModel)]="doctor.bloodGroupId"
-              required
-              class="form-select"
+            <ng-select
+            [items]="bloodGroups"
+            name="bloodGroupId"
+            bindLabel="BloodGroupName"
+            bindValue="BloodGroupId"
+            placeholder="Select your blood group"
+            [(ngModel)]="doctorDetails.bloodGroupId"
             >
-              <option value="">Select Blood Group</option>
-             
-            </select>
+          </ng-select>
+          </div>
+          <div class="col-md-4">
+            <label class="form-label">Years of Experience</label>
+            <input
+              type="number"
+              name="yearOfExperience"
+              [(ngModel)]="doctorDetails.yearOfExperience"
+              required
+              class="form-control"
+              placeholder="Enter experience"
+            />
           </div>
         </div>
 
-        <!-- ✉️ Login Information -->
-        <div class="section-header mt-4">Login Information</div>
+      
+        <div class="section-header mt-5">Login Information</div>
         <div class="row gy-3">
           <div class="col-md-6">
             <label class="form-label">Email</label>
             <input
               type="email"
               name="email"
-              [(ngModel)]="doctor.email"
+              [(ngModel)]="doctorDetails.email"
               required
               class="form-control"
               placeholder="Enter email address"
@@ -102,7 +111,7 @@
             <input
               type="password"
               name="password"
-              [(ngModel)]="doctor.password"
+              [(ngModel)]="doctorDetails.password"
               required
               minlength="6"
               class="form-control"
@@ -111,86 +120,61 @@
           </div>
         </div>
 
-        <!-- 🎓 Qualification -->
-        <div class="section-header mt-4">Qualification</div>
+      
+        <div class="section-header mt-5">Qualifications & Specializations</div>
         <div class="row gy-3">
           <div class="col-md-6">
-            <label class="form-label">Qualification</label>
-            <select
-              name="qualificationId"
-              [(ngModel)]="doctor.qualificationId"
-              required
-              class="form-select"
+            <label class="form-label">Qualifications</label>
+            <ng-select
+            [items]="qualifications"
+            name="QualificationList"
+            bindLabel="Degree"
+            bindValue="QualificationId"
+            placeholder="Select qualifications"
+            [(ngModel)]="doctorDetails.QualificationList"
+            multiple
             >
-              <option value="">Select Qualification</option>
-             
-            </select>
+          </ng-select>
           </div>
-          <div class="col-md-6">
-            <label class="form-label">Description</label>
-            <textarea
-              name="qualificationDesc"
-              [(ngModel)]="doctor.qualificationDesc"
-              rows="2"
-              class="form-control"
-              placeholder="Describe qualification"
-            ></textarea>
-          </div>
-        </div>
-
-        <!-- 💼 Specialization -->
-        <div class="section-header mt-4">Specialization</div>
-        <div class="row gy-3">
           <div class="col-md-6">
             <label class="form-label">Specialization</label>
-            <select
-              name="specializationId"
-              [(ngModel)]="doctor.specializationId"
-              required
-              class="form-select"
+            <ng-select
+            [items]="specializations"
+            name="SpecializationsList"
+            bindLabel="Specialization"
+            bindValue="SpecializationId"
+            placeholder="Select Specializations"
+            [(ngModel)]="doctorDetails.SpecializationsList"
+            multiple
             >
-              <option value="">Select Specialization</option>
-            
-            </select>
-          </div>
-          <div class="col-md-6">
-            <label class="form-label">Years of Experience</label>
-            <input
-              type="number"
-              name="yearOfExperience"
-              [(ngModel)]="doctor.yearOfExperience"
-              required
-              class="form-control"
-              placeholder="Enter experience"
-            />
+          </ng-select>
           </div>
         </div>
 
-        <!-- 💰 Consultancy -->
-        <div class="section-header mt-4">Consultancy</div>
+       
+        <div class="section-header mt-5">Consultancy</div>
         <div class="row gy-3">
           <div class="col-md-4">
             <label class="form-label">Consultancy Fee (₹)</label>
             <input
               type="number"
               name="consultancyFee"
-              [(ngModel)]="doctor.consultancyFee"
+              [(ngModel)]="doctorDetails.consultancyFee"
               required
               class="form-control"
               placeholder="Enter fee"
             />
           </div>
+         
         </div>
-
-        <!-- 🏠 Address -->
-        <div class="section-header mt-4">Address</div>
+        <div class="section-header mt-5">Address</div>
         <div class="row gy-3">
           <div class="col-md-6">
-            <label class="form-label">Address Line</label>
+            <label class="form-label">Building Name/Flat No./Street</label>
             <input
               type="text"
               name="addressLine1"
-              [(ngModel)]="doctor.addressLine1"
+              [(ngModel)]="doctorDetails.addressLine1"
               required
               class="form-control"
               placeholder="Enter address"
@@ -201,7 +185,7 @@
             <input
               type="text"
               name="pincode"
-              [(ngModel)]="doctor.pincode"
+              [(ngModel)]="doctorDetails.pincode"
               required
               maxlength="6"
               pattern="^[0-9]{6}$"
@@ -211,66 +195,63 @@
           </div>
           <div class="col-md-4">
             <label class="form-label">Country</label>
-            <select
+            <ng-select
+              [items]="countries"
               name="countryId"
-              [(ngModel)]="doctor.countryId"
-              (change)="onCountryChange($event)"
-              required
-              class="form-select"
-            >
-              <option value="">Select Country</option>
-             
-            </select>
+              bindLabel="CountryName"
+              bindValue="CountryId"
+              placeholder="Select country"
+              [(ngModel)]="doctorDetails.countryId"
+              >
+            </ng-select>
           </div>
           <div class="col-md-4">
             <label class="form-label">State</label>
-            <select
-              name="stateId"
-              [(ngModel)]="doctor.stateId"
-              (change)="onStateChange($event)"
-              required
-              class="form-select"
+            <ng-select
+            [items]="states"
+            name="stateId"
+            bindLabel="StateName"
+            bindValue="StateId"
+            placeholder="Select state"
+            [(ngModel)]="doctorDetails.stateId"
             >
-              <option value="">Select State</option>
-              
-            </select>
+          </ng-select>
           </div>
           <div class="col-md-4">
             <label class="form-label">District</label>
-            <select
-              name="districtId"
-              [(ngModel)]="doctor.districtId"
-              (change)="onDistrictChange($event)"
-              required
-              class="form-select"
+            <ng-select
+            [items]="districts"
+             name="districtId"
+            bindLabel="DistrictName"
+            bindValue="DistrictId"
+            placeholder="Select District"
+            [(ngModel)]="doctorDetails.districtId"
             >
-              <option value="">Select District</option>
-             
-            </select>
+          </ng-select>
           </div>
           <div class="col-md-4">
             <label class="form-label">Taluka</label>
-            <select
+            <ng-select
+              [items]="talukas"
               name="talukaId"
-              [(ngModel)]="doctor.talukaId"
-              required
-              class="form-select"
-            >
-              <option value="">Select Taluka</option>
-             
-            </select>
+              bindLabel="TalukaName"
+              bindValue="TalukaId"
+              placeholder="Select taluka"
+              [(ngModel)]="doctorDetails.talukaId"
+              >
+            </ng-select>
           </div>
         </div>
 
-        <!-- 🕒 Available Slots -->
-        <div class="section-header mt-4 d-flex justify-content-between align-items-center">
+        
+        <div class="section-header mt-5 d-flex justify-content-between align-items-center">
           <span>Available Slots</span>
           <button type="button" class="btn btn-outline-success btn-sm" (click)="addSlot()">
             <i class="bi bi-plus-circle"></i> Add Slot
           </button>
         </div>
 
-        <div *ngFor="let slot of slots; let i = index" class="row gy-3 align-items-end mb-2">
+        <div *ngFor="let slot of doctorDetails.AvaliableSlotesList; let i = index" class="row gy-3 align-items-end mb-2">
           <div class="col-md-3">
             <label class="form-label">Day of Week</label>
             <select
@@ -312,8 +293,7 @@
           </div>
         </div>
 
-        <!-- ✅ Buttons -->
-        <div class="text-end mt-4">
+        <div class="text-end mt-5">
           <button type="reset" class="btn btn-outline-secondary me-2">Reset</button>
           <button type="submit" class="btn btn-success" [disabled]="doctorForm.invalid">
             <i class="bi bi-save"></i> Save Doctor

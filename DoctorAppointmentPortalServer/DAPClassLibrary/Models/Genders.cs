@@ -6,15 +6,13 @@ using System.Threading.Tasks;
 
 namespace DAPClassLibrary
 {
-    public class Districts
+    public class Genders
     {
-        public int DistrictId { get; set; }
-        public string DistrictName { get; set; }
-        public int StateId { get; set; }
-        public string StateName { get; set; }
+        public int GenderId {  get; set; }
+        public string Gender { get; set; }
         public bool IsActive { get; set; }
         public int? CreatedBy { get; set; }
-        public DateTime CreatedOn { get; set; }
+        public DateTime? CreatedOn { get; set; }
         public int? ModifiedBy { get; set; }
         public DateTime? ModifiedOn { get; set; }
     }
