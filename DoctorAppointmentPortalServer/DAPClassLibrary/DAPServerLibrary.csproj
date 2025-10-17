@@ -70,6 +70,7 @@
     <Compile Include="DAL\BloodGroupsOps.cs" />
     <Compile Include="DAL\CountriesOps.cs" />
     <Compile Include="DAL\DistrictsOps.cs" />
+    <Compile Include="DAL\DoctorsOps.cs" />
     <Compile Include="DAL\GendersOps.cs" />
     <Compile Include="DAL\QualificationsOps.cs" />
     <Compile Include="DAL\SpecializationsOps.cs" />

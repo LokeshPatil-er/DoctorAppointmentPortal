@@ -46,5 +46,20 @@ namespace DoctorAppointmentPortalServer.Controllers
             }
             return response;
         }
+
+        public HttpResponseMessage DoctorInsertOrUpdate(Doctors doctorModel)
+        {
+            HttpResponseMessage response = new HttpResponseMessage();
+            try
+            {
+                
+            }
+            catch(Exception ex)
+            {
+
+            }
+
+            return response;
+        }
     }
 }

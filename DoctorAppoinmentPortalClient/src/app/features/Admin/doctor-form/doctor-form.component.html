@@ -15,7 +15,7 @@
             <input
               type="text"
               name="firstName"
-              [(ngModel)]="doctorDetails.firstName"
+              [(ngModel)]="doctorDetails.FirstName"
               required
               class="form-control"
               placeholder="Enter first name"
@@ -26,7 +26,7 @@
             <input
               type="text"
               name="lastName"
-              [(ngModel)]="doctorDetails.lastName"
+              [(ngModel)]="doctorDetails.LastName"
               required
               class="form-control"
               placeholder="Enter last name"
@@ -37,7 +37,7 @@
             <input
               type="date"
               name="dateOfBirth"
-              [(ngModel)]="doctorDetails.dateOfBirth"
+              [(ngModel)]="doctorDetails.DateOfBirth"
               required
               class="form-control"
             />
@@ -50,7 +50,7 @@
             bindLabel="Gender"
             bindValue="GenderId"
             placeholder="Select your Gender"
-            [(ngModel)]="doctorDetails.genderId"
+            [(ngModel)]="doctorDetails.GenderId"
             >
           </ng-select>
           </div>
@@ -59,7 +59,7 @@
             <input
               type="text"
               name="contactNo"
-              [(ngModel)]="doctorDetails.contactNo"
+              [(ngModel)]="doctorDetails.ContactNo"
               required
               maxlength="10"
               pattern="^[0-9]{10}$"
@@ -75,7 +75,7 @@
             bindLabel="BloodGroupName"
             bindValue="BloodGroupId"
             placeholder="Select your blood group"
-            [(ngModel)]="doctorDetails.bloodGroupId"
+            [(ngModel)]="doctorDetails.BloodGroupId"
             >
           </ng-select>
           </div>
@@ -84,7 +84,7 @@
             <input
               type="number"
               name="yearOfExperience"
-              [(ngModel)]="doctorDetails.yearOfExperience"
+              [(ngModel)]="doctorDetails.YearOfExperience"
               required
               class="form-control"
               placeholder="Enter experience"
@@ -100,7 +100,7 @@
             <input
               type="email"
               name="email"
-              [(ngModel)]="doctorDetails.email"
+              [(ngModel)]="doctorDetails.Email"
               required
               class="form-control"
               placeholder="Enter email address"
@@ -111,7 +111,7 @@
             <input
               type="password"
               name="password"
-              [(ngModel)]="doctorDetails.password"
+              [(ngModel)]="doctorDetails.Password"
               required
               minlength="6"
               class="form-control"
@@ -131,7 +131,7 @@
             bindLabel="Degree"
             bindValue="QualificationId"
             placeholder="Select qualifications"
-            [(ngModel)]="doctorDetails.QualificationList"
+            [(ngModel)]="doctorDetails.QualificationsIdList"
             multiple
             >
           </ng-select>
@@ -144,7 +144,7 @@
             bindLabel="Specialization"
             bindValue="SpecializationId"
             placeholder="Select Specializations"
-            [(ngModel)]="doctorDetails.SpecializationsList"
+            [(ngModel)]="doctorDetails.SpecializationsIdList"
             multiple
             >
           </ng-select>
@@ -159,7 +159,7 @@
             <input
               type="number"
               name="consultancyFee"
-              [(ngModel)]="doctorDetails.consultancyFee"
+              [(ngModel)]="doctorDetails.ConsultancyFee"
               required
               class="form-control"
               placeholder="Enter fee"
@@ -174,7 +174,7 @@
             <input
               type="text"
               name="addressLine1"
-              [(ngModel)]="doctorDetails.addressLine1"
+              [(ngModel)]="doctorDetails.AddressLine1"
               required
               class="form-control"
               placeholder="Enter address"
@@ -185,7 +185,7 @@
             <input
               type="text"
               name="pincode"
-              [(ngModel)]="doctorDetails.pincode"
+              [(ngModel)]="doctorDetails.Pincode"
               required
               maxlength="6"
               pattern="^[0-9]{6}$"
@@ -201,7 +201,7 @@
               bindLabel="CountryName"
               bindValue="CountryId"
               placeholder="Select country"
-              [(ngModel)]="doctorDetails.countryId"
+              [(ngModel)]="doctorDetails.CountryId"
               >
             </ng-select>
           </div>
@@ -213,7 +213,7 @@
             bindLabel="StateName"
             bindValue="StateId"
             placeholder="Select state"
-            [(ngModel)]="doctorDetails.stateId"
+            [(ngModel)]="doctorDetails.StateId"
             >
           </ng-select>
           </div>
@@ -225,7 +225,7 @@
             bindLabel="DistrictName"
             bindValue="DistrictId"
             placeholder="Select District"
-            [(ngModel)]="doctorDetails.districtId"
+            [(ngModel)]="doctorDetails.DistrictId"
             >
           </ng-select>
           </div>
@@ -237,7 +237,7 @@
               bindLabel="TalukaName"
               bindValue="TalukaId"
               placeholder="Select taluka"
-              [(ngModel)]="doctorDetails.talukaId"
+              [(ngModel)]="doctorDetails.TalukaId"
               >
             </ng-select>
           </div>

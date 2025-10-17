@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { DoctorFormService } from './doctor-form.service';
 import { DoctorInfo } from '../../../core/models/doctor-info.model';
+import { response } from 'express';
+import { UserRoles } from '../../../core/models/user-roles.enum';
 
 @Component({
   selector: 'app-doctor-form',
@@ -63,7 +65,12 @@ export class DoctorFormComponent {
 
   onSubmit(form: any) {
     if (form.valid) {
-   
+      
+      this.doctorDetails.RoleShortCode=UserRoles.Doctor;
+      this.doctorFormService.insertOrUpdateDoctor(this.doctorDetails).subscribe(response=>{
+        console.log("DOne");
+      })
+
       console.log('Doctor Data:', this.doctorDetails);
     } else {
       alert('Please fill all required fields!');

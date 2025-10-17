@@ -1,16 +1,18 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Common;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Microsoft.Practices.EnterpriseLibrary.Data;
 
 namespace DAPClassLibrary
 {
-    public class Doctors
+    public class DoctorsOps
     {
         public int DoctorId { get; set; }
         public int UserId { get; set; }
-        public string Email { get; set; }
+        public string Email {  get; set; }
         public string Password { get; set; }
         public string RoleShortCode { get; set; }
         public string FirstName { get; set; }
@@ -31,16 +33,37 @@ namespace DAPClassLibrary
         public DateTime CreatedOn { get; set; }
         public int? ModifiedBy { get; set; }
         public DateTime? ModifiedOn { get; set; }
-        public List<int> DoctorQulificationsIdList { get; set; }
-        public List<int> DoctorSpecializationsIdList { get; set; }
-        public List<Countries> CountriesList { get; set; }
-        public List<States> StatesList { get; set; }
-        public List<Districts> DistrictsList { get; set; }
-        public List<Talukas> TalukasList { get; set; }
-        public List<BloodGroups> BloodGroupsList { get; set; }
-        public List<Genders> GendersList { get; set; }
-        public List<Qualifications> QualificationsList { get; set; }
-        public List<Specializations> SpecializationsList { get; set; }
+
+
+        private Database db;
+
+        public DoctorsOps()
+        {
+            db = DatabaseFactory.CreateDatabase("constr");
+        }
+
+        public DoctorsOps(int doctorId)
+        {
+            db = DatabaseFactory.CreateDatabase("constr");
+            this.DoctorId=doctorId;
+        }
+
+        public bool InsertOrUpdateDoctor(Doctors doctorModel)
+        {
+            try
+            {
+                DbCommand dbCommand = db.GetStoredProcCommand("dap_doctorInsertOrUpdate");
+
+
+
+                return true;
+            }
+            catch(Exception ex)
+            {
+                return false;
+            }
+        }
+
 
     }
 }

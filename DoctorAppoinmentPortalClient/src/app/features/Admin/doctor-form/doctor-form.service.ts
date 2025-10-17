@@ -15,4 +15,9 @@ export class DoctorFormService {
     return this.httpClient.get<any>(this.baseUrl+"Admin/GetAllDropDownValue");
   }
 
+  insertOrUpdateDoctor(DoctorInfo:any)
+  {
+    return this.httpClient.post<any>(this.baseUrl+"Admin/DoctorInsertOrUpdate",DoctorInfo);
+  }
+
 }

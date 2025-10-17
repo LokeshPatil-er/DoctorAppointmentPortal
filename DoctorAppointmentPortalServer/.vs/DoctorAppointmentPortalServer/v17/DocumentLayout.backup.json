@@ -7,24 +7,24 @@
       "RelativeMoniker": "D:0:0:{0250BBC7-B282-434F-9996-C5D924F136FC}|DoctorAppointmentPortalServer\\DoctorAppointmentPortalServer.csproj|solutionrelative:doctorappointmentportalserver\\controllers\\admincontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{4C95264C-FC38-4673-9571-2714732090B1}|DAPClassLibrary\\DAPServerLibrary.csproj|d:\\webapi-and-angular-assignment\\doctorappointmentportal\\doctorappointmentportalserver\\dapclasslibrary\\dal\\talukasops.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{4C95264C-FC38-4673-9571-2714732090B1}|DAPClassLibrary\\DAPServerLibrary.csproj|d:\\webapi-and-angular-assignment\\doctorappointmentportal\\doctorappointmentportalserver\\dapclasslibrary\\dal\\doctorsops.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4C95264C-FC38-4673-9571-2714732090B1}|DAPClassLibrary\\DAPServerLibrary.csproj|solutionrelative:dapclasslibrary\\dal\\doctorsops.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4C95264C-FC38-4673-9571-2714732090B1}|DAPClassLibrary\\DAPServerLibrary.csproj|D:\\WebAPI-And-Angular-Assignment\\DoctorAppointmentPortal\\DoctorAppointmentPortalServer\\dapclasslibrary\\dal\\talukasops.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{4C95264C-FC38-4673-9571-2714732090B1}|DAPClassLibrary\\DAPServerLibrary.csproj|solutionrelative:dapclasslibrary\\dal\\talukasops.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{4C95264C-FC38-4673-9571-2714732090B1}|DAPClassLibrary\\DAPServerLibrary.csproj|d:\\webapi-and-angular-assignment\\doctorappointmentportal\\doctorappointmentportalserver\\dapclasslibrary\\dal\\districtsops.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{4C95264C-FC38-4673-9571-2714732090B1}|DAPClassLibrary\\DAPServerLibrary.csproj|D:\\WebAPI-And-Angular-Assignment\\DoctorAppointmentPortal\\DoctorAppointmentPortalServer\\dapclasslibrary\\dal\\districtsops.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{4C95264C-FC38-4673-9571-2714732090B1}|DAPClassLibrary\\DAPServerLibrary.csproj|solutionrelative:dapclasslibrary\\dal\\districtsops.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{4C95264C-FC38-4673-9571-2714732090B1}|DAPClassLibrary\\DAPServerLibrary.csproj|d:\\webapi-and-angular-assignment\\doctorappointmentportal\\doctorappointmentportalserver\\dapclasslibrary\\models\\districts.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{4C95264C-FC38-4673-9571-2714732090B1}|DAPClassLibrary\\DAPServerLibrary.csproj|D:\\WebAPI-And-Angular-Assignment\\DoctorAppointmentPortal\\DoctorAppointmentPortalServer\\dapclasslibrary\\models\\districts.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{4C95264C-FC38-4673-9571-2714732090B1}|DAPClassLibrary\\DAPServerLibrary.csproj|solutionrelative:dapclasslibrary\\models\\districts.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{4C95264C-FC38-4673-9571-2714732090B1}|DAPClassLibrary\\DAPServerLibrary.csproj|d:\\webapi-and-angular-assignment\\doctorappointmentportal\\doctorappointmentportalserver\\dapclasslibrary\\dal\\statesops.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{4C95264C-FC38-4673-9571-2714732090B1}|DAPClassLibrary\\DAPServerLibrary.csproj|D:\\WebAPI-And-Angular-Assignment\\DoctorAppointmentPortal\\DoctorAppointmentPortalServer\\dapclasslibrary\\dal\\statesops.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{4C95264C-FC38-4673-9571-2714732090B1}|DAPClassLibrary\\DAPServerLibrary.csproj|solutionrelative:dapclasslibrary\\dal\\statesops.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{4C95264C-FC38-4673-9571-2714732090B1}|DAPClassLibrary\\DAPServerLibrary.csproj|d:\\webapi-and-angular-assignment\\doctorappointmentportal\\doctorappointmentportalserver\\dapclasslibrary\\models\\doctors.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{4C95264C-FC38-4673-9571-2714732090B1}|DAPClassLibrary\\DAPServerLibrary.csproj|solutionrelative:dapclasslibrary\\models\\doctors.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -63,6 +63,19 @@
             {
               "$type": "Document",
               "DocumentIndex": 1,
+              "Title": "DoctorsOps.cs",
+              "DocumentMoniker": "D:\\WebAPI-And-Angular-Assignment\\DoctorAppointmentPortal\\DoctorAppointmentPortalServer\\DAPClassLibrary\\DAL\\DoctorsOps.cs",
+              "RelativeDocumentMoniker": "DAPClassLibrary\\DAL\\DoctorsOps.cs",
+              "ToolTip": "D:\\WebAPI-And-Angular-Assignment\\DoctorAppointmentPortal\\DoctorAppointmentPortalServer\\DAPClassLibrary\\DAL\\DoctorsOps.cs",
+              "RelativeToolTip": "DAPClassLibrary\\DAL\\DoctorsOps.cs",
+              "ViewState": "AgIAABUAAAAAAAAAAAAkwCIAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-17T11:59:49.022Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
               "Title": "TalukasOps.cs",
               "DocumentMoniker": "D:\\WebAPI-And-Angular-Assignment\\DoctorAppointmentPortal\\DoctorAppointmentPortalServer\\DAPClassLibrary\\DAL\\TalukasOps.cs",
               "RelativeDocumentMoniker": "DAPClassLibrary\\DAL\\TalukasOps.cs",
@@ -70,12 +83,11 @@
               "RelativeToolTip": "DAPClassLibrary\\DAL\\TalukasOps.cs",
               "ViewState": "AgIAACMAAAAAAAAAAAA7wCoAAAAPAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-10-15T09:48:41.411Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-10-15T09:48:41.411Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 4,
               "Title": "Districts.cs",
               "DocumentMoniker": "D:\\WebAPI-And-Angular-Assignment\\DoctorAppointmentPortal\\DoctorAppointmentPortalServer\\DAPClassLibrary\\Models\\Districts.cs",
               "RelativeDocumentMoniker": "DAPClassLibrary\\Models\\Districts.cs",
@@ -83,12 +95,11 @@
               "RelativeToolTip": "DAPClassLibrary\\Models\\Districts.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-10-15T09:47:58.334Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-10-15T09:47:58.334Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 5,
               "Title": "StatesOps.cs",
               "DocumentMoniker": "D:\\WebAPI-And-Angular-Assignment\\DoctorAppointmentPortal\\DoctorAppointmentPortalServer\\DAPClassLibrary\\DAL\\StatesOps.cs",
               "RelativeDocumentMoniker": "DAPClassLibrary\\DAL\\StatesOps.cs",
@@ -96,12 +107,11 @@
               "RelativeToolTip": "DAPClassLibrary\\DAL\\StatesOps.cs",
               "ViewState": "AgIAABwAAAAAAAAAAAAhwDAAAAARAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-10-15T09:46:00.522Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-10-15T09:46:00.522Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 3,
               "Title": "DistrictsOps.cs",
               "DocumentMoniker": "D:\\WebAPI-And-Angular-Assignment\\DoctorAppointmentPortal\\DoctorAppointmentPortalServer\\DAPClassLibrary\\DAL\\DistrictsOps.cs",
               "RelativeDocumentMoniker": "DAPClassLibrary\\DAL\\DistrictsOps.cs",
@@ -109,21 +119,7 @@
               "RelativeToolTip": "DAPClassLibrary\\DAL\\DistrictsOps.cs",
               "ViewState": "AgIAAB4AAAAAAAAAAAAhwDIAAAARAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-10-15T09:43:23.928Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "Doctors.cs",
-              "DocumentMoniker": "D:\\WebAPI-And-Angular-Assignment\\DoctorAppointmentPortal\\DoctorAppointmentPortalServer\\DAPClassLibrary\\Models\\Doctors.cs",
-              "RelativeDocumentMoniker": "DAPClassLibrary\\Models\\Doctors.cs",
-              "ToolTip": "D:\\WebAPI-And-Angular-Assignment\\DoctorAppointmentPortal\\DoctorAppointmentPortalServer\\DAPClassLibrary\\Models\\Doctors.cs",
-              "RelativeToolTip": "DAPClassLibrary\\Models\\Doctors.cs",
-              "ViewState": "AgIAACEAAAAAAAAAAAAzwC0AAAA0AAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-10-15T09:16:22.852Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-10-15T09:43:23.928Z"
             },
             {
               "$type": "Document",
@@ -133,7 +129,7 @@
               "RelativeDocumentMoniker": "DoctorAppointmentPortalServer\\Controllers\\AdminController.cs",
               "ToolTip": "D:\\WebAPI-And-Angular-Assignment\\DoctorAppointmentPortal\\DoctorAppointmentPortalServer\\DoctorAppointmentPortalServer\\Controllers\\AdminController.cs",
               "RelativeToolTip": "DoctorAppointmentPortalServer\\Controllers\\AdminController.cs",
-              "ViewState": "AgIAAAgAAAAAAAAAAAAWwAwAAAAQAAAAAAAAAA==",
+              "ViewState": "AgIAACUAAAAAAAAAAAAgwDEAAAA3AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-10-15T09:12:31.437Z",
               "EditorCaption": ""
