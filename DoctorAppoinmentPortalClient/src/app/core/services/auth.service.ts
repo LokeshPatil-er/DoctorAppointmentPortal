@@ -15,12 +15,22 @@ export class AuthService {
     return (typeof window !== 'undefined' && !!window.localStorage);
   }
 
+  getToken():string | null{
+     let token:string | null="";
+     if(this.hasSessionStorage())
+     {
+      token=sessionStorage.getItem("Token")
+     }
+      return token;
+  }
+
   getDecodedToken(): AuthUserModel | null {
-    const token = sessionStorage.getItem("Token");
+    const token = this.getToken();
     if (!token) return null;
     return jwtDecode<AuthUserModel>(token);
   }
 
+  
   
   setAuthData(token: string): void {
     if (this.hasSessionStorage()) {

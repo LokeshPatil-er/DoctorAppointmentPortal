@@ -8,6 +8,8 @@ using DAPClassLibrary;
 
 namespace DoctorAppointmentPortalServer.Controllers
 {
+    [JwtAuthorization]
+    [Authorize(Roles="ADM")]
     public class AdminController : ApiController
     {
         [HttpGet]
@@ -52,7 +54,8 @@ namespace DoctorAppointmentPortalServer.Controllers
             HttpResponseMessage response = new HttpResponseMessage();
             try
             {
-                
+                DoctorsOps objDoctorsOps = new DoctorsOps();
+                bool result=objDoctorsOps.InsertOrUpdateDoctors(doctorModel);
             }
             catch(Exception ex)
             {

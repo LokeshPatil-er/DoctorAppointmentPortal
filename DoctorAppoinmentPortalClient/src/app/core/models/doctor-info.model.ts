@@ -1,3 +1,5 @@
+import { AvailableSlots } from "./availableSlots.model"
+
 export class DoctorInfo {
     DoctorId:number
     FirstName:string
@@ -20,6 +22,7 @@ export class DoctorInfo {
     YearOfExperience:number
     QualificationsIdList:number[]
     SpecializationsIdList:number[]
-    AvaliableSlotesList:any[]=[]
+    DoctorAvailableSlots:AvailableSlots[]=[]
+
 
 }

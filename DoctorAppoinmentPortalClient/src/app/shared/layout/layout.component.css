@@ -1,4 +1,10 @@
 
+.layout-wrapper {
+  position: relative;
+  z-index: 10;
+}
+
+
 main {
   width: calc(100% - 260px);
   transition: all 0.3s ease-in-out;

@@ -1,4 +1,19 @@
 /* 🌈 Soft background for section headers */
+
+/* Highlight invalid inputs */
+input.ng-invalid.ng-touched,
+select.ng-invalid.ng-touched,
+ng-select.ng-invalid.ng-touched .ng-select-container {
+  border: 1px solid red !important;
+}
+
+.validation-message {
+  color: red;
+  font-size: 0.85rem;
+  margin-top: 0.25rem;
+}
+
+
 .section-header {
   background-color: #f8f9fa;
   color: #333;

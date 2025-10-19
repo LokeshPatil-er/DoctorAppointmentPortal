@@ -7,6 +7,7 @@ import { FormsModule } from "@angular/forms";
 import { DoctorFormComponent } from './doctor-form/doctor-form.component';
 import { HttpClientModule } from "@angular/common/http";
 import { NgSelectModule } from '@ng-select/ng-select';
+import { ToastrModule } from "ngx-toastr";
 
 @NgModule({
     declarations: [
@@ -19,7 +20,8 @@ import { NgSelectModule } from '@ng-select/ng-select';
       AdminRoutingModule,
       FormsModule,
       HttpClientModule,
-      NgSelectModule
+      NgSelectModule,
+      ToastrModule
     ]
   })
   export class AdminModule { }

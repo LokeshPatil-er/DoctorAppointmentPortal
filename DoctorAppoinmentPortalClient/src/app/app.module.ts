@@ -10,7 +10,12 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { LayoutModule } from './shared/layout/layout.module';
 import { LandingPageComponent } from './features/landing-page/landing-page.component';
 import { FormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule, provideHttpClient, withInterceptors } from '@angular/common/http';
+import { ToastrModule } from 'ngx-toastr';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import{NgxSpinnerModule} from 'ngx-spinner';
+import { authInterceptor } from './core/interceptors/auth.interceptor';
+
 
 
 @NgModule({
@@ -22,14 +27,26 @@ import { HttpClientModule } from '@angular/common/http';
   ],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
     AppRoutingModule,
     NgbModule,
     LayoutModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    NgxSpinnerModule.forRoot({ type: 'ball-scale-multiple' }),
+    ToastrModule.forRoot({
+      timeOut: 3000, 
+      positionClass: 'toast-top-center',
+      preventDuplicates: true,
+      extendedTimeOut: 1000,
+      closeButton: true,
+      progressBar: true
+    }),
+
   ],
   providers: [
-    provideClientHydration()
+    provideClientHydration(),
+      provideHttpClient(withInterceptors([authInterceptor]))
   ],
   bootstrap: [AppComponent]
 })

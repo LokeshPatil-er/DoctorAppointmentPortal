@@ -3,6 +3,7 @@ import { DoctorFormService } from './doctor-form.service';
 import { DoctorInfo } from '../../../core/models/doctor-info.model';
 import { response } from 'express';
 import { UserRoles } from '../../../core/models/user-roles.enum';
+import { ToastService } from '../../../core/services/toast.service';
 
 @Component({
   selector: 'app-doctor-form',
@@ -26,7 +27,7 @@ export class DoctorFormComponent {
 
   doctorDetails:DoctorInfo=new DoctorInfo();
 
-  constructor(private doctorFormService:DoctorFormService){}
+  constructor(private doctorFormService:DoctorFormService,private toastService:ToastService){}
 
   ngOnInit():void{
      
@@ -44,11 +45,11 @@ export class DoctorFormComponent {
   }
 
   addSlot() {
-    this.doctorDetails.AvaliableSlotesList.push({ dayOfWeek: '', startTime: '', endTime: '' });
+    this.doctorDetails.DoctorAvailableSlots.push({ AvaliableSlotId:0,dayOfWeek:null, StartTime: '', EndTime: '' ,IsAvailable:true});
   }
 
   removeSlot(index: number) {
-    this.doctorDetails.AvaliableSlotesList.splice(index, 1);
+    this.doctorDetails.DoctorAvailableSlots.splice(index, 1);
   }
 
   onCountryChange(event: any) {
@@ -63,17 +64,18 @@ export class DoctorFormComponent {
     console.log('District changed:', event.target.value);
   }
 
-  onSubmit(form: any) {
-    if (form.valid) {
-      
-      this.doctorDetails.RoleShortCode=UserRoles.Doctor;
-      this.doctorFormService.insertOrUpdateDoctor(this.doctorDetails).subscribe(response=>{
-        console.log("DOne");
-      })
+  
 
-      console.log('Doctor Data:', this.doctorDetails);
-    } else {
-      alert('Please fill all required fields!');
+  onSubmit(form: any) {
+    if (form.invalid) {
+      console.log("error toast appear")
+      this.toastService.errorToastr("Fill all required information","Validation Error")
+      return;
     }
+
+     this.doctorDetails.RoleShortCode=UserRoles.Doctor;
+      this.doctorFormService.insertOrUpdateDoctor(this.doctorDetails).subscribe(response=>{
+        console.log("Done");
+      })
   }
 }

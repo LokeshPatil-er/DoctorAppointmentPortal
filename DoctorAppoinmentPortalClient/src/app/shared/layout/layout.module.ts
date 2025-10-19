@@ -5,6 +5,7 @@ import { LayoutComponent } from "./layout.component";
 import { SidebarComponent } from './sidebar/sidebar.component';
 import { RouterModule } from "@angular/router";
 import { CommonModule } from "@angular/common";
+import { ToastrModule } from "ngx-toastr";
 
 @NgModule({
     declarations:[
@@ -15,7 +16,8 @@ import { CommonModule } from "@angular/common";
     ],
     imports:[
         RouterModule,
-        CommonModule
+        CommonModule,
+        ToastrModule
     ]
 
 })

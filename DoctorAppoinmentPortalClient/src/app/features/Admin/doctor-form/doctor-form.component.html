@@ -2,248 +2,180 @@
   <div class="card doctor-form-card shadow-sm">
     <div class="card-header form-header d-flex justify-content-between align-items-center">
       <h4 class="mb-0">Doctor Details</h4>
-      
     </div>
 
     <div class="card-body">
-      <form #doctorForm="ngForm" (ngSubmit)="onSubmit(doctorForm)">
-       
+      <form #doctorForm="ngForm" (ngSubmit)="onSubmit(doctorForm)" novalidate>
+        <!-- ================= Basic Information ================= -->
         <div class="section-header">Basic Information</div>
         <div class="row gy-3">
+          <!-- First Name -->
           <div class="col-md-4">
-            <label class="form-label">First Name</label>
-            <input
-              type="text"
-              name="firstName"
-              [(ngModel)]="doctorDetails.FirstName"
-              required
-              class="form-control"
-              placeholder="Enter first name"
-            />
+            <label class="form-label">First Name<span class="text-danger">*</span></label>
+            <input type="text" name="firstName" [(ngModel)]="doctorDetails.FirstName" required class="form-control" placeholder="Enter first name" #firstName="ngModel"/>
+            <div *ngIf="firstName.invalid && firstName.touched" class="validation-message">First Name is required</div>
           </div>
+
+          <!-- Last Name -->
           <div class="col-md-4">
-            <label class="form-label">Last Name</label>
-            <input
-              type="text"
-              name="lastName"
-              [(ngModel)]="doctorDetails.LastName"
-              required
-              class="form-control"
-              placeholder="Enter last name"
-            />
+            <label class="form-label">Last Name<span class="text-danger">*</span></label>
+            <input type="text" name="lastName" [(ngModel)]="doctorDetails.LastName" required class="form-control" placeholder="Enter last name" #lastName="ngModel"/>
+            <div *ngIf="lastName.invalid && lastName.touched" class="validation-message">Last Name is required</div>
           </div>
+
+          <!-- Date of Birth -->
           <div class="col-md-4">
-            <label class="form-label">Date of Birth</label>
-            <input
-              type="date"
-              name="dateOfBirth"
-              [(ngModel)]="doctorDetails.DateOfBirth"
-              required
-              class="form-control"
-            />
+            <label class="form-label">Date of Birth<span class="text-danger">*</span></label>
+            <input type="date" name="dateOfBirth" [(ngModel)]="doctorDetails.DateOfBirth" required class="form-control" #dob="ngModel"/>
+            <div *ngIf="dob.invalid && dob.touched" class="validation-message">Date of Birth is required</div>
           </div>
+
+          <!-- Gender -->
           <div class="col-md-4">
-            <label class="form-label">Gender</label>
-            <ng-select
-            [items]="genders"
-            name="genderId"
-            bindLabel="Gender"
-            bindValue="GenderId"
-            placeholder="Select your Gender"
-            [(ngModel)]="doctorDetails.GenderId"
-            >
-          </ng-select>
+            <label class="form-label">Gender<span class="text-danger">*</span></label>
+            <ng-select [items]="genders" name="genderId" bindLabel="Gender" bindValue="GenderId"
+                       placeholder="Select your Gender" [(ngModel)]="doctorDetails.GenderId" required #gender="ngModel">
+            </ng-select>
+            <div *ngIf="gender.invalid && gender.touched" class="validation-message">Gender is required</div>
           </div>
+
+          <!-- Contact No -->
           <div class="col-md-4">
-            <label class="form-label">Contact No</label>
-            <input
-              type="text"
-              name="contactNo"
-              [(ngModel)]="doctorDetails.ContactNo"
-              required
-              maxlength="10"
-              pattern="^[0-9]{10}$"
-              class="form-control"
-              placeholder="Enter 10-digit contact"
-            />
+            <label class="form-label">Contact No<span class="text-danger">*</span></label>
+            <input type="text" name="contactNo" [(ngModel)]="doctorDetails.ContactNo" required maxlength="10" pattern="^[0-9]{10}$"
+                   class="form-control" placeholder="Enter 10-digit contact" #contact="ngModel"/>
+            <div *ngIf="contact.invalid && contact.touched" class="validation-message">
+              <div *ngIf="contact.errors?.['required']">Contact No is required</div>
+              <div *ngIf="contact.errors?.['pattern']">Enter a valid 10-digit number</div>
+            </div>
           </div>
+
+          <!-- Blood Group -->
           <div class="col-md-4">
-            <label class="form-label">Blood Group</label>
-            <ng-select
-            [items]="bloodGroups"
-            name="bloodGroupId"
-            bindLabel="BloodGroupName"
-            bindValue="BloodGroupId"
-            placeholder="Select your blood group"
-            [(ngModel)]="doctorDetails.BloodGroupId"
-            >
-          </ng-select>
+            <label class="form-label">Blood Group<span class="text-danger">*</span></label>
+            <ng-select [items]="bloodGroups" name="bloodGroupId" bindLabel="BloodGroupName" bindValue="BloodGroupId"
+                       placeholder="Select your blood group" [(ngModel)]="doctorDetails.BloodGroupId" required #bloodGroup="ngModel">
+            </ng-select>
+            <div *ngIf="bloodGroup.invalid && bloodGroup.touched" class="validation-message">Blood group is required</div>
           </div>
+
+          <!-- Years of Experience -->
           <div class="col-md-4">
-            <label class="form-label">Years of Experience</label>
-            <input
-              type="number"
-              name="yearOfExperience"
-              [(ngModel)]="doctorDetails.YearOfExperience"
-              required
-              class="form-control"
-              placeholder="Enter experience"
-            />
+            <label class="form-label">Years of Experience<span class="text-danger">*</span></label>
+            <input type="number" name="yearOfExperience" [(ngModel)]="doctorDetails.YearOfExperience" required class="form-control" placeholder="Enter experience" #exp="ngModel"/>
+            <div *ngIf="exp.invalid && exp.touched" class="validation-message">Years of experience is required</div>
           </div>
         </div>
 
-      
+        <!-- ================= Login Information ================= -->
         <div class="section-header mt-5">Login Information</div>
         <div class="row gy-3">
+          <!-- Email -->
           <div class="col-md-6">
-            <label class="form-label">Email</label>
-            <input
-              type="email"
-              name="email"
-              [(ngModel)]="doctorDetails.Email"
-              required
-              class="form-control"
-              placeholder="Enter email address"
-            />
+            <label class="form-label">Email<span class="text-danger">*</span></label>
+            <input type="email" name="email" [(ngModel)]="doctorDetails.Email" required class="form-control" placeholder="Enter email address" #email="ngModel"/>
+            <div *ngIf="email.invalid && email.touched" class="validation-message">
+              <div *ngIf="email.errors?.['required']">Email is required</div>
+              <div *ngIf="email.errors?.['email']">Enter a valid email address</div>
+            </div>
           </div>
+
+          <!-- Password -->
           <div class="col-md-6">
-            <label class="form-label">Password</label>
-            <input
-              type="password"
-              name="password"
-              [(ngModel)]="doctorDetails.Password"
-              required
-              minlength="6"
-              class="form-control"
-              placeholder="Enter password (min 6 chars)"
-            />
+            <label class="form-label">Password<span class="text-danger">*</span></label>
+            <input type="password" name="password" [(ngModel)]="doctorDetails.Password" required minlength="6" class="form-control" placeholder="Enter password (min 6 chars)" #password="ngModel"/>
+            <div *ngIf="password.invalid && password.touched" class="validation-message">
+              <div *ngIf="password.errors?.['required']">Password is required</div>
+              <div *ngIf="password.errors?.['minlength']">Password must be at least 6 characters</div>
+            </div>
           </div>
         </div>
 
-      
+        <!-- ================= Qualifications & Specializations ================= -->
         <div class="section-header mt-5">Qualifications & Specializations</div>
         <div class="row gy-3">
+          <!-- Qualifications -->
           <div class="col-md-6">
-            <label class="form-label">Qualifications</label>
-            <ng-select
-            [items]="qualifications"
-            name="QualificationList"
-            bindLabel="Degree"
-            bindValue="QualificationId"
-            placeholder="Select qualifications"
-            [(ngModel)]="doctorDetails.QualificationsIdList"
-            multiple
-            >
-          </ng-select>
+            <label class="form-label">Qualifications<span class="text-danger">*</span></label>
+            <ng-select [items]="qualifications" name="QualificationList" bindLabel="Degree" bindValue="QualificationId"
+                       placeholder="Select qualifications" [(ngModel)]="doctorDetails.QualificationsIdList" multiple required #qualification="ngModel">
+            </ng-select>
+            <div *ngIf="qualification.invalid && qualification.touched" class="validation-message">At least one qualification is required</div>
           </div>
+
+          <!-- Specialization -->
           <div class="col-md-6">
-            <label class="form-label">Specialization</label>
-            <ng-select
-            [items]="specializations"
-            name="SpecializationsList"
-            bindLabel="Specialization"
-            bindValue="SpecializationId"
-            placeholder="Select Specializations"
-            [(ngModel)]="doctorDetails.SpecializationsIdList"
-            multiple
-            >
-          </ng-select>
+            <label class="form-label">Specialization<span class="text-danger">*</span></label>
+            <ng-select [items]="specializations" name="SpecializationsList" bindLabel="Specialization" bindValue="SpecializationId"
+                       placeholder="Select Specializations" [(ngModel)]="doctorDetails.SpecializationsIdList" multiple required #specialization="ngModel">
+            </ng-select>
+            <div *ngIf="specialization.invalid && specialization.touched" class="validation-message">At least one specialization is required</div>
           </div>
         </div>
 
-       
+        <!-- ================= Consultancy ================= -->
         <div class="section-header mt-5">Consultancy</div>
         <div class="row gy-3">
           <div class="col-md-4">
-            <label class="form-label">Consultancy Fee (₹)</label>
-            <input
-              type="number"
-              name="consultancyFee"
-              [(ngModel)]="doctorDetails.ConsultancyFee"
-              required
-              class="form-control"
-              placeholder="Enter fee"
-            />
-          </div>
-         
-        </div>
-        <div class="section-header mt-5">Address</div>
-        <div class="row gy-3">
-          <div class="col-md-6">
-            <label class="form-label">Building Name/Flat No./Street</label>
-            <input
-              type="text"
-              name="addressLine1"
-              [(ngModel)]="doctorDetails.AddressLine1"
-              required
-              class="form-control"
-              placeholder="Enter address"
-            />
-          </div>
-          <div class="col-md-2">
-            <label class="form-label">Pincode</label>
-            <input
-              type="text"
-              name="pincode"
-              [(ngModel)]="doctorDetails.Pincode"
-              required
-              maxlength="6"
-              pattern="^[0-9]{6}$"
-              class="form-control"
-              placeholder="Enter pincode"
-            />
-          </div>
-          <div class="col-md-4">
-            <label class="form-label">Country</label>
-            <ng-select
-              [items]="countries"
-              name="countryId"
-              bindLabel="CountryName"
-              bindValue="CountryId"
-              placeholder="Select country"
-              [(ngModel)]="doctorDetails.CountryId"
-              >
-            </ng-select>
-          </div>
-          <div class="col-md-4">
-            <label class="form-label">State</label>
-            <ng-select
-            [items]="states"
-            name="stateId"
-            bindLabel="StateName"
-            bindValue="StateId"
-            placeholder="Select state"
-            [(ngModel)]="doctorDetails.StateId"
-            >
-          </ng-select>
-          </div>
-          <div class="col-md-4">
-            <label class="form-label">District</label>
-            <ng-select
-            [items]="districts"
-             name="districtId"
-            bindLabel="DistrictName"
-            bindValue="DistrictId"
-            placeholder="Select District"
-            [(ngModel)]="doctorDetails.DistrictId"
-            >
-          </ng-select>
-          </div>
-          <div class="col-md-4">
-            <label class="form-label">Taluka</label>
-            <ng-select
-              [items]="talukas"
-              name="talukaId"
-              bindLabel="TalukaName"
-              bindValue="TalukaId"
-              placeholder="Select taluka"
-              [(ngModel)]="doctorDetails.TalukaId"
-              >
-            </ng-select>
+            <label class="form-label">Consultancy Fee (₹)<span class="text-danger">*</span></label>
+            <input type="number" name="consultancyFee" [(ngModel)]="doctorDetails.ConsultancyFee" required class="form-control" placeholder="Enter fee" #fee="ngModel"/>
+            <div *ngIf="fee.invalid && fee.touched" class="validation-message">Consultancy fee is required</div>
           </div>
         </div>
 
-        
+        <!-- ================= Address ================= -->
+        <div class="section-header mt-5">Address</div>
+        <div class="row gy-3">
+          <div class="col-md-6">
+            <label class="form-label">Building Name/Flat No./Street<span class="text-danger">*</span></label>
+            <input type="text" name="addressLine1" [(ngModel)]="doctorDetails.AddressLine1" required class="form-control" placeholder="Enter address" #address="ngModel"/>
+            <div *ngIf="address.invalid && address.touched" class="validation-message">Address is required</div>
+          </div>
+
+          <div class="col-md-2">
+            <label class="form-label">Pincode<span class="text-danger">*</span></label>
+            <input type="text" name="pincode" [(ngModel)]="doctorDetails.Pincode" required maxlength="6" pattern="^[0-9]{6}$" class="form-control" placeholder="Enter pincode" #pincode="ngModel"/>
+            <div *ngIf="pincode.invalid && pincode.touched" class="validation-message">
+              <div *ngIf="pincode.errors?.['required']">Pincode is required</div>
+              <div *ngIf="pincode.errors?.['pattern']">Enter a valid 6-digit pincode</div>
+            </div>
+          </div>
+
+          <!-- Country, State, District, Taluka -->
+          <div class="col-md-4">
+            <label class="form-label">Country<span class="text-danger">*</span></label>
+            <ng-select [items]="countries" name="countryId" bindLabel="CountryName" bindValue="CountryId" placeholder="Select country"
+                       [(ngModel)]="doctorDetails.CountryId" required #country="ngModel">
+            </ng-select>
+            <div *ngIf="country.invalid && country.touched" class="validation-message">Country is required</div>
+          </div>
+
+          <div class="col-md-4">
+            <label class="form-label">State<span class="text-danger">*</span></label>
+            <ng-select [items]="states" name="stateId" bindLabel="StateName" bindValue="StateId" placeholder="Select state"
+                       [(ngModel)]="doctorDetails.StateId" required #state="ngModel">
+            </ng-select>
+            <div *ngIf="state.invalid && state.touched" class="validation-message">State is required</div>
+          </div>
+
+          <div class="col-md-4">
+            <label class="form-label">District<span class="text-danger">*</span></label>
+            <ng-select [items]="districts" name="districtId" bindLabel="DistrictName" bindValue="DistrictId" placeholder="Select District"
+                       [(ngModel)]="doctorDetails.DistrictId" required #district="ngModel">
+            </ng-select>
+            <div *ngIf="district.invalid && district.touched" class="validation-message">District is required</div>
+          </div>
+
+          <div class="col-md-4">
+            <label class="form-label">Taluka<span class="text-danger">*</span></label>
+            <ng-select [items]="talukas" name="talukaId" bindLabel="TalukaName" bindValue="TalukaId" placeholder="Select taluka"
+                       [(ngModel)]="doctorDetails.TalukaId" required #taluka="ngModel">
+            </ng-select>
+            <div *ngIf="taluka.invalid && taluka.touched" class="validation-message">Taluka is required</div>
+          </div>
+        </div>
+
+        <!-- ================= Available Slots ================= -->
         <div class="section-header mt-5 d-flex justify-content-between align-items-center">
           <span>Available Slots</span>
           <button type="button" class="btn btn-outline-success btn-sm" (click)="addSlot()">
@@ -251,41 +183,37 @@
           </button>
         </div>
 
-        <div *ngFor="let slot of doctorDetails.AvaliableSlotesList; let i = index" class="row gy-3 align-items-end mb-2">
+        <div *ngFor="let slot of doctorDetails.DoctorAvailableSlots; let i = index" class="row gy-3 align-items-end mb-2">
+          <!-- Day of Week -->
           <div class="col-md-3">
-            <label class="form-label">Day of Week</label>
-            <select
+            <label class="form-label">Day of Week<span class="text-danger">*</span></label>
+           <ng-select
               [(ngModel)]="slot.dayOfWeek"
+              [items]="daysOfWeek"
+              placeholder="Select Day"
               name="dayOfWeek{{ i }}"
-              class="form-select"
               required
-            >
-              <option value="">Select Day</option>
-              <option *ngFor="let day of daysOfWeek" [value]="day">
-                {{ day }}
-              </option>
-            </select>
+              #dayOfWeek="ngModel">
+            </ng-select>
+
+
+            <div *ngIf="dayOfWeek.invalid && dayOfWeek.touched" class="validation-message">Day is required</div>
           </div>
+
+          <!-- Start Time -->
           <div class="col-md-3">
-            <label class="form-label">Start Time</label>
-            <input
-              type="time"
-              [(ngModel)]="slot.startTime"
-              name="startTime{{ i }}"
-              class="form-control"
-              required
-            />
+            <label class="form-label">Start Time<span class="text-danger">*</span></label>
+            <input type="time" [(ngModel)]="slot.StartTime" name="startTime{{ i }}" class="form-control" required #startTime="ngModel"/>
+            <div *ngIf="startTime.invalid && startTime.touched" class="validation-message">Start time is required</div>
           </div>
+
+          <!-- End Time -->
           <div class="col-md-3">
-            <label class="form-label">End Time</label>
-            <input
-              type="time"
-              [(ngModel)]="slot.endTime"
-              name="endTime{{ i }}"
-              class="form-control"
-              required
-            />
+            <label class="form-label">End Time<span class="text-danger">*</span></label>
+            <input type="time" [(ngModel)]="slot.EndTime" name="endTime{{ i }}" class="form-control" required #endTime="ngModel"/>
+            <div *ngIf="endTime.invalid && endTime.touched" class="validation-message">End time is required</div>
           </div>
+
           <div class="col-md-3 text-end">
             <button type="button" class="btn btn-outline-danger" (click)="removeSlot(i)">
               <i class="bi bi-trash"></i> Remove
@@ -293,9 +221,10 @@
           </div>
         </div>
 
+        <!-- Submit & Reset Buttons -->
         <div class="text-end mt-5">
           <button type="reset" class="btn btn-outline-secondary me-2">Reset</button>
-          <button type="submit" class="btn btn-success" [disabled]="doctorForm.invalid">
+          <button type="submit" class="btn btn-success" >
             <i class="bi bi-save"></i> Save Doctor
           </button>
         </div>

@@ -45,5 +45,39 @@ namespace DAPClassLibrary
             }
             return token;
         }
+
+        public static ClaimsPrincipal TokenVerify(string token)
+        {
+            try
+            {
+                var tokenHandler = new JwtSecurityTokenHandler();
+                var secretKey = Encoding.UTF8.GetBytes(key);
+
+                var parameters = new TokenValidationParameters
+                {
+                    ValidateIssuer = false,
+                    ValidateAudience = false,
+                    ValidateLifetime = true,
+                    ValidateIssuerSigningKey = true,
+                    IssuerSigningKey = new SymmetricSecurityKey(secretKey),
+                    ClockSkew = TimeSpan.Zero
+                };
+
+                SecurityToken validatedToken;
+                return tokenHandler.ValidateToken(token, parameters, out validatedToken);
+            }
+            catch (SecurityTokenExpiredException)
+            {
+                throw new Exception("Token expired.");
+            }
+            catch (SecurityTokenException)
+            {
+                throw new Exception("Invalid token.");
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Token validation failed.", ex);
+            }
+        }
     }
 }

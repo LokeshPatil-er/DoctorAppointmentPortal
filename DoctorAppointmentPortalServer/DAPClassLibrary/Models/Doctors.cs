@@ -23,6 +23,8 @@ namespace DAPClassLibrary
         public string GenderName { get; set; }
         public int AddressId { get; set; }
         public string AddressLine1 { get; set; }
+        public int TalukaId { get; set; }
+        public string TalukaName { get; set; }
         public string Pincode { get; set; }
         public int YearOfExperience { get; set; }
         public int ConsultancyFee { get; set; }
@@ -33,6 +35,7 @@ namespace DAPClassLibrary
         public DateTime? ModifiedOn { get; set; }
         public List<int> DoctorQulificationsIdList { get; set; }
         public List<int> DoctorSpecializationsIdList { get; set; }
+        public List<AvailableSlots> DoctorAvailableSlots { get; set; }
         public List<Countries> CountriesList { get; set; }
         public List<States> StatesList { get; set; }
         public List<Districts> DistrictsList { get; set; }
@@ -42,5 +45,18 @@ namespace DAPClassLibrary
         public List<Qualifications> QualificationsList { get; set; }
         public List<Specializations> SpecializationsList { get; set; }
 
+    }
+
+    public class AvailableSlots
+    {
+        public int AvaliableSlotId { get; set; }
+        public string dayOfWeek { get; set; }
+        public string StartTime { get; set; }
+        public string EndTime { get; set; }
+        public bool IsAvailable { get; set; }
+        public int CreatedBy { get; set; }
+        public DateTime CreatedOn { get; set; }
+        public int ModifiedBy { get; set; }
+        public DateTime ModifiedOn { get; set; }
     }
 }
