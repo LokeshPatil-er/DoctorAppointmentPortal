@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { ToastService } from '../../core/services/toast.service';
 
 @Component({
   selector: 'app-landing-page',
@@ -8,9 +9,11 @@ import { Component } from '@angular/core';
 export class LandingPageComponent {
 
   currentYear:number;
+  constructor(){}
 
   ngOnInit():void{
     this.currentYear=Date.now();
   }
 
+  
 }

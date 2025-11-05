@@ -4,33 +4,48 @@
    <img src="assets/careConnect-logo.png" alt="Logo" width="40" class="mini-logo" [ngClass]="{'visible': isMinimized}" />
   </div>
 
-  <ul class="nav flex-column sidebar-nav flex-grow-1 px-3">
-    <li class="nav-item-title text-uppercase mt-2 mb-2" *ngIf="!isMinimized">MENU</li>
+ <ul class="nav flex-column sidebar-nav flex-grow-1 px-3">
+  <li class="nav-item-title text-uppercase mt-2 mb-2" *ngIf="!isMinimized">
+    MENU
+  </li>
 
+  <ng-container *ngIf="authService.getUserRole() === userRoles.Admin">
     <li class="nav-item">
-      <a routerLink="/dashboard" routerLinkActive="active" class="nav-link d-flex align-items-center">
+      <a
+        routerLink="/admin/dashboard"
+        routerLinkActive="active"
+        class="nav-link d-flex align-items-center"
+      >
         <i class="bi bi-speedometer2 me-2 fs-5"></i>
         <span *ngIf="!isMinimized">Dashboard</span>
       </a>
     </li>
+
     <li class="nav-item">
-      <a routerLink="/appointments" routerLinkActive="active" class="nav-link d-flex align-items-center">
-        <i class="bi bi-calendar-check me-2 fs-5"></i>
-        <span *ngIf="!isMinimized">Appointments</span>
-      </a>
-    </li>
-    <li class="nav-item">
-      <a routerLink="/patients" routerLinkActive="active" class="nav-link d-flex align-items-center">
-        <i class="bi bi-person me-2 fs-5"></i>
-        <span *ngIf="!isMinimized">Patients</span>
-      </a>
-    </li>
-    <li class="nav-item">
-      <a routerLink="/doctors" routerLinkActive="active" class="nav-link d-flex align-items-center">
+      <a
+        routerLink="/admin/doctorsList"
+        routerLinkActive="active"
+        class="nav-link d-flex align-items-center"
+      >
         <i class="bi bi-person-badge me-2 fs-5"></i>
         <span *ngIf="!isMinimized">Doctors</span>
       </a>
     </li>
-    
-  </ul>
+  </ng-container>
+
+  <ng-container *ngIf="authService.getUserRole() === userRoles.Doctor">
+    <li class="nav-item">
+      <a
+        routerLink="/doctor/dashboard"
+        routerLinkActive="active"
+        class="nav-link d-flex align-items-center"
+      >
+        <i class="bi bi-speedometer2 me-2 fs-5"></i>
+        <span *ngIf="!isMinimized">Dashboard</span>
+      </a>
+    </li>
+  </ng-container>
+
+</ul>
+
 </div>

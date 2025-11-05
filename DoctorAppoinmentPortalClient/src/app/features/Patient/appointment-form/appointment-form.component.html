@@ -1,0 +1,1037 @@
+<div class="container mt-4 mb-5">
+  <div class="text-center mb-3">
+    <h4 class="text-primary">🩺 Create Appointment Request</h4>
+    <a routerLink="/landingPage" class="back-link">← Back to Home</a>
+  </div>
+
+  <form
+    #appointmentForm="ngForm"
+    (ngSubmit)="onSubmit(appointmentForm)"
+    class="card p-4"
+  >
+    <!-- Doctor Selection -->
+    <h6 class="text-secondary border-bottom pb-2 mb-3">Doctor Selection</h6>
+    <div class="row">
+      <div class="col-md-6 mb-3">
+        <label>Specialization <span class="text-danger">*</span></label>
+        <ng-select
+          name="specializationId"
+          [items]="specializations"
+          bindLabel="Specialization"
+          bindValue="SpecializationId"
+          placeholder="Select Specialization"
+          (change)="onSpecializationChange()"
+          [(ngModel)]="selectedSpecialization"
+          #specializationId="ngModel"
+          [ngClass]="{
+            'is-invalid':
+              specializationId.invalid &&
+              (specializationId.touched || appointmentForm.submitted)
+          }"
+          required
+        >
+          <ng-template ng-label-tmp let-item="item">
+            {{ item.Specialization }}
+          </ng-template>
+          <ng-template ng-option-tmp let-item="item">
+            <strong>{{ item.Specialization }}</strong> - {{ item.Description }}
+          </ng-template>
+        </ng-select>
+        <div
+          class="error-message"
+          *ngIf="
+            specializationId.invalid &&
+            (specializationId.touched || appointmentForm.submitted)
+          "
+        >
+          Please select a specialization.
+        </div>
+      </div>
+      <div class="col-md-6 mb-3" *ngIf="isSpecializationSelected">
+        <label class="form-label fw-semibold text-secondary">
+          Select Doctor <span class="text-danger">*</span>
+        </label>
+
+        <ng-select
+          name="doctorId"
+          [items]="doctors"
+          bindValue="DoctorId"
+          [(ngModel)]="patientAppointment.Appointment.DoctorId"
+          placeholder="Select Doctor"
+          #doctorId="ngModel"
+          (change)="onDoctorChange()"
+          [ngClass]="{
+            'is-invalid':
+              doctorId.invalid &&
+              (doctorId.touched || appointmentForm.submitted)
+          }"
+          required
+        >
+        <ng-template ng-label-tmp let-item="item">
+          <div class="d-flex align-items-center">
+            <div>
+              <strong>Dr. {{ item.FullName }}</strong>
+              <small class="text-muted ">
+                {{ item.DoctorQualifications }} | Fee: ₹{{ item.ConsultancyFee }}
+              </small>
+            </div>
+          </div>
+        </ng-template>
+      
+       
+        <ng-template ng-option-tmp let-item="item">
+          <div class="doctor-option d-flex flex-column py-2 px-1">
+            <div class="d-flex justify-content-between align-items-center">
+              <div>
+                <strong class="text-primary">Dr. {{ item.FullName }}</strong>
+                <span class="badge bg-light text-secondary ms-2">
+                  {{ item.DoctorQualifications }}
+                </span>
+              </div>
+              <span class="text-success fw-semibold">Fee: ₹{{ item.ConsultancyFee }}</span>
+            </div>
+          </div>
+        </ng-template>
+        </ng-select>
+
+        <div
+          class="error-message text-danger mt-1"
+          *ngIf="
+            doctorId.invalid && (doctorId.touched || appointmentForm.submitted)
+          "
+        >
+          Please select a doctor.
+        </div>
+      </div>
+    </div>
+
+    <div *ngIf="patientAppointment.Appointment.DoctorId">
+      <h6 class="text-secondary border-bottom pb-2 mb-3 mt-4">
+        Patient Information
+      </h6>
+      <div class="row">
+        <div class="col-md-6 mb-3">
+          <label>First Name <span class="text-danger">*</span></label>
+          <input
+            type="text"
+            class="form-control"
+            [attr.maxlength]="null"
+            name="firstName"
+            placeholder="Enter First Name"
+            [(ngModel)]="patientAppointment.Patient.FirstName"
+            #firstName="ngModel"
+            maxlength="50"
+            required
+            pattern="^[a-zA-Z\s'-]+$"
+            [ngClass]="{
+              'is-invalid':
+                firstName.invalid &&
+                (firstName.touched || appointmentForm.submitted)
+            }"
+          />
+
+          <!-- Validation Messages -->
+          <div
+            *ngIf="
+              firstName.invalid &&
+              (firstName.dirty ||
+                firstName.touched ||
+                appointmentForm.submitted)
+            "
+            class="text-danger mt-1"
+          >
+            <small *ngIf="firstName.errors?.['required']"
+              >First Name is required.</small
+            >
+            <small *ngIf="firstName.errors?.['pattern']"
+              >Only letters, spaces, hyphens, and apostrophes are
+              allowed.</small
+            >
+            <small *ngIf="firstName.errors?.['maxlength']"
+              >Max 50 letter is allowed in first name</small
+            >
+          </div>
+        </div>
+
+        <div class="col-md-6 mb-3">
+          <label>Last Name <span class="text-danger">*</span></label>
+          <input
+            type="text"
+            class="form-control"
+            name="lastName"
+            placeholder="Enter Last Name"
+            [(ngModel)]="patientAppointment.Patient.LastName"
+            #lastName="ngModel"
+            maxlength="50"
+            required
+            pattern="^[a-zA-Z\s'-]+$"
+            [ngClass]="{
+              'is-invalid':
+                lastName.invalid &&
+                (lastName.touched || appointmentForm.submitted)
+            }"
+          />
+
+          <!-- Validation Messages -->
+          <div
+            *ngIf="
+              lastName.invalid &&
+              (lastName.dirty || lastName.touched || appointmentForm.submitted)
+            "
+            class="text-danger mt-1"
+          >
+            <small *ngIf="lastName.errors?.['required']"
+              >Last Name is required.</small
+            >
+            <small *ngIf="lastName.errors?.['pattern']"
+              >Only letters, spaces, hyphens, and apostrophes are
+              allowed.</small
+            >
+            <small *ngIf="lastName.errors?.['maxlength']"
+              >Max 50 letter is allowed in last name.</small
+            >
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-6 mb-3">
+          <label>Gender <span class="text-danger">*</span></label>
+          <ng-select
+            name="genderId"
+            [items]="genders"
+            bindLabel="Gender"
+            bindValue="GenderId"
+            placeholder="Select Gender"
+            [(ngModel)]="patientAppointment.Patient.GenderId"
+            #genderId="ngModel"
+            [ngClass]="{
+              'is-invalid':
+                genderId.invalid &&
+                (genderId.touched || appointmentForm.submitted)
+            }"
+            required
+          >
+          </ng-select>
+          <!-- Validation Message -->
+          <div
+            *ngIf="
+              genderId.invalid &&
+              (genderId.dirty || genderId.touched || appointmentForm.submitted)
+            "
+            class="text-danger mt-1"
+          >
+            <small *ngIf="genderId.errors?.['required']"
+              >Gender is required.</small
+            >
+          </div>
+        </div>
+
+        <div class="col-md-6 mb-3">
+          <label>Date of Birth <span class="text-danger">*</span></label>
+          <input
+            type="date"
+            class="form-control"
+            name="dob"
+            [(ngModel)]="patientAppointment.Patient.DateOfBirth"
+            #dob="ngModel"
+            [ngClass]="{
+              'is-invalid':
+                (dob.invalid && (dob.touched || appointmentForm.submitted)) ||
+                isFutureDOB(dob.value)
+            }"
+            [max]="today | date : 'yyyy-MM-dd'"
+            required
+          />
+
+          <div
+            *ngIf="
+              (dob.invalid &&
+                (dob.dirty || dob.touched || appointmentForm.submitted)) ||
+              isFutureDOB(dob.value)
+            "
+            class="text-danger mt-1"
+          >
+            <small *ngIf="dob.errors?.['required']"
+              >Date of Birth is required.</small
+            >
+            <small *ngIf="isFutureDOB(dob.value)"
+              >Date of Birth cannot be in the future.</small
+            >
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-6 mb-3">
+          <label>Email <span class="text-danger">*</span></label>
+          <input
+            type="email"
+            class="form-control"
+            name="email"
+            placeholder="Enter Email"
+            maxlength="320"
+            email
+            pattern="^[a-zA-Z0-9._%+\-]+@[a-zA-Z0-9.\-]+\.[a-zA-Z]{2,}$"
+            [(ngModel)]="patientAppointment.Patient.Email"
+            #email="ngModel"
+            [ngClass]="{
+              'is-invalid':
+                email.invalid && (email.touched || appointmentForm.submitted)
+            }"
+            required
+          />
+
+          <div
+            *ngIf="
+              email.invalid &&
+              (email.dirty || email.touched || appointmentForm.submitted)
+            "
+            class="text-danger mt-1"
+          >
+            <small *ngIf="email.errors?.['required']">Email is required.</small>
+            <small *ngIf="email.errors?.['maxlength']"
+              >Max 320 characters allowed in email address.</small
+            >
+            <small *ngIf="email.errors?.['email'] || email.errors?.['pattern']"
+              >Please enter a valid email address.</small
+            >
+          </div>
+        </div>
+
+        <div class="col-md-6 mb-3">
+          <label>Contact No <span class="text-danger">*</span></label>
+          <input
+            type="text"
+            maxlength="10"
+            class="form-control"
+            name="contactNo"
+            placeholder="Enter Contact No"
+            [(ngModel)]="patientAppointment.Patient.ContactNo"
+            #contactNo="ngModel"
+            pattern="^[6-9][0-9]{9}$"
+            [ngClass]="{
+              'is-invalid':
+                contactNo.invalid &&
+                (contactNo.touched || appointmentForm.submitted)
+            }"
+            required
+          />
+          
+          <div
+            *ngIf="
+              contactNo.invalid &&
+              (contactNo.dirty ||
+                contactNo.touched ||
+                appointmentForm.submitted)
+            "
+            class="text-danger mt-1"
+          >
+            <small *ngIf="contactNo.errors?.['required']"
+              >Contact Number is required.</small
+            >
+            <small *ngIf="contactNo.errors?.['pattern']"
+              >Contact Number must be exactly 10 digits (should start with
+              6–9).</small
+            >
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-6 mb-3">
+          <label>Blood Group <span class="text-danger">*</span></label>
+          <ng-select
+            name="bloodGroupId"
+            [items]="bloodGroups"
+            bindLabel="BloodGroupName"
+            bindValue="BloodGroupId"
+            placeholder="Select Blood Group"
+            [(ngModel)]="patientAppointment.Patient.BloodGroupId"
+            #bloodGroupId="ngModel"
+            [ngClass]="{
+              'is-invalid':
+                bloodGroupId.invalid &&
+                (bloodGroupId.touched || appointmentForm.submitted)
+            }"
+            required
+          >
+          </ng-select>
+
+          <div
+            *ngIf="
+              bloodGroupId.invalid &&
+              (bloodGroupId.dirty ||
+                bloodGroupId.touched ||
+                appointmentForm.submitted)
+            "
+            class="text-danger mt-1"
+          >
+            <small *ngIf="bloodGroupId.errors?.['required']"
+              >Blood Group is required.</small
+            >
+          </div>
+        </div>
+      </div>
+
+      <h6 class="text-secondary border-bottom pb-2 mb-3 mt-4">
+        Address Information
+      </h6>
+      <div class="mb-3">
+        <label
+          >Building Name/Flat No./Street
+          <span class="text-danger">*</span></label
+        >
+        <input
+          type="text"
+          class="form-control"
+          name="addressLine1"
+          placeholder="Enter Building Name,Flat No.,Street "
+          [(ngModel)]="patientAppointment.Patient.AddressLine1"
+          maxlength="200"
+          #addressLine1="ngModel"
+          required
+          pattern="^[a-zA-Z0-9\s,/-]+$"
+          [ngClass]="{
+            'is-invalid':
+              addressLine1.invalid &&
+              (addressLine1.touched || appointmentForm.submitted)
+          }"
+        />
+
+        <div
+          *ngIf="
+            addressLine1.invalid &&
+            (addressLine1.dirty ||
+              addressLine1.touched ||
+              appointmentForm.submitted)
+          "
+          class="text-danger mt-1"
+        >
+          <small *ngIf="addressLine1.errors?.['required']"
+            >Building Name/Flat No./Street is required.</small
+          >
+          <small *ngIf="addressLine1.errors?.['pattern']"
+            >Invalid characters in address.</small
+          >
+          <small *ngIf="addressLine1.errors?.['maxlength']"
+            >Max 200 letters allowed.</small
+          >
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-4 mb-3">
+          <label>Pincode <span class="text-danger">*</span></label>
+          <input
+            type="text"
+            maxlength="6"
+            class="form-control"
+            name="pincode"
+            placeholder="Enter Pincode"
+            [(ngModel)]="patientAppointment.Patient.Pincode"
+            #pincode="ngModel"
+            required
+            pattern="^[0-9]{6}$"
+            [ngClass]="{
+              'is-invalid':
+                pincode.invalid &&
+                (pincode.touched || appointmentForm.submitted)
+            }"
+          />
+
+          <div
+            *ngIf="
+              pincode.invalid &&
+              (pincode.dirty || pincode.touched || appointmentForm.submitted)
+            "
+            class="text-danger mt-1"
+          >
+            <small *ngIf="pincode.errors?.['required']"
+              >Pincode is required.</small
+            >
+            <small *ngIf="pincode.errors?.['pattern']"
+              >Pincode must be exactly 6 digits.</small
+            >
+          </div>
+        </div>
+
+        <div class="col-md-4 mb-3">
+          <label>Taluka <span class="text-danger">*</span></label>
+          <ng-select
+            name="talukaId"
+            [items]="talukas"
+            bindLabel="TalukaName"
+            bindValue="TalukaId"
+            placeholder="Select Taluka"
+            [(ngModel)]="patientAppointment.Patient.TalukaId"
+            #talukaId="ngModel"
+            [ngClass]="{
+              'is-invalid':
+                talukaId.invalid &&
+                (talukaId.touched || appointmentForm.submitted)
+            }"
+            required
+          >
+          </ng-select>
+
+          <div
+            *ngIf="
+              talukaId.invalid &&
+              (talukaId.dirty || talukaId.touched || appointmentForm.submitted)
+            "
+            class="text-danger mt-1"
+          >
+            <small *ngIf="talukaId.errors?.['required']"
+              >Taluka is required.</small
+            >
+          </div>
+        </div>
+
+        <div class="col-md-4 mb-3">
+          <label>District <span class="text-danger">*</span></label>
+          <ng-select
+            name="districtId"
+            [items]="districts"
+            bindLabel="DistrictName"
+            bindValue="DistrictId"
+            placeholder="Select District"
+            [(ngModel)]="patientAppointment.Patient.DistrictId"
+            #districtId="ngModel"
+            [ngClass]="{
+              'is-invalid':
+                districtId.invalid &&
+                (districtId.touched || appointmentForm.submitted)
+            }"
+            required
+          >
+          </ng-select>
+
+          <div
+            *ngIf="
+              districtId.invalid &&
+              (districtId.dirty ||
+                districtId.touched ||
+                appointmentForm.submitted)
+            "
+            class="text-danger mt-1"
+          >
+            <small *ngIf="districtId.errors?.['required']"
+              >District is required.</small
+            >
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-6 mb-3">
+          <label>State <span class="text-danger">*</span></label>
+          <ng-select
+            name="stateId"
+            [items]="states"
+            bindLabel="StateName"
+            bindValue="StateId"
+            placeholder="Select State"
+            [(ngModel)]="patientAppointment.Patient.StateId"
+            #stateId="ngModel"
+            [ngClass]="{
+              'is-invalid':
+                stateId.invalid &&
+                (stateId.touched || appointmentForm.submitted)
+            }"
+            required
+          >
+          </ng-select>
+
+          <div
+            *ngIf="
+              stateId.invalid &&
+              (stateId.dirty || stateId.touched || appointmentForm.submitted)
+            "
+            class="text-danger mt-1"
+          >
+            <small *ngIf="stateId.errors?.['required']"
+              >State is required.</small
+            >
+          </div>
+        </div>
+
+        <div class="col-md-6 mb-3">
+          <label>Country <span class="text-danger">*</span></label>
+          <ng-select
+            name="countryId"
+            [items]="countries"
+            bindLabel="CountryName"
+            bindValue="CountryId"
+            placeholder="Select Country"
+            [(ngModel)]="patientAppointment.Patient.CountryId"
+            #countryId="ngModel"
+            [ngClass]="{
+              'is-invalid':
+                countryId.invalid &&
+                (countryId.touched || appointmentForm.submitted)
+            }"
+            required
+          >
+          </ng-select>
+
+          <div
+            *ngIf="
+              countryId.invalid &&
+              (countryId.dirty ||
+                countryId.touched ||
+                appointmentForm.submitted)
+            "
+            class="text-danger mt-1"
+          >
+            <small *ngIf="countryId.errors?.['required']"
+              >Country is required.</small
+            >
+          </div>
+        </div>
+      </div>
+
+      <h6 class="text-secondary border-bottom pb-2 mb-3 mt-4">
+        Insurance Information
+      </h6>
+      <div class="col-md-6 mb-3">
+        <label>Do you have health insurance?</label>
+        <ng-select
+          name="hasInsurance"
+          [items]="yesNoOptions"
+          bindLabel="label"
+          bindValue="value"
+          (change)="onInsranceOptionChange()"
+          [(ngModel)]="isHasInsurances"
+          placeholder="Select option"
+        >
+        </ng-select>
+      </div>
+
+      <div *ngIf="isHasInsurances" class="border rounded p-3 mb-3 bg-light">
+        <div class="row">
+          <div class="col-md-6 mb-3">
+            <label>Provider Name<span class="text-danger">*</span></label>
+            <input
+              type="text"
+              class="form-control"
+              name="providerName"
+              placeholder="Enter Provider Name"
+              [(ngModel)]="patientAppointment.Patient.ProviderName"
+              #providerName="ngModel"
+              maxlength="100"
+              pattern="^[a-zA-Z0-9\s.&-]+$"
+              [ngClass]="{
+                'is-invalid':
+                  providerName.invalid &&
+                  (providerName.touched || appointmentForm.submitted)
+              }"
+              required
+            />
+
+            <div
+              *ngIf="
+                providerName.invalid &&
+                (providerName.dirty ||
+                  providerName.touched ||
+                  appointmentForm.submitted)
+              "
+              class="text-danger mt-1"
+            >
+              <small *ngIf="providerName.errors?.['required']"
+                >Provider Name is required.</small
+              >
+              <small *ngIf="providerName.errors?.['maxlength']"
+                >Max 100 letters allowed in provider name.</small
+              >
+              <small *ngIf="providerName.errors?.['pattern']"
+                >Invalid characters in Provider Name.</small
+              >
+            </div>
+          </div>
+
+          <div class="col-md-6 mb-3">
+            <label>Policy Name<span class="text-danger">*</span></label>
+            <input
+              type="text"
+              class="form-control"
+              name="policyName"
+              placeholder="Enter Policy Name"
+              [(ngModel)]="patientAppointment.Patient.PolicyName"
+              #policyName="ngModel"
+              maxlength="255"
+              pattern="^[a-zA-Z0-9\s.&-]+$"
+              [ngClass]="{
+                'is-invalid':
+                  policyName.invalid &&
+                  (policyName.touched || appointmentForm.submitted)
+              }"
+              required
+            />
+
+            <div
+              *ngIf="
+                policyName.invalid &&
+                (policyName.dirty ||
+                  policyName.touched ||
+                  appointmentForm.submitted)
+              "
+              class="text-danger mt-1"
+            >
+              <small *ngIf="policyName.errors?.['required']"
+                >Policy Name is required.</small
+              >
+              <small *ngIf="policyName.errors?.['maxlength']"
+                >Max 255 letters allowed in policy name .</small
+              >
+              <small *ngIf="policyName.errors?.['pattern']"
+                >Invalid characters in Policy Name.</small
+              >
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-6 mb-3">
+            <label>Policy Number<span class="text-danger">*</span></label>
+            <input
+              type="text"
+              class="form-control"
+              name="policyNumber"
+              placeholder="Enter Policy Number"
+              [(ngModel)]="patientAppointment.Patient.PolicyNumber"
+              #policyNumber="ngModel"
+              maxlength="50"
+              pattern="^(?=.*\d)[a-zA-Z0-9\s.&-]+$"
+              [ngClass]="{
+                'is-invalid':
+                  policyNumber.invalid &&
+                  (policyNumber.touched || appointmentForm.submitted)
+              }"
+              required
+            />
+
+            <div
+              *ngIf="
+                policyNumber.invalid &&
+                (policyNumber.dirty ||
+                  policyNumber.touched ||
+                  appointmentForm.submitted)
+              "
+              class="text-danger mt-1"
+            >
+              <small *ngIf="policyNumber.errors?.['required']"
+                >Policy Number is required.</small
+              >
+              <small *ngIf="policyNumber.errors?.['required']"
+                >Max 50 characters allowed.</small
+              >
+              <small *ngIf="policyNumber.errors?.['pattern']"
+                >Invalid Policy Number format(at least 1 digit).</small
+              >
+            </div>
+          </div>
+
+          <div class="col-md-6 mb-3">
+            <label>Valid Till<span class="text-danger">*</span></label>
+            <input
+              type="date"
+              class="form-control"
+              name="validTill"
+              [(ngModel)]="patientAppointment.Patient.ValidTill"
+              #validTill="ngModel"
+              [min]="today | date : 'yyyy-MM-dd'"
+              [ngClass]="{
+                'is-invalid':
+                  validTill.invalid &&
+                  (validTill.touched || appointmentForm.submitted)
+              }"
+              required
+            />
+
+            <div
+              *ngIf="
+                validTill.invalid &&
+                (validTill.dirty ||
+                  validTill.touched ||
+                  appointmentForm.submitted)
+              "
+              class="text-danger mt-1"
+            >
+              <small *ngIf="validTill.errors?.['required']"
+                >Valid Till date is required.</small
+              ><br />
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <h6 class="text-secondary border-bottom pb-2 mb-3 mt-4">
+        Medical Details
+      </h6>
+      <div class="mb-3">
+        <label>Medical History</label>
+        <textarea
+          rows="3"
+          class="form-control"
+          name="medicalHistory"
+          placeholder="Enter your medical history, such as previous illnesses, surgeries, or ongoing treatments"
+          [(ngModel)]="patientAppointment.Appointment.MedicalHistory"
+          pattern="^[a-zA-Z0-9\s,.\-()]*$"
+          #medicalHistory="ngModel"
+          [ngClass]="{
+            'is-invalid':
+              medicalHistory.invalid &&
+              (medicalHistory.touched || appointmentForm.submitted)
+          }"
+        >
+        </textarea>
+
+        <div
+          class="text-danger mt-1"
+          *ngIf="
+            medicalHistory.invalid &&
+            (medicalHistory.touched || appointmentForm.submitted)
+          "
+        >
+          <small *ngIf="medicalHistory.errors?.['pattern']"
+            >Invalid characters in medical history.</small
+          >
+        </div>
+      </div>
+
+      <h6 class="text-secondary border-bottom pb-2 mb-3 mt-4">
+        Existing Reports
+      </h6>
+      <div class="col-md-6 mb-3">
+        <label>Do you have any existing medical reports?</label>
+        <ng-select
+          name="hasExistingReport"
+          [items]="yesNoOptions"
+          bindLabel="label"
+          bindValue="value"
+          (change)="onExistingReportChange()"
+          [(ngModel)]="isHasPreviousReport"
+          placeholder="Select option"
+        >
+        </ng-select>
+      </div>
+      <div *ngIf="isHasPreviousReport" class="border rounded p-3 mb-3 bg-light">
+        <div class="col-md-8 mb-3">
+          <label
+            >Upload Medical Reports <span class="text-danger">*</span></label
+          >
+          <input
+            type="file"
+            class="form-control"
+            name="reportFile"
+            accept=".jpg,jpeg,.pdf,.png"
+            multiple
+            (change)="onFilesSelected($event)"
+            ngModel
+            #reportFile="ngModel"
+            [ngClass]="{
+              'is-invalid':
+                reportFile.invalid &&
+                (reportFile.touched || appointmentForm.submitted)
+            }"
+            required
+          />
+
+          <div
+            *ngIf=" reportFile.invalid &&(reportFile.dirty ||reportFile.touched || appointmentForm.submitted)"
+            class="text-danger mt-1"
+          >
+            <small *ngIf="reportFile.errors?.['required']"
+              >Please upload at least one medical report.</small
+            >
+          </div>
+
+         <div *ngIf="fileErrorMessage" class="text-danger mt-1"[innerHTML]="fileErrorMessage" ></div>
+
+        <small class="text-muted">
+          You can upload multiple files (.pdf, .png, .jpg, .jpeg) up to {{ maxFileSizeMB }} MB each.
+        </small>
+
+          <ul class="list-group mt-3" *ngIf="selectedFiles.length > 0">
+            <li
+              class="list-group-item d-flex justify-content-between align-items-center"
+              *ngFor="let file of selectedFiles; let i = index"
+            >
+              <div>
+                <strong>{{ file.name }}</strong>
+                <span class="text-muted">
+                  ({{ file.size / 1024 | number : "1.0-1" }} KB)
+                </span>
+              </div>
+
+              <div class="d-flex gap-2">
+                 <button
+                  type="button"
+                  class="btn btn-sm btn-outline-primary"
+                  (click)="previewFile(file)"
+                >
+                  <i class="bi bi-eye"></i>
+                </button>
+                <button
+                  type="button"
+                  class="btn btn-sm btn-outline-danger"
+                  (click)="removeFile(i)"
+                >
+                  Remove
+                </button>
+               
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <h6 class="text-secondary border-bottom pb-2 mb-3 mt-4">
+        Preferred Appointment Slots
+      </h6>
+      <div class="row">
+        <div class="col-md-4 mb-3">
+          <label>Select Date <span class="text-danger">*</span></label>
+          <input
+            type="date"
+            class="form-control"
+            name="preferreddate"
+            [(ngModel)]="preferredDate"
+            [min]="today | date : 'yyyy-MM-dd'"
+            [max]="maxDate | date : 'yyyy-MM-dd'"
+            #preferreddate="ngModel"
+            [ngClass]="{
+              'is-invalid':
+                preferreddate.invalid &&
+                (preferreddate.touched || appointmentForm.submitted)
+            }"
+            (change)="onPreferredDateSelect()"
+            [disabled]="!patientAppointment.Appointment.DoctorId"
+            [attr.title]="
+              !patientAppointment.Appointment.DoctorId
+                ? 'Select Specialization and Doctor First'
+                : ''
+            "
+            required
+          />
+
+          <div
+            *ngIf="
+              preferreddate.invalid &&
+              (preferreddate.touched ||
+                preferreddate.dirty ||
+                appointmentForm.submitted)
+            "
+            class="text-danger mt-1"
+          >
+            <small *ngIf="preferreddate.errors?.['required']"
+              >Please select a preferred appointment date.</small
+            >
+          </div>
+        </div>
+      </div>
+
+      <div
+        *ngIf="availableSlots && availableSlots.length > 0; else noSlots"
+        class="mb-3"
+      >
+        <h6 class="text-muted mb-2">
+          Available Slots for {{ preferredDate | date }}
+        </h6>
+
+        <div class="d-flex flex-wrap gap-2">
+          <button
+            type="button"
+            class="btn slot-btn"
+            *ngFor="let slot of availableSlots"
+            [disabled]="
+              !isSelected(slot) &&
+              patientAppointment.Patient.PreferredSlotsList.length >= 3
+            "
+            [ngClass]="{
+              'btn-outline-primary': !isSelected(slot),
+              'btn-primary': isSelected(slot)
+            }"
+            (click)="toggleSlotSelection(slot)"
+          >
+            {{ slot.StartTime }} - {{ slot.EndTime }}
+          </button>
+        </div>
+
+        <small class="text-muted d-block mt-2">
+          You can select up to <b>3 preferred slots</b>.
+        </small>
+
+        <div
+          *ngIf="
+            patientAppointment.Patient.PreferredSlotsList.length === 0 &&
+            appointmentForm.submitted
+          "
+          class="text-danger mt-1"
+        >
+          Please select at least one preferred slot.
+        </div>
+      </div>
+
+      <ng-template #noSlots>
+        <div class="text-muted mb-3">
+          <h6 class="mb-1 text-danger">
+            No available slots for {{ preferredDate | date }}
+          </h6>
+          <small>Please choose another date or try again later.</small>
+        </div>
+      </ng-template>
+
+      <div class="mt-4 mb-3">
+        <label>Reason for Visit <span class="text-danger">*</span></label>
+        <textarea
+          class="form-control"
+          name="reasonForVisit"
+          rows="3"
+          placeholder="Enter Reason Of Appointment "
+          [(ngModel)]="patientAppointment.Appointment.ReasonOfAppointment"
+          #reasonForVisit="ngModel"
+          required
+          pattern="^[a-zA-Z0-9\s,.\-()]+$"
+          [ngClass]="{
+            'is-invalid':
+              reasonForVisit.invalid &&
+              (reasonForVisit.touched || appointmentForm.submitted)
+          }"
+        ></textarea>
+
+        <div
+          class="text-danger mt-1"
+          *ngIf="
+            reasonForVisit.invalid &&
+            (reasonForVisit.touched || appointmentForm.submitted)
+          "
+        >
+          <small *ngIf="reasonForVisit.errors?.['required']"
+            >Reason for visit is required.</small
+          >
+          <small *ngIf="reasonForVisit.errors?.['pattern']"
+            >Invalid characters in reason.</small
+          >
+        </div>
+      </div>
+
+      <div class="text-end">
+        <button
+          class="btn btn-outline-success px-4 me-2"
+          type="submit"
+          [disabled]="!appointmentForm.valid || isSubmitting"
+        >
+          Submit Request
+        </button>
+        <button
+          class="btn btn-outline-secondary px-4"
+          type="button"
+          (click)="clearForm(appointmentForm)"
+        >
+          Clear
+        </button>
+      </div>
+    </div>
+  </form>
+</div>

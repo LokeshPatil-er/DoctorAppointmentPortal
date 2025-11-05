@@ -1,0 +1,301 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Patient Rejected Appointment Proposal</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            padding: 20px;
+            margin: 0;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            background: #ffffff;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #e67e22 0%, #d35400 100%);
+            padding: 30px 20px;
+            text-align: center;
+            color: white;
+        }
+
+            .header h1 {
+                margin: 0;
+                font-size: 28px;
+                font-weight: 600;
+                letter-spacing: 0.5px;
+            }
+
+        .header-icon {
+            font-size: 40px;
+            margin-bottom: 10px;
+        }
+
+        .content {
+            padding: 30px 20px;
+        }
+
+        .greeting {
+            font-size: 16px;
+            color: #333333;
+            margin-bottom: 20px;
+            line-height: 1.6;
+        }
+
+            .greeting strong {
+                color: #e67e22;
+            }
+
+        .status-box {
+            background: #fff3e0;
+            border-left: 4px solid #ff9800;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 6px;
+        }
+
+            .status-box p {
+                margin: 8px 0;
+                color: #e65100;
+                font-size: 14px;
+                line-height: 1.6;
+            }
+
+        .patient-info {
+            background: #f3e5f5;
+            border-left: 4px solid #9c27b0;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 6px;
+        }
+
+            .patient-info p {
+                margin: 8px 0;
+                color: #555555;
+                font-size: 14px;
+            }
+
+            .patient-info strong {
+                color: #4a148c;
+            }
+
+        .suggested-slots {
+            background: #f0f4ff;
+            border-left: 4px solid #667eea;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 6px;
+        }
+
+            .suggested-slots p {
+                margin: 5px 0;
+                color: #555555;
+                font-size: 13px;
+                font-weight: 500;
+            }
+
+        .slots-title {
+            font-size: 14px;
+            font-weight: 600;
+            color: #333333;
+            margin: 15px 0 8px 0;
+        }
+
+        .slots-list {
+            list-style: none;
+            padding-left: 0;
+            margin: 8px 0;
+        }
+
+        .slot-item {
+            font-size: 12px;
+            color: #666666;
+            padding: 4px 0;
+            margin: 2px 0;
+        }
+
+        .action-section {
+            background: #fff8e1;
+            padding: 20px;
+            margin: 25px 0;
+            border-radius: 8px;
+            text-align: center;
+            border: 1px solid #f39c12;
+        }
+
+            .action-section p {
+                color: #333333;
+                margin-bottom: 15px;
+                font-size: 14px;
+                line-height: 1.6;
+            }
+
+        .button-group {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .action-button {
+            display: inline-block;
+            background: linear-gradient(135deg, #e67e22 0%, #d35400 100%);
+            color: white;
+            padding: 12px 25px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 13px;
+            transition: transform 0.2s;
+        }
+
+            .action-button:hover {
+                transform: translateY(-2px);
+                box-shadow: 0 4px 12px rgba(230, 126, 34, 0.4);
+            }
+
+        .secondary-button {
+            background: #ffffff;
+            color: #e67e22;
+            border: 2px solid #e67e22;
+        }
+
+            .secondary-button:hover {
+                background: #fff8e1;
+            }
+
+        .divider {
+            height: 1px;
+            background: #e0e0e0;
+            margin: 20px 0;
+        }
+
+        .options-box {
+            background: #e8f5e9;
+            border-left: 4px solid #4caf50;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 6px;
+        }
+
+            .options-box p {
+                margin: 6px 0;
+                color: #2e7d32;
+                font-size: 13px;
+                line-height: 1.6;
+            }
+
+            .options-box strong {
+                color: #1b5e20;
+            }
+
+        .footer {
+            background: #f5f5f5;
+            padding: 20px;
+            text-align: center;
+            border-top: 1px solid #e0e0e0;
+        }
+
+        .footer-text {
+            font-size: 13px;
+            color: #666666;
+            margin: 5px 0;
+            line-height: 1.6;
+        }
+
+        .footer-links a {
+            color: #e67e22;
+            text-decoration: none;
+            margin: 0 10px;
+            font-size: 13px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+      
+        <div class="header">
+            <div class="header-icon">📋</div>
+            <h1>Patient Response to Your Proposal</h1>
+        </div>
+
+      
+        <div class="content">
+         
+            <div class="greeting">
+                Hello Dr. <strong>{{DoctorName}}</strong>,
+                <br><br>
+                The patient has reviewed your suggested appointment times and was unable to accept any of the proposed slots.
+            </div>
+
+          
+            <div class="status-box">
+                <p>
+                    <strong>⚠️ Update:</strong> {{PatientName}} could not accept the proposed times
+                </p>
+                <p>
+                    The patient is waiting for further options or a different approach to scheduling.
+                </p>
+            </div>
+
+          
+            <div class="patient-info">
+                <p><strong>👤 Patient:</strong> {{PatientName}}</p>
+                <p><strong>📞 Contact:</strong> {{PatientPhone}}</p>
+                <p><strong>✉️ Email:</strong> {{PatientEmail}}</p>
+            </div>
+
+         
+            <div class="suggested-slots">
+                <p><strong>📅 Your Previously Proposed Slots:</strong></p>
+                <p>{{PreviouslySuggestedSlots}}</p>
+            </div>
+
+            
+            <div class="options-box">
+                <strong>✓ What You Can Do:</strong>
+                <p>• Suggest completely new appointment times</p>
+                <p>• Propose the earliest available slots in your schedule</p>
+                <p>• Request the patient's availability for the next 30 days</p>
+                <p>• Contact the patient directly to discuss scheduling</p>
+            </div>
+
+            <div class="divider"></div>
+
+          
+            <div class="status-box" style="background: #e3f2fd; border-left-color: #2196f3;">
+                <p style="color: #0d47a1; margin: 0;">
+                    <strong>ℹ️ Note:</strong> If you cannot find a mutually acceptable time, the patient may request an appointment with another doctor.
+                </p>
+            </div>
+        </div>
+
+     
+        <div class="footer">
+            <div class="footer-text">
+                Questions? Contact support
+            </div>
+            <div class="footer-text">
+                📞 +18005551234 | 📧 support@careconnect.in
+            </div>
+            <div class="divider"></div>
+            <div class="footer-links">
+                <a href="#">FAQ</a>
+                <a href="#">Help</a>
+            </div>
+            <div class="footer-text" style="margin-top: 15px; font-size: 12px;">
+                © {{CurrentYear}} Medical Appointment Portal
+            </div>
+        </div>
+    </div>
+</body>
+</html>

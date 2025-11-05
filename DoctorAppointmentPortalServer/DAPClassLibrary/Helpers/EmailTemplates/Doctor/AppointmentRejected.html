@@ -1,0 +1,335 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Response - Appointment Rejected</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            padding: 20px;
+            margin: 0;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            background: #ffffff;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #e74c3c 0%, #c0392b 100%);
+            padding: 30px 20px;
+            text-align: center;
+            color: white;
+        }
+
+            .header h1 {
+                margin: 0;
+                font-size: 28px;
+                font-weight: 600;
+                letter-spacing: 0.5px;
+            }
+
+        .header-icon {
+            font-size: 40px;
+            margin-bottom: 10px;
+        }
+
+        .content {
+            padding: 30px 20px;
+        }
+
+        .greeting {
+            font-size: 16px;
+            color: #333333;
+            margin-bottom: 20px;
+            line-height: 1.6;
+        }
+
+            .greeting strong {
+                color: #e74c3c;
+            }
+
+        .status-box {
+            background: #ffebee;
+            border-left: 4px solid #e74c3c;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 6px;
+        }
+
+            .status-box p {
+                margin: 8px 0;
+                color: #c62828;
+                font-size: 14px;
+                line-height: 1.6;
+            }
+
+        .appointment-details {
+            background: #f1f8ff;
+            border-left: 4px solid #2196f3;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 6px;
+        }
+
+        .detail-row {
+            display: flex;
+            margin: 12px 0;
+            align-items: flex-start;
+        }
+
+        .detail-icon {
+            font-size: 18px;
+            margin-right: 12px;
+            color: #2196f3;
+            min-width: 25px;
+        }
+
+        .detail-text {
+            color: #555555;
+            font-size: 14px;
+        }
+
+            .detail-text strong {
+                color: #333333;
+                display: block;
+                margin-bottom: 2px;
+            }
+
+        .patient-info {
+            background: #f3e5f5;
+            border-left: 4px solid #9c27b0;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 6px;
+        }
+
+            .patient-info p {
+                margin: 8px 0;
+                color: #555555;
+                font-size: 14px;
+            }
+
+            .patient-info strong {
+                color: #4a148c;
+            }
+
+        .rejection-reason {
+            background: #fff3e0;
+            border-left: 4px solid #ff9800;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 6px;
+        }
+
+            .rejection-reason p {
+                margin: 8px 0;
+                color: #e65100;
+                font-size: 13px;
+                line-height: 1.6;
+            }
+
+            .rejection-reason strong {
+                color: #e65100;
+                display: block;
+                margin-bottom: 8px;
+            }
+
+        .options-box {
+            background: #e8f5e9;
+            border-left: 4px solid #4caf50;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 6px;
+        }
+
+            .options-box p {
+                margin: 6px 0;
+                color: #2e7d32;
+                font-size: 13px;
+                line-height: 1.6;
+            }
+
+            .options-box strong {
+                display: block;
+                margin-bottom: 8px;
+                color: #1b5e20;
+            }
+
+        .action-section {
+            background: #fff8e1;
+            padding: 20px;
+            margin: 25px 0;
+            border-radius: 8px;
+            text-align: center;
+            border: 1px solid #f39c12;
+        }
+
+        .button-group {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .action-button {
+            display: inline-block;
+            background: linear-gradient(135deg, #3498db 0%, #2980b9 100%);
+            color: white;
+            padding: 12px 25px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 13px;
+            transition: transform 0.2s;
+        }
+
+            .action-button:hover {
+                transform: translateY(-2px);
+                box-shadow: 0 4px 12px rgba(52, 152, 219, 0.4);
+            }
+
+        .secondary-button {
+            background: #ffffff;
+            color: #3498db;
+            border: 2px solid #3498db;
+        }
+
+            .secondary-button:hover {
+                background: #e3f2fd;
+            }
+
+        .divider {
+            height: 1px;
+            background: #e0e0e0;
+            margin: 20px 0;
+        }
+
+        .info-box {
+            background: #e3f2fd;
+            border-left: 4px solid #3498db;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 6px;
+        }
+
+            .info-box p {
+                margin: 8px 0;
+                color: #1565c0;
+                font-size: 13px;
+                line-height: 1.6;
+            }
+
+        .footer {
+            background: #f5f5f5;
+            padding: 20px;
+            text-align: center;
+            border-top: 1px solid #e0e0e0;
+        }
+
+        .footer-text {
+            font-size: 13px;
+            color: #666666;
+            margin: 5px 0;
+            line-height: 1.6;
+        }
+
+        .footer-links a {
+            color: #e74c3c;
+            text-decoration: none;
+            margin: 0 10px;
+            font-size: 13px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+     
+        <div class="header">
+            <div class="header-icon">⛔</div>
+            <h1>Appointment Rejected</h1>
+        </div>
+
+     
+        <div class="content">
+          
+            <div class="greeting">
+                Hello Dr. <strong>{{DoctorName}}</strong>,
+                <br><br>
+                Your rejection has been recorded and processed. The patient will be notified that you cannot accommodate these appointment times.
+            </div>
+
+      
+            <div class="status-box">
+                <p>
+                    <strong>✗ Appointment Rejected</strong>
+                </p>
+                <p>
+                    Your response has been sent to {{PatientName}}. The appointment request is now open for further action.
+                </p>
+            </div>
+
+         
+            <div class="appointment-details">
+
+                <div class="detail-row">
+                    <div class="detail-icon">🔗</div>
+                    <div class="detail-text">
+                        <strong>Appointment ID</strong>
+                        {{AppointmentID}}
+                    </div>
+                </div>
+               
+                <div class="requested-slots">
+                    <p><strong>📅 Patient's Preferred Time Slots:</strong></p>
+                    <ul class="slots-list">
+                        {{PreferredSlotsList}}
+                    </ul>
+                </div>
+            </div>
+
+           
+            <div class="patient-info">
+                <p><strong>👤 Patient Name:</strong> {{PatientName}}</p>
+                <p><strong>📞 Contact:</strong> {{PatientPhone}}</p>
+                <p><strong>✉️ Email:</strong> {{PatientEmail}}</p>
+            </div>
+
+          
+            <div class="rejection-reason">
+                <strong>Reason for Rejection:</strong>
+                <p>{{RejectionReason}}</p>
+            </div>
+
+           
+         
+            <div class="divider"></div>
+        </div>
+
+        
+        <div class="footer">
+            <div class="footer-text">
+                Questions? Contact our support team
+            </div>
+            <div class="footer-text">
+                📞 +18005551234 | 📧 support@careconnect.in
+            </div>
+            <div class="divider"></div>
+            <div class="footer-links">
+           
+                <a href="#">FAQ</a>
+                <a href="#">Help</a>
+            </div>
+            <div class="footer-text" style="margin-top: 15px; font-size: 12px;">
+                © {{CurrentYear}} Medical Appointment Portal
+            </div>
+        </div>
+    </div>
+</body>
+</html>

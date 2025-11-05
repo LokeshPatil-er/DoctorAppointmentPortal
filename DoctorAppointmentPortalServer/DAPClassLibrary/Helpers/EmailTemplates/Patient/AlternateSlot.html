@@ -1,0 +1,351 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Doctor Suggested Alternative Appointment Time</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            padding: 20px;
+            margin: 0;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            background: #ffffff;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #3498db 0%, #2980b9 100%);
+            padding: 30px 20px;
+            text-align: center;
+            color: white;
+        }
+
+        .header h1 {
+            margin: 0;
+            font-size: 28px;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+        }
+
+        .header-icon {
+            font-size: 40px;
+            margin-bottom: 10px;
+        }
+
+        .content {
+            padding: 30px 20px;
+        }
+
+        .greeting {
+            font-size: 16px;
+            color: #333333;
+            margin-bottom: 20px;
+            line-height: 1.6;
+        }
+
+        .greeting strong {
+            color: #3498db;
+        }
+
+        .info-box {
+            background: #e3f2fd;
+            border-left: 4px solid #3498db;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 6px;
+        }
+
+        .info-box p {
+            margin: 8px 0;
+            color: #1565c0;
+            font-size: 14px;
+            line-height: 1.6;
+        }
+
+        .doctor-info {
+            background: #f3e5f5;
+            border-left: 4px solid #9c27b0;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 6px;
+        }
+
+        .doctor-info p {
+            margin: 8px 0;
+            color: #555555;
+            font-size: 14px;
+        }
+
+        .doctor-info strong {
+            color: #4a148c;
+        }
+
+        .slots-title {
+            font-size: 16px;
+            font-weight: 700;
+            color: #333333;
+            margin: 25px 0 15px 0;
+            text-align: center;
+            padding: 10px;
+            background: #f0f4ff;
+            border-radius: 6px;
+        }
+
+        .slot-card {
+            background: linear-gradient(135deg, #e8eaf6 0%, #f3e5f5 100%);
+            padding: 20px;
+            margin: 15px 0;
+            border-radius: 8px;
+            border: 2px solid #3498db;
+            color: #333333;
+            text-align: center;
+            transition: all 0.3s;
+        }
+
+        .slot-card:hover {
+            background: linear-gradient(135deg, #c5cae9 0%, #e1bee7 100%);
+            transform: translateY(-5px);
+            box-shadow: 0 6px 16px rgba(52, 152, 219, 0.3);
+        }
+
+        .slot-icon {
+            color: #3498db;
+            font-weight: bold;
+            font-size: 28px;
+            margin-bottom: 8px;
+        }
+
+        .slot-date {
+            font-weight: 700;
+            font-size: 18px;
+            color: #1565c0;
+            margin-bottom: 5px;
+        }
+
+        .slot-day {
+            font-size: 13px;
+            color: #666666;
+            margin-bottom: 10px;
+        }
+
+        .slot-time {
+            font-size: 16px;
+            font-weight: 600;
+            color: #3498db;
+            margin-bottom: 5px;
+        }
+
+        .slot-duration {
+            font-size: 12px;
+            color: #666666;
+            font-style: italic;
+        }
+
+        .action-section {
+            background: #f0f4ff;
+            padding: 20px;
+            margin: 25px 0;
+            border-radius: 8px;
+            text-align: center;
+            border: 2px dashed #3498db;
+        }
+
+        .action-section p {
+            color: #1565c0;
+            margin-bottom: 15px;
+            font-size: 14px;
+            line-height: 1.6;
+            font-weight: 500;
+        }
+
+        .button-group {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .action-button {
+            display: inline-block;
+            background: linear-gradient(135deg, #27ae60 0%, #229954 100%);
+            padding: 14px 32px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 14px;
+            transition: transform 0.2s;
+        }
+
+        .action-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(39, 174, 96, 0.4);
+        }
+
+        .accept-button {
+            color: forestgreen;
+        }
+
+        .reject-button {
+            background: linear-gradient(135deg, #e74c3c 0%, #c0392b 100%);
+            color: red;
+        }
+
+        .reject-button:hover {
+            box-shadow: 0 4px 12px rgba(231, 76, 60, 0.4);
+        }
+
+        .divider {
+            height: 1px;
+            background: #e0e0e0;
+            margin: 20px 0;
+        }
+
+        .deadline-box {
+            background: #fff3e0;
+            border-left: 4px solid #ff9800;
+            padding: 12px 15px;
+            margin: 20px 0;
+            border-radius: 6px;
+        }
+
+        .deadline-box p {
+            margin: 5px 0;
+            color: #e65100;
+            font-size: 13px;
+            line-height: 1.6;
+        }
+
+        .preferred-times {
+            background: #ffe0e0;
+            border-left: 4px solid #e74c3c;
+            padding: 12px 15px;
+            margin: 20px 0;
+            border-radius: 6px;
+        }
+
+        .preferred-times p {
+            margin: 5px 0;
+            color: #c62828;
+            font-size: 13px;
+            line-height: 1.6;
+        }
+
+        .footer {
+            background: #f5f5f5;
+            padding: 20px;
+            text-align: center;
+            border-top: 1px solid #e0e0e0;
+        }
+
+        .footer-text {
+            font-size: 13px;
+            color: #666666;
+            margin: 5px 0;
+            line-height: 1.6;
+        }
+
+        .footer-links a {
+            color: #3498db;
+            text-decoration: none;
+            margin: 0 10px;
+            font-size: 13px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+
+        <div class="header">
+            <div class="header-icon">⏰</div>
+            <h1>Dr. {{DoctorName}} Suggested a Time</h1>
+        </div>
+
+
+        <div class="content">
+
+            <div class="greeting">
+                Hello <strong>{{PatientName}}</strong>,
+                <br><br>
+                Good news! Dr. {{DoctorName}} has reviewed your appointment request. Your preferred times are not available, but the doctor has suggested an alternative time slot that works with their schedule.
+            </div>
+
+
+            <div class="doctor-info">
+                <p><strong>👨‍⚕️ Dr. {{DoctorName}}</strong></p>
+                <p>Specialization: {{DoctorSpecialization}}</p>
+            </div>
+
+
+            <div class="info-box">
+                <p>
+                    <strong>✓ Suggested Time:</strong> Please review the alternative time slot below. You can either accept it or reject it to suggest different times.
+                </p>
+            </div>
+
+
+            <div class="slots-title">📅 Dr. {{DoctorName}}'s Suggested Time Slot</div>
+            <div class="slot-card">
+                <div class="slot-icon">📅</div>
+                <div class="slot-date">{{SuggestedDate}}</div>
+                <div class="slot-day">{{SuggestedDay}}</div>
+                <div class="slot-time">{{SuggestedTime}}</div>
+
+            </div>
+
+            <div class="action-section">
+                <p>
+                    <strong>What would you like to do?</strong><br>
+                    Accept this time slot to confirm your appointment, or reject it if this time doesn't work for you.
+                </p>
+                <div class="button-group">
+                    <a href="{{AcceptSlotLink}}" class="action-button accept-button">✓ Accept</a>
+                    <a href="{{RejectSlotLink}}" class="action-button reject-button">✗ Reject</a>
+                </div>
+            </div>
+
+
+            <div class="deadline-box">
+                <p>
+                    <strong>⏳ Important:</strong> Please respond within {{ResponseTime}}. This slot may not be available after that time.
+                </p>
+            </div>
+
+            <div class="divider"></div>
+
+
+            <div class="info-box">
+                <p>
+                    <strong>Need help?</strong> You can contact our support team if you have any questions about this appointment or need further assistance in finding a suitable time.
+                </p>
+            </div>
+        </div>
+
+
+        <div class="footer">
+            <div class="footer-text">
+                Questions? Contact us
+            </div>
+            <div class="footer-text">
+                📞 +18005551234 | 📧 support@careconnect.in
+            </div>
+            <div class="divider"></div>
+            <div class="footer-links">
+
+                <a href="#">FAQ</a>
+                <a href="#">Contact Support</a>
+            </div>
+            <div class="footer-text" style="margin-top: 15px; font-size: 12px;">
+                © {{CurrentYear}} Medical Appointment Portal
+            </div>
+        </div>
+    </div>
+</body>
+</html>

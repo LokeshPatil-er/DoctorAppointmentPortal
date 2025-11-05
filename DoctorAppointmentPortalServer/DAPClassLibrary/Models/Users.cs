@@ -14,14 +14,13 @@ namespace DAPServerLibrary
         public int RoleId { get; set; }
         public string RoleShortCode { get; set; }
         public string Role { get; set; }
+        public int DoctorId {  get; set; }
         public bool IsFirstLogin { get; set; }
         public bool IsActive { get; set; }
         public int? CreatedBy { get; set; }
         public DateTime CreatedOn { get; set; }
         public int? ModifiedBy { get; set; }
         public DateTime? ModifiedOn { get; set; }
-
-
 
     }
 }

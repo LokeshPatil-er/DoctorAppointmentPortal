@@ -4,13 +4,21 @@ import { BrowserModule, provideClientHydration } from '@angular/platform-browser
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './features/Auth/login/login.component';
-import { NavbarComponent } from './shared/layout/navbar/navbar.component';
-import { FooterComponent } from './shared/layout/footer/footer.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { LayoutModule } from './shared/layout/layout.module';
 import { LandingPageComponent } from './features/landing-page/landing-page.component';
 import { FormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
+import {HttpClientModule, provideHttpClient, withInterceptors } from '@angular/common/http';
+import { ToastrModule } from 'ngx-toastr';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import{NgxSpinnerModule} from 'ngx-spinner';
+import { authInterceptor } from './core/interceptors/auth.interceptor';
+import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
+import { CommonModule } from '@angular/common';
+
+
+
+
 
 
 @NgModule({
@@ -18,18 +26,36 @@ import { HttpClientModule } from '@angular/common/http';
     AppComponent,
     LoginComponent,
     LandingPageComponent
-   
   ],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
     AppRoutingModule,
     NgbModule,
     LayoutModule,
     FormsModule,
-    HttpClientModule
+    CommonModule,
+    HttpClientModule,
+    SweetAlert2Module.forRoot({}),
+    NgxSpinnerModule.forRoot({ type: 'ball-scale-multiple' }),
+     ToastrModule.forRoot({
+      timeOut: 3000,
+      extendedTimeOut: 1000,
+      closeButton: true,
+      progressBar: true,
+      positionClass: 'toast-top-center',
+      preventDuplicates: true,
+      newestOnTop: true,
+      tapToDismiss: true,
+      autoDismiss: true,
+      disableTimeOut: false,
+      enableHtml: true 
+    })
+
   ],
   providers: [
-    provideClientHydration()
+    provideClientHydration(),
+      provideHttpClient(withInterceptors([authInterceptor]))
   ],
   bootstrap: [AppComponent]
 })

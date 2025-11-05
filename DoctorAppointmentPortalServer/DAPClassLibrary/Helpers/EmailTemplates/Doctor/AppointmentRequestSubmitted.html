@@ -1,0 +1,255 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Appointment Request Received</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            padding: 20px;
+            margin: 0;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            background: #ffffff;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #f39c12 0%, #e67e22 100%);
+            padding: 30px 20px;
+            text-align: center;
+            color: white;
+        }
+
+            .header h1 {
+                margin: 0;
+                font-size: 28px;
+                font-weight: 600;
+                letter-spacing: 0.5px;
+            }
+
+        .header-icon {
+            font-size: 40px;
+            margin-bottom: 10px;
+        }
+
+        .content {
+            padding: 30px 20px;
+        }
+
+        .greeting {
+            font-size: 16px;
+            color: #333333;
+            margin-bottom: 20px;
+            line-height: 1.6;
+        }
+
+            .greeting strong {
+                color: #e67e22;
+            }
+
+        .patient-info {
+            background: #fff8e1;
+            border-left: 4px solid #f39c12;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 6px;
+        }
+
+            .patient-info p {
+                margin: 8px 0;
+                color: #555555;
+                font-size: 14px;
+            }
+
+            .patient-info strong {
+                color: #333333;
+            }
+
+        .requested-slots {
+            background: #f0f4ff;
+            border-left: 4px solid #667eea;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 6px;
+        }
+
+            .requested-slots p {
+                margin: 5px 0;
+                color: #555555;
+                font-size: 13px;
+                font-weight: 500;
+            }
+
+        .slots-title {
+            font-size: 15px;
+            font-weight: 600;
+            color: #333333;
+            margin: 20px 0 10px 0;
+        }
+
+        .slots-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .slot-item {
+            background: #f0f4ff;
+            padding: 10px 15px;
+            margin: 6px 0;
+            border-radius: 6px;
+            border-left: 3px solid #667eea;
+            color: #555555;
+            font-size: 13px;
+            display: flex;
+            align-items: center;
+        }
+
+        .slot-icon {
+            color: #667eea;
+            margin-right: 10px;
+            font-weight: bold;
+        }
+
+        .action-section {
+            background: #fff8e1;
+            padding: 20px;
+            margin: 25px 0;
+            border-radius: 8px;
+            text-align: center;
+            border: 1px solid #f39c12;
+        }
+
+            .action-section p {
+                color: #333333;
+                margin-bottom: 15px;
+                font-size: 14px;
+                line-height: 1.6;
+            }
+
+        .action-button {
+            display: inline-block;
+            background: linear-gradient(135deg, #f39c12 0%, #e67e22 100%);
+            color: white;
+            padding: 12px 30px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 14px;
+            margin: 10px 5px;
+            transition: transform 0.2s;
+        }
+
+            .action-button:hover {
+                transform: translateY(-2px);
+                box-shadow: 0 4px 12px rgba(243, 156, 18, 0.4);
+            }
+
+        .divider {
+            height: 1px;
+            background: #e0e0e0;
+            margin: 20px 0;
+        }
+
+        .footer {
+            background: #f5f5f5;
+            padding: 20px;
+            text-align: center;
+            border-top: 1px solid #e0e0e0;
+        }
+
+        .footer-text {
+            font-size: 13px;
+            color: #666666;
+            margin: 5px 0;
+            line-height: 1.6;
+        }
+
+        .footer-links a {
+            color: #f39c12;
+            text-decoration: none;
+            margin: 0 10px;
+            font-size: 13px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+       
+        <div class="header">
+            <div class="header-icon">📋</div>
+            <h1>New Appointment Request</h1>
+        </div>
+
+     
+        <div class="content">
+
+            <div class="greeting">
+                Hello Dr. <strong>{{DoctorName}}</strong>,
+                <br><br>
+                A new appointment request has been received. Please review the patient's preferred time slots and confirm availability.
+            </div>
+
+
+            <div class="patient-info">
+                <p><strong>👤 Patient Name:</strong> {{PatientName}}</p>
+                <p><strong>📞 Contact:</strong> {{PatientPhone}}</p>
+                <p><strong>✉️ Email:</strong> {{PatientEmail}}</p>
+                <p><strong>🏥 Reason for Visit:</strong> {{ReasonForVisit}}</p>
+            </div>
+
+
+          
+            <div class="requested-slots">
+                <p><strong>📅 Patient's Preferred Time Slots:</strong></p>
+                <ul class="slots-list">
+                    {{PreferredSlotsList}}
+                </ul>
+            </div>
+
+
+            <div class="action-section">
+                <p>
+                    <strong>What you need to do:</strong><br>
+                    Review the requested slots and either confirm one or suggest an alternative time that works best for you.
+                </p>
+            </div>
+
+            <div class="divider"></div>
+
+          
+            <div class="requested-slots" style="background: #e8f5e9; border-left-color: #4caf50;">
+                <p style="color: #2e7d32; margin: 0;">
+                    <strong>⏰ Action Required:</strong> Please respond within 24 hours. The patient will receive your response promptly.
+                </p>
+            </div>
+        </div>
+
+      
+        <div class="footer">
+            <div class="footer-text">
+                Questions? Contact support
+            </div>
+            <div class="footer-text">
+                📞 +18005551234 | 📧 support@careconnect.in
+            </div>
+            <div class="divider"></div>
+            <div class="footer-links">
+                <a href="#">FAQ</a>
+                <a href="#">Help</a>
+            </div>
+            <div class="footer-text" style="margin-top: 15px; font-size: 12px;">
+                © {{CurrentYear}} Medical Appointment Portal
+            </div>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,326 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Response - Appointment Accepted</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            padding: 20px;
+            margin: 0;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            background: #ffffff;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #27ae60 0%, #229954 100%);
+            padding: 30px 20px;
+            text-align: center;
+            color: white;
+        }
+
+            .header h1 {
+                margin: 0;
+                font-size: 28px;
+                font-weight: 600;
+                letter-spacing: 0.5px;
+            }
+
+        .header-icon {
+            font-size: 40px;
+            margin-bottom: 10px;
+        }
+
+        .content {
+            padding: 30px 20px;
+        }
+
+        .greeting {
+            font-size: 16px;
+            color: #333333;
+            margin-bottom: 20px;
+            line-height: 1.6;
+        }
+
+            .greeting strong {
+                color: #27ae60;
+            }
+
+        .success-box {
+            background: #e8f5e9;
+            border-left: 4px solid #27ae60;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 6px;
+        }
+
+            .success-box p {
+                margin: 8px 0;
+                color: #2e7d32;
+                font-size: 14px;
+                line-height: 1.6;
+            }
+
+        .appointment-details {
+            background: #f1f8e9;
+            border-left: 4px solid #558b2f;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 6px;
+        }
+
+        .detail-row {
+            display: flex;
+            margin: 15px 0;
+            align-items: flex-start;
+        }
+
+        .detail-icon {
+            font-size: 20px;
+            margin-right: 12px;
+            color: #27ae60;
+            min-width: 30px;
+        }
+
+        .detail-text {
+            color: #555555;
+            font-size: 14px;
+            line-height: 1.6;
+        }
+
+            .detail-text strong {
+                color: #333333;
+                display: block;
+                margin-bottom: 3px;
+            }
+
+        .patient-info {
+            background: #f3e5f5;
+            border-left: 4px solid #9c27b0;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 6px;
+        }
+
+            .patient-info p {
+                margin: 8px 0;
+                color: #555555;
+                font-size: 14px;
+            }
+
+            .patient-info strong {
+                color: #4a148c;
+            }
+
+        .action-section {
+            background: #f0f8ff;
+            padding: 20px;
+            margin: 25px 0;
+            border-radius: 8px;
+            text-align: center;
+        }
+
+        .button-group {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .action-button {
+            display: inline-block;
+            background: linear-gradient(135deg, #27ae60 0%, #229954 100%);
+            color: white;
+            padding: 12px 25px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 13px;
+            transition: transform 0.2s;
+        }
+
+            .action-button:hover {
+                transform: translateY(-2px);
+                box-shadow: 0 4px 12px rgba(39, 174, 96, 0.4);
+            }
+
+        .secondary-button {
+            background: #ffffff;
+            color: #27ae60;
+            border: 2px solid #27ae60;
+        }
+
+            .secondary-button:hover {
+                background: #e8f5e9;
+            }
+
+        .reminders-box {
+            background: #e1f5fe;
+            border-left: 4px solid #0288d1;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 6px;
+        }
+
+            .reminders-box p {
+                margin: 6px 0;
+                color: #01579b;
+                font-size: 13px;
+                line-height: 1.6;
+            }
+
+            .reminders-box strong {
+                display: block;
+                margin-bottom: 8px;
+                color: #0d47a1;
+            }
+
+        .info-box {
+            background: #e3f2fd;
+            border-left: 4px solid #3498db;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 6px;
+        }
+
+            .info-box p {
+                margin: 8px 0;
+                color: #1565c0;
+                font-size: 13px;
+                line-height: 1.6;
+            }
+
+        .divider {
+            height: 1px;
+            background: #e0e0e0;
+            margin: 20px 0;
+        }
+
+        .footer {
+            background: #f5f5f5;
+            padding: 20px;
+            text-align: center;
+            border-top: 1px solid #e0e0e0;
+        }
+
+        .footer-text {
+            font-size: 13px;
+            color: #666666;
+            margin: 5px 0;
+            line-height: 1.6;
+        }
+
+        .footer-links a {
+            color: #27ae60;
+            text-decoration: none;
+            margin: 0 10px;
+            font-size: 13px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+       
+        <div class="header">
+            <div class="header-icon">✅</div>
+            <h1>Appointment Accepted</h1>
+        </div>
+
+      
+        <div class="content">
+          
+            <div class="greeting">
+                Hello Dr. <strong>{{DoctorName}}</strong>,
+                <br><br>
+                Thank you for accepting the appointment request. Your confirmation has been recorded in the system and the patient will be notified immediately.
+            </div>
+
+         
+            <div class="success-box">
+                <p>
+                    <strong>✓ Your response has been recorded</strong>
+                </p>
+                <p>
+                    The appointment has been accepted and confirmed. {{PatientName}} will receive a confirmation email shortly.
+                </p>
+            </div>
+
+       
+            <div class="appointment-details">
+                <div class="detail-row">
+                    <div class="detail-icon">📅</div>
+                    <div class="detail-text">
+                        <strong>Appointment Date & Time</strong>
+                        {{AppointmentDateTime}}
+                    </div>
+                </div>
+
+                <div class="detail-row">
+                    <div class="detail-icon">🔗</div>
+                    <div class="detail-text">
+                        <strong>Appointment ID</strong>
+                        {{AppointmentID}}
+                    </div>
+                </div>
+            </div>
+
+          
+            <div class="patient-info">
+                <p><strong>👤 Patient Name:</strong> {{PatientName}}</p>
+                <p><strong>📞 Contact:</strong> {{PatientPhone}}</p>
+                <p><strong>✉️ Email:</strong> {{PatientEmail}}</p>
+                <p><strong>🏥 Reason for Visit:</strong> {{ReasonForVisit}}</p>
+            </div>
+
+            <div class="reminders-box">
+                <strong>📌 Important Reminders:</strong>
+                <p>✓ The patient will arrive 10-15 minutes before the appointment</p>
+                <p>✓ Appointment details are now in your calendar</p>
+                <p>✓ Keep the Appointment ID for reference</p>
+                <p>✓ If you need to cancel or reschedule, contact the patient directly</p>
+            </div>
+
+          
+          
+
+            <div class="divider"></div>
+
+        
+            <div class="info-box">
+                <p>
+                    <strong>📧 What happens next:</strong> The patient has been sent a detailed confirmation email with all appointment details, clinic location, and directions.
+                </p>
+            </div>
+        </div>
+
+      
+        <div class="footer">
+            <div class="footer-text">
+                Questions? Contact our support team
+            </div>
+            <div class="footer-text">
+                📞 +18005551234 | 📧 support@careconnect.in
+            </div>
+            <div class="divider"></div>
+            <div class="footer-links">
+                <a href="#">FAQ</a>
+                <a href="#">Help</a>
+
+
+            </div>
+            <div class="footer-text" style="margin-top: 15px; font-size: 12px;">
+                © {{CurrentYear}} Medical Appointment Portal
+            </div>
+        </div>
+    </div>
+</body>
+</html>

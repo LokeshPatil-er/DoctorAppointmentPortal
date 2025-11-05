@@ -1,0 +1,587 @@
+<div class="container-fluid py-2 py-md-3">
+  <div class="card doctor-form-card shadow-sm">
+    <div class="card-header form-header d-flex justify-content-between align-items-center">
+      <h4 class="mb-0">
+         {{ formMode === 'add' ? 'Add Doctor' : formMode === 'edit' ? 'Edit Doctor' : 'View Doctor' }}
+      </h4>
+    </div>
+
+    <div class="card-body">
+      <form #doctorForm="ngForm" (ngSubmit)="onSubmit(doctorForm)" novalidate>
+       
+        <!-- Basic Information Section -->
+        <div class="section-header">Basic Information</div>
+        <div class="row g-2 g-md-3">
+        
+          <div class="col-12 col-md-4">
+            <label class="form-label">First Name <span class="text-danger">*</span></label>
+            <input 
+              type="text" 
+              name="firstName" 
+              [(ngModel)]="doctorDetails.FirstName" 
+              required 
+              pattern="^[A-Za-z]{1,50}$"
+              class="form-control" 
+              placeholder="Enter first name" 
+              maxlength="50"
+              #firstName="ngModel"
+              [readOnly]="formMode==='view'"
+              [ngClass]="{'is-invalid': firstName.invalid && (firstName.touched || doctorForm.submitted)}"
+            />
+            <div *ngIf="firstName.invalid && (firstName.touched || doctorForm.submitted)" class="text-danger mt-1">
+              <small *ngIf="firstName.errors?.['required']">First Name is required.</small>
+              <small *ngIf="firstName.errors?.['pattern']">
+                Only alphabets allowed (1–50 characters).
+              </small>
+              <small *ngIf="firstName.errors?.['maxlength']">
+                Max 50 letters allowed in first name.
+              </small>
+            </div>
+          </div>
+
+          <div class="col-12 col-md-4">
+            <label class="form-label">Last Name <span class="text-danger">*</span></label>
+            <input 
+              type="text" 
+              name="lastName" 
+              [(ngModel)]="doctorDetails.LastName" 
+              required 
+              pattern="^[A-Za-z]{1,50}$"
+              class="form-control" 
+              placeholder="Enter last name" 
+              maxlength="50"
+              #lastName="ngModel"
+              [readOnly]="formMode==='view'"
+              [ngClass]="{'is-invalid': lastName.invalid && (lastName.touched || doctorForm.submitted)}"
+            />
+            <div *ngIf="lastName.invalid && (lastName.touched || doctorForm.submitted)" class="text-danger mt-1">
+              <small *ngIf="lastName.errors?.['required']">Last Name is required.</small>
+              <small *ngIf="lastName.errors?.['pattern']">
+                Only alphabets allowed (1–50 characters).
+              </small>
+              <small *ngIf="lastName.errors?.['maxlength']">
+                Max 50 letters allowed in last name.
+              </small>
+            </div>
+          </div>
+
+          <!-- Date of Birth -->
+          <div class="col-12 col-md-4">
+            <label class="form-label">Date of Birth<span class="text-danger">*</span></label>
+            <input 
+              type="date" 
+              name="dateOfBirth"  
+              [ngModel]="doctorDetails.DateOfBirth | date:'yyyy-MM-dd'" 
+              (ngModelChange)="doctorDetails.DateOfBirth=$event" 
+              required 
+              class="form-control" 
+              [min]="minDateForAge100 | date:'yyyy-MM-dd'"
+              [max]="minDateForAge25 | date:'yyyy-MM-dd'"
+              #dob="ngModel"
+              [ngClass]="{'is-invalid': dob.invalid && (dob.touched || doctorForm.submitted)}"
+              [readOnly]="formMode==='view'"
+            />
+            
+            <!-- Validation Messages -->
+            <div *ngIf="dob.touched">
+              <div *ngIf="dob.errors?.['required']" class="validation-message text-danger">
+                <small>Date of Birth is required</small>
+              </div>
+              <div *ngIf="!dob.errors?.['required'] && doctorDetails.DateOfBirth && !isAgeValid()" 
+                  class="validation-message text-danger">
+                <small>Doctor must be at least 25 years old. Current age: {{ calculateAge(doctorDetails.DateOfBirth.toString()) }} years</small>
+              </div>
+            </div>
+          </div>
+
+          <!-- Gender -->
+          <div class="col-12 col-md-4">
+            <label class="form-label">Gender<span class="text-danger">*</span></label>
+            <ng-select 
+                 [items]="genders" 
+                 name="genderId" 
+                 bindLabel="Gender" 
+                 bindValue="GenderId"
+                 placeholder="Select your Gender" 
+                 [(ngModel)]="doctorDetails.GenderId" 
+                 required 
+                 #gender="ngModel"
+                 [ngClass]="{'is-invalid': gender.invalid && (gender.touched || doctorForm.submitted)}"
+                 [disabled]="formMode==='view'"
+            >
+            </ng-select>
+            <div *ngIf="gender.invalid && gender.touched" class="validation-message">
+              <small>Gender is required</small>
+            </div>
+          </div>
+
+          <!-- Contact No -->
+          <div class="col-12 col-md-4">
+            <label class="form-label">Contact No <span class="text-danger">*</span></label>
+            <input
+              type="text"
+              name="contactNo"
+              [(ngModel)]="doctorDetails.ContactNo"
+              required
+              maxlength="10"
+              minlength="10"
+              pattern="^[6-9][0-9]{9}$"
+              class="form-control"
+              placeholder="Enter 10-digit contact number"
+              #contact="ngModel"
+              [ngClass]="{'is-invalid': contact.invalid && (contact.touched || doctorForm.submitted)}"
+              [readOnly]="formMode === 'view'"
+            />
+
+            <div *ngIf="contact.invalid && contact.touched" class="validation-message">
+              <small *ngIf="contact.errors?.['required']">Contact number is required.</small>
+              <small *ngIf="contact.errors?.['minlength'] || contact.errors?.['maxlength']">
+                Contact number must be exactly 10 digits.
+              </small>
+              <small *ngIf="contact.errors?.['pattern']">
+                Enter a valid 10-digit mobile number (should start with 6–9).
+              </small>
+            </div>
+          </div>
+
+          <!-- Blood Group -->
+          <div class="col-12 col-md-4">
+            <label class="form-label">Blood Group<span class="text-danger">*</span></label>
+            <ng-select 
+                [items]="bloodGroups" 
+                name="bloodGroupId" 
+                bindLabel="BloodGroupName" 
+                bindValue="BloodGroupId"
+                placeholder="Select your blood group" 
+                [(ngModel)]="doctorDetails.BloodGroupId" 
+                required 
+                #bloodGroup="ngModel"
+                [ngClass]="{'is-invalid': bloodGroup.invalid && (bloodGroup.touched || doctorForm.submitted)}"
+                [disabled]="formMode==='view'"
+            >
+            </ng-select>
+            <div *ngIf="bloodGroup.invalid && bloodGroup.touched" class="validation-message">
+              <small>Blood group is required</small>
+            </div>
+          </div>
+
+          <!-- Experience Start Date -->
+          <div class="col-12 col-md-4">
+            <label class="form-label">Experience Start Date <span class="text-danger">*</span></label>
+            <input
+              type="date"
+              name="experienceStartDate"
+              [ngModel]="doctorDetails.ExperienceStartDate | date:'yyyy-MM-dd'"
+              (ngModelChange)="doctorDetails.ExperienceStartDate=$event"
+              required
+              class="form-control"
+              placeholder="Select experience start date"
+              [disabled]="!doctorDetails.DateOfBirth"
+              #exp="ngModel"
+              [readOnly]="formMode === 'view'"
+              [ngClass]="{'is-invalid': exp.invalid && (exp.touched || doctorForm.submitted)}"
+              [min]="doctorDetails.DateOfBirth | date:'yyyy-MM-dd'"
+              [max]="todayDate | date:'yyyy-MM-dd'"  
+            />
+
+            <div *ngIf="exp.invalid && exp.touched" class="validation-message">
+              <small *ngIf="exp.errors?.['required']">Experience start date is required.</small>
+              <small *ngIf="exp.errors?.['max']">Start date cannot be in the future.</small>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Login Information Section -->
+        <div class="section-header mt-4 mt-md-5">Login Information</div>
+        <div class="row g-2 g-md-3">
+        
+          <div class="col-12 col-md-6">
+            <label class="form-label">Email <span class="text-danger">*</span></label>
+            <input 
+              type="email" 
+              name="email" 
+              [(ngModel)]="doctorDetails.Email" 
+              required 
+              class="form-control" 
+              placeholder="Enter email address" 
+              maxlength="320"
+              pattern="^[a-zA-Z0-9._%+\-]+@[a-zA-Z0-9.\-]+\.[a-zA-Z]{2,}$"
+              email 
+              #email="ngModel"
+              [ngClass]="{'is-invalid': email.invalid && (email.touched || doctorForm.submitted)}"
+              [readOnly]="formMode==='view'"
+            />
+            <div *ngIf="email.invalid && email.touched" class="validation-message">
+              <small *ngIf="email.errors?.['required']">Email is required.</small>
+              <small *ngIf="email.errors?.['maxlength']">Max 320 characters allowed in email address.</small>
+              <small *ngIf="email.errors?.['email'] || email.errors?.['pattern']">Enter a valid email address (e.g. example&#64;gmail.com)</small>
+            </div>
+          </div>
+
+          <!-- Password -->
+          <div class="col-12 col-md-6 position-relative" *ngIf="formMode==='add'">
+            <label class="form-label">Password <span class="text-danger">*</span></label>
+            
+            <div class="input-group">
+              <input 
+                [type]="showPassword ? 'text' : 'password'"
+                name="password" 
+                [(ngModel)]="doctorDetails.Password" 
+                required 
+                minlength="6"
+                pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{6,}$"
+                class="form-control" 
+                placeholder="Enter strong password"
+                [ngClass]="{'is-invalid': password.invalid && (password.touched || doctorForm.submitted)}"
+                #password="ngModel"
+              />
+              <button 
+                type="button" 
+                class="btn btn-outline-secondary"
+                (click)="togglePasswordVisibility()"
+                tabindex="-1"
+              >
+                <i [class]="showPassword ? 'bi bi-eye-slash' : 'bi bi-eye'"></i>
+              </button>
+            </div>
+
+            <div *ngIf="password.invalid && password.touched" class="validation-message">
+              <small *ngIf="password.errors?.['required']">Password is required</small>
+              <small *ngIf="password.errors?.['minlength']">Password must be at least 6 characters long</small>
+              <small *ngIf="password.errors?.['pattern']">
+                Password must include at least one uppercase letter, one lowercase letter, one number, and one special character (&#64;, $, !, %, *, ?, &).
+              </small>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Qualifications & Specializations Section -->
+        <div class="section-header mt-4 mt-md-5">Qualifications & Specializations</div>
+        <div class="row g-2 g-md-3">
+          <!-- Qualifications -->
+          <div class="col-12 col-md-6">
+            <label class="form-label">Qualifications<span class="text-danger">*</span></label>
+            <ng-select 
+                [items]="qualifications" 
+                name="QualificationList" 
+                bindLabel="Degree" 
+                bindValue="QualificationId"
+                placeholder="Select qualifications" 
+                [(ngModel)]="doctorDetails.DoctorQulificationsIdList" 
+                multiple 
+                required 
+                #qualification="ngModel"
+                [ngClass]="{'is-invalid': qualification.invalid && (qualification.touched || doctorForm.submitted)}"
+                [disabled]="formMode==='view'"
+            >
+            </ng-select>
+            <div *ngIf="qualification.invalid && qualification.touched" class="validation-message">
+              <small>At least one qualification is required</small>
+            </div>
+          </div>
+
+          <!-- Specialization -->
+          <div class="col-12 col-md-6">
+            <label class="form-label">Specialization<span class="text-danger">*</span></label>
+            <ng-select 
+                [items]="specializations" 
+                name="SpecializationsList" 
+                bindLabel="Specialization" 
+                bindValue="SpecializationId"
+                placeholder="Select Specializations" 
+                [(ngModel)]="doctorDetails.DoctorSpecializationsIdList" 
+                multiple 
+                required 
+                #specialization="ngModel"
+                [ngClass]="{'is-invalid': specialization.invalid && (specialization.touched || doctorForm.submitted)}"
+                [disabled]="formMode==='view'"
+            >
+            </ng-select>
+            <div *ngIf="specialization.invalid && specialization.touched" class="validation-message">
+              <small>At least one specialization is required</small>
+            </div>
+          </div>
+        </div>
+
+        <!-- Consultancy Section -->
+        <div class="section-header mt-4 mt-md-5">Consultancy</div>
+        <div class="row g-2 g-md-3">
+          <div class="col-12 col-md-4">
+            <label class="form-label">
+              Consultancy Fee (₹)<span class="text-danger">*</span>
+            </label>
+            <input
+              type="number"
+              name="consultancyFee"
+              [(ngModel)]="doctorDetails.ConsultancyFee"
+              required
+              pattern="^[1-9][0-9]*$"
+              class="form-control"
+              placeholder="Enter fee"
+              #fee="ngModel"
+              [ngClass]="{'is-invalid': fee.invalid && (fee.touched || doctorForm.submitted)}"
+              [readOnly]="formMode==='view'"
+            />
+            <div *ngIf="fee.invalid && fee.touched" class="validation-message">
+              <small *ngIf="fee.errors?.['required']">Consultancy fee is required</small>
+              <small *ngIf="fee.errors?.['pattern']">Enter a valid fee greater than 0</small>
+            </div>
+          </div>
+        </div>
+
+        <!-- Address Section -->
+        <div class="section-header mt-4 mt-md-5">Address</div>
+        <div class="row g-2 g-md-3">
+          <div class="col-12 col-md-6">
+            <label class="form-label">Building Name/Flat No./Street<span class="text-danger">*</span></label>
+            <input 
+              type="text" 
+              name="addressLine1" 
+              [(ngModel)]="doctorDetails.AddressLine1" 
+              required 
+              class="form-control" 
+              placeholder="Enter address" 
+              maxlength="200"
+              #address="ngModel"
+              [ngClass]="{'is-invalid': address.invalid && (address.touched || doctorForm.submitted)}"
+              pattern="^[a-zA-Z0-9\s,/-]+$"
+              [readOnly]="formMode==='view'"
+            />
+            <div *ngIf="address.invalid && address.touched" class="validation-message">
+              <small *ngIf="address.errors?.['required']">Building Name/Flat No./Street is required.</small>
+              <small *ngIf="address.errors?.['pattern']">Enter a valid Building Name/Flat No./Street (letters, numbers, commas, slashes, and hyphens only).</small>
+              <small *ngIf="address.errors?.['maxlength']">Max 200 letters allowed.</small>
+            </div>
+          </div>
+
+          <div class="col-12 col-md-2">
+            <label class="form-label">Pincode<span class="text-danger">*</span></label>
+            <input 
+                type="text" 
+                name="pincode" 
+                [(ngModel)]="doctorDetails.Pincode" 
+                required 
+                maxlength="6" 
+                pattern="^[0-9]{6}$" 
+                class="form-control" 
+                placeholder="Enter pincode" 
+                #pincode="ngModel"
+                [ngClass]="{'is-invalid': pincode.invalid && (pincode.touched || doctorForm.submitted)}"
+                [readOnly]="formMode==='view'"
+            />
+            <div *ngIf="pincode.invalid && pincode.touched" class="validation-message">
+              <small *ngIf="pincode.errors?.['required']">Pincode is required</small>
+              <small *ngIf="pincode.errors?.['pattern']">Enter a valid 6-digit pincode</small>
+              <small *ngIf="pincode.errors?.['maxlength']">Max 6 digit pincode allowed.</small>
+            </div>
+          </div>
+
+          <!-- Country, State, District, Taluka -->
+          <div class="col-12 col-md-4">
+            <label class="form-label">Country<span class="text-danger">*</span></label>
+            <ng-select 
+                [items]="countries" 
+                name="countryId" 
+                bindLabel="CountryName" 
+                bindValue="CountryId" 
+                placeholder="Select country"
+                [(ngModel)]="doctorDetails.CountryId"
+                required 
+                #country="ngModel"
+                [ngClass]="{'is-invalid': country.invalid && (country.touched || doctorForm.submitted)}"
+                [disabled]="formMode==='view'"    
+              >
+            </ng-select>
+            <div *ngIf="country.invalid && country.touched" class="validation-message">
+              <small>Country is required</small>
+            </div>
+          </div>
+
+          <div class="col-12 col-md-4">
+            <label class="form-label">State<span class="text-danger">*</span></label>
+            <ng-select 
+                [items]="states" 
+                name="stateId" 
+                bindLabel="StateName"
+                bindValue="StateId" 
+                placeholder="Select state"
+                [(ngModel)]="doctorDetails.StateId"
+                required 
+                #state="ngModel"
+                [ngClass]="{'is-invalid': state.invalid && (state.touched || doctorForm.submitted)}"
+                [disabled]="formMode==='view'"
+              >
+            </ng-select>
+            <div *ngIf="state.invalid && state.touched" class="validation-message">
+              <small>State is required</small>
+            </div>
+          </div>
+
+          <div class="col-12 col-md-4">
+            <label class="form-label">District<span class="text-danger">*</span></label>
+            <ng-select 
+                [items]="districts" 
+                name="districtId" 
+                bindLabel="DistrictName" 
+                bindValue="DistrictId" 
+                placeholder="Select District"
+                [(ngModel)]="doctorDetails.DistrictId" 
+                required 
+                #district="ngModel"
+                [ngClass]="{'is-invalid': district.invalid && (district.touched || doctorForm.submitted)}"
+                [disabled]="formMode==='view'"
+            >
+            </ng-select>
+            <div *ngIf="district.invalid && district.touched" class="validation-message">
+              <small>District is required</small>
+            </div>
+          </div>
+
+          <div class="col-12 col-md-4">
+            <label class="form-label">Taluka<span class="text-danger">*</span></label>
+            <ng-select 
+                [items]="talukas" 
+                name="talukaId" 
+                bindLabel="TalukaName"
+                bindValue="TalukaId" 
+                placeholder="Select taluka"
+                [(ngModel)]="doctorDetails.TalukaId" 
+                required 
+                #taluka="ngModel"
+                [ngClass]="{'is-invalid': taluka.invalid && (taluka.touched || doctorForm.submitted)}"
+                [disabled]="formMode==='view'"
+            >
+            </ng-select>
+            <div *ngIf="taluka.invalid && taluka.touched" class="validation-message">
+              <small>Taluka is required</small>
+            </div>
+          </div>
+        </div>
+
+        <!-- Available Slots Section -->
+
+    <div class="section-header mt-4 mt-md-5 d-flex justify-content-between align-items-center">
+    <span>Available Slots</span>
+    <button *ngIf="formMode!=='view'" type="button" class="btn btn-outline-success btn-sm" (click)="addSlot()">
+      <i class="bi bi-plus-circle"></i> Add Slot
+    </button>
+  </div>
+
+ 
+  <div>
+        <div *ngIf="hasTooManySlots()" class="alert alert-danger mt-2">
+      Please ensure no more than 3 slots are added per day.
+    </div>
+  </div>
+   
+
+
+  <div *ngFor="let slot of doctorDetails.DoctorAvailableSlots; let i = index" class="row g-2 g-md-3 mb-3">
+    <div class="col-12 col-md-3">
+      <label class="form-label">Day of Week<span class="text-danger">*</span></label>
+      <ng-select
+        [(ngModel)]="slot.DayOfWeek"
+        [items]="daysOfWeek"
+        placeholder="Select Day"
+        name="dayOfWeek{{ i }}"
+        required
+        #dayOfWeek="ngModel"
+        [ngClass]="{'is-invalid': dayOfWeek.invalid && (dayOfWeek.touched || doctorForm.submitted)}"
+        [disabled]="formMode==='view'"
+        
+      >
+      </ng-select>
+      
+      <div class="validation-container">
+        <div *ngIf="dayOfWeek.invalid && dayOfWeek.touched" class="validation-message text-danger">
+          <small>Day is required</small>
+        </div>
+        <div *ngIf="dayOfWeek.valid && getSlotCountForDay(slot.DayOfWeek) > 3" class="validation-message text-danger">
+          <small>More than 3 slots not allowed for the same day.</small>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-12 col-md-3">
+      <label class="form-label">Start Time<span class="text-danger">*</span></label>
+      <input 
+        type="time" 
+        [(ngModel)]="slot.StartTime" 
+        name="startTime{{ i }}" 
+        class="form-control" 
+        [disabled]="!slot.DayOfWeek"
+        required 
+        #startTime="ngModel"
+        [ngClass]="{'is-invalid': startTime.invalid && (startTime.touched || doctorForm.submitted)}"
+        [readOnly]="formMode==='view'"
+        (ngModelChange)="validateOverlap(i)"
+      />
+      
+      <div class="validation-container">
+        <div *ngIf="startTime.invalid && startTime.touched" class="validation-message text-danger">
+          <small>Start time is required</small>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-12 col-md-3">
+      <label class="form-label">End Time<span class="text-danger">*</span></label>
+      <input 
+        type="time" 
+        [(ngModel)]="slot.EndTime" 
+        name="endTime{{ i }}" 
+        class="form-control" 
+        [disabled]="!slot.DayOfWeek"
+        required 
+        #endTime="ngModel"
+        [ngClass]="{'is-invalid': endTime.invalid && (endTime.touched || doctorForm.submitted)}"
+        [readOnly]="formMode==='view'"
+        (ngModelChange)="validateOverlap(i)"
+      />
+      
+      <div class="validation-container">
+        <div *ngIf="endTime.touched || startTime.touched">
+          <div *ngIf="endTime.errors?.['required']" class="validation-message text-danger">
+            <small>End time is required</small>
+          </div>
+          <div *ngIf="!endTime.errors?.['required'] && slot.StartTime && slot.EndTime && !isTimeSlotValid(slot)" 
+              class="validation-message text-danger">
+            <small>End time must be at least 1 hour after start time</small>
+          </div>
+          <div *ngIf="hasOverlap(i)" class="validation-message text-danger">
+            <small>Time slot overlaps with another slot on the same day</small>
+          </div>
+        </div>
+      </div>
+    </div>
+     <div class="col-12 col-md-2 mt-md-5">
+      <button 
+        *ngIf="formMode!=='view'" 
+        type="button" 
+        class="btn btn-outline-danger w-100" 
+        (click)="removeSlot(i)"
+      >
+        <i class="bi bi-trash"></i> Remove
+      </button>
+    </div>
+   
+  </div>
+
+        <!-- Submit & Reset Buttons -->
+        <div class="text-end mt-4 mt-md-5">
+          <button *ngIf="formMode!=='view'" type="submit" class="btn btn-success me-2" [disabled]="doctorForm.invalid || isFormSubmitting">
+            <i class="bi bi-save"></i> {{formMode==='add' ? ' Save Doctor' :' Update Doctor'}}
+          </button>
+
+          <button *ngIf="formMode==='edit'" type="button" class="btn btn-outline-secondary me-2" (click)="resetDoctorInfo(doctorDetails.DoctorId)">Reset</button>
+
+          <button *ngIf="formMode==='add'" type="button" class="btn btn-outline-secondary me-2" (click)="clearDoctorForm(doctorForm)">Clear</button>
+
+          <button type="button" class="btn btn-outline-warning me-2" routerLink="/admin/doctorsList"><i class="bi bi-arrow-left"></i> Back</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

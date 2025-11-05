@@ -1,0 +1,26 @@
+.doctor-table th {
+  font-weight: 600;
+  vertical-align: middle;
+}
+
+.doctor-table td {
+  vertical-align: middle;
+}
+
+.doctor-table .btn i {
+  font-size: 1rem;
+}
+
+.doctor-table .btn-outline-primary:hover i {
+  color: #fff;
+}
+
+.doctor-table .btn-outline-danger:hover i {
+  color: #fff;
+}
+
+/* Optional hover effect */
+.doctor-table tbody tr:hover {
+  background-color: #f8f9fa;
+  transition: 0.2s ease;
+}
