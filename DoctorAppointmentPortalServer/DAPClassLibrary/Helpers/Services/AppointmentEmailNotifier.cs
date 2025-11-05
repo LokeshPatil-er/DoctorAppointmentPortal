@@ -184,6 +184,7 @@ namespace DAPClassLibrary
                     { "ReasonForVisit", appointmentDetail.Appointment.ReasonOfAppointment },
                     { "AppointmentID", appointmentDetail.Appointment.AppointmentId.ToString() },
                     { "AppointmentDateTime", appointmentDateTime },
+                    {"ConsultationFee" ,getDoctor.ConsultancyFee.ToString()},
                     { "PreviouslySuggestedSlots", previouslySuggestedSlots },
                     { "CurrentYear", DateTime.Now.Year.ToString() }
                 };

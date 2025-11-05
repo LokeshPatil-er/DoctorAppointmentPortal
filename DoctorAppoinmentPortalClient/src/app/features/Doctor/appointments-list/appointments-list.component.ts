@@ -89,6 +89,7 @@ export class AppointmentsListComponent {
             this.appointments = res.Data.patientsAppointmentsList;
             this.totalAppointmentRecord =
               res.Data.TotalRecored || res.Data.length;
+              console.log(this.appointments)
             this.calculateRecordRange();
           } else {
             this.appointments = [];
@@ -270,20 +271,15 @@ export class AppointmentsListComponent {
       return;
     }
 
-    this.appointmentStatusUpdate.NewAppointmentStatus =
-      this.appointmentStatus.ACCEPT;
+    this.appointmentStatusUpdate.NewAppointmentStatus =this.appointmentStatus.ACCEPT;
     this.appointmentStatusUpdate.AppointmentId = appt.Appointment.AppointmentId;
-    this.appointmentStatusUpdate.PreferredSlotId =
-      this.selectedPreferredSlotId ?? 0;
+    this.appointmentStatusUpdate.PreferredSlotId =this.selectedPreferredSlotId ?? 0;
     this.appointmentStatusUpdate.ActionId = actionId;
 
     this.updateAppointment();
     this.loadAppointments();
 
-    this.toastService.successToastr(
-      'Appointment accepted successfully.',
-      'Accepted'
-    );
+   
   }
 
   rejectAppointment(appt: any, actionId: number) {
@@ -318,20 +314,20 @@ export class AppointmentsListComponent {
       .updateAppointmentStatus(this.appointmentStatusUpdate)
       .subscribe({
         next: (res: any) => {
-          if (res.Success) {
+          if (res.success) {
             if (this.altSlotModalRef) {
               this.altSlotModalRef.close();
             }
-
+            this.selectedPreferredSlotId=null
             this.toastService.successToastr(
-              res.Message || 'Appointment status updated successfully.',
+              res.message || 'Appointment status updated successfully.',
               'Status Success'
             );
             this.appointmentStatusUpdate = new AppointmentStatusUpdate();
             this.loadAppointments();
           } else {
             this.toastService.errorToastr(
-              res.Message || 'No appointment record was updated.',
+              res.message || 'No appointment record was updated.',
               'Status Error'
             );
           }
@@ -339,7 +335,7 @@ export class AppointmentsListComponent {
         error: (err) => {
           console.error(err);
           this.toastService.errorToastr(
-            err.error?.Message ||
+            err.error?.message ||
               'Something went wrong while updating the appointment.',
             'Server Error'
           );
@@ -371,6 +367,7 @@ export class AppointmentsListComponent {
       case this.appointmentStatus.REJECT:
         filteredSlots = slots;
         this.selectedPreferredSlotId = null;
+        
         break;
 
       default:

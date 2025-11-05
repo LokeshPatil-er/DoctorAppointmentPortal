@@ -12,7 +12,9 @@ namespace DAPClassLibrary
         public int DoctorId { get; set; }
         public string FullName { get; set; }
         public string DoctorQualifications { get; set; }
+        public int ConsultancyFee { get; set; }
 
-       
+
+
     }
 }

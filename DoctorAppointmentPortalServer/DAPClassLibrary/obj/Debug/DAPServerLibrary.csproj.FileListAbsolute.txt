@@ -42,3 +42,17 @@ D:\DoctorAppoinmentPortal\DoctorAppointmentPortalServer\DAPClassLibrary\bin\Debu
 D:\DoctorAppoinmentPortal\DoctorAppointmentPortalServer\DAPClassLibrary\bin\Debug\System.Web.WebPages.Razor.xml
 D:\DoctorAppoinmentPortal\DoctorAppointmentPortalServer\DAPClassLibrary\bin\Debug\System.Web.Razor.xml
 D:\DoctorAppoinmentPortal\DoctorAppointmentPortalServer\DAPClassLibrary\bin\Debug\System.Web.WebPages.Deployment.xml
+D:\WebAPI-And-Angular-Assignment\DoctorAppointmentPortal\DoctorAppointmentPortalServer\DAPClassLibrary\bin\Debug\System.Web.Http.dll
+D:\WebAPI-And-Angular-Assignment\DoctorAppointmentPortal\DoctorAppointmentPortalServer\DAPClassLibrary\bin\Debug\System.Web.Mvc.dll
+D:\WebAPI-And-Angular-Assignment\DoctorAppointmentPortal\DoctorAppointmentPortalServer\DAPClassLibrary\bin\Debug\System.Net.Http.Formatting.dll
+D:\WebAPI-And-Angular-Assignment\DoctorAppointmentPortal\DoctorAppointmentPortalServer\DAPClassLibrary\bin\Debug\System.Web.WebPages.dll
+D:\WebAPI-And-Angular-Assignment\DoctorAppointmentPortal\DoctorAppointmentPortalServer\DAPClassLibrary\bin\Debug\System.Web.WebPages.Razor.dll
+D:\WebAPI-And-Angular-Assignment\DoctorAppointmentPortal\DoctorAppointmentPortalServer\DAPClassLibrary\bin\Debug\System.Web.Razor.dll
+D:\WebAPI-And-Angular-Assignment\DoctorAppointmentPortal\DoctorAppointmentPortalServer\DAPClassLibrary\bin\Debug\System.Web.WebPages.Deployment.dll
+D:\WebAPI-And-Angular-Assignment\DoctorAppointmentPortal\DoctorAppointmentPortalServer\DAPClassLibrary\bin\Debug\System.Web.Http.xml
+D:\WebAPI-And-Angular-Assignment\DoctorAppointmentPortal\DoctorAppointmentPortalServer\DAPClassLibrary\bin\Debug\System.Web.Mvc.xml
+D:\WebAPI-And-Angular-Assignment\DoctorAppointmentPortal\DoctorAppointmentPortalServer\DAPClassLibrary\bin\Debug\System.Net.Http.Formatting.xml
+D:\WebAPI-And-Angular-Assignment\DoctorAppointmentPortal\DoctorAppointmentPortalServer\DAPClassLibrary\bin\Debug\System.Web.WebPages.xml
+D:\WebAPI-And-Angular-Assignment\DoctorAppointmentPortal\DoctorAppointmentPortalServer\DAPClassLibrary\bin\Debug\System.Web.WebPages.Razor.xml
+D:\WebAPI-And-Angular-Assignment\DoctorAppointmentPortal\DoctorAppointmentPortalServer\DAPClassLibrary\bin\Debug\System.Web.Razor.xml
+D:\WebAPI-And-Angular-Assignment\DoctorAppointmentPortal\DoctorAppointmentPortalServer\DAPClassLibrary\bin\Debug\System.Web.WebPages.Deployment.xml

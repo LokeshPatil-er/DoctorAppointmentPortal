@@ -67,21 +67,31 @@
           }"
           required
         >
-          <ng-template ng-label-tmp let-item="item">
-            {{ item.FullName }}
-            <small class="text-muted ms-1"
-              >({{ item.DoctorQualifications }})</small
-            >
-          </ng-template>
-
-          <ng-template ng-option-tmp let-item="item">
+        <ng-template ng-label-tmp let-item="item">
+          <div class="d-flex align-items-center">
             <div>
-              <strong>Dr.{{ item.FullName }}</strong>
-              <small class="text-muted ms-2">{{
-                item.DoctorQualifications
-              }}</small>
+              <strong>Dr. {{ item.FullName }}</strong>
+              <small class="text-muted ">
+                {{ item.DoctorQualifications }} | Fee: ₹{{ item.ConsultancyFee }}
+              </small>
             </div>
-          </ng-template>
+          </div>
+        </ng-template>
+      
+       
+        <ng-template ng-option-tmp let-item="item">
+          <div class="doctor-option d-flex flex-column py-2 px-1">
+            <div class="d-flex justify-content-between align-items-center">
+              <div>
+                <strong class="text-primary">Dr. {{ item.FullName }}</strong>
+                <span class="badge bg-light text-secondary ms-2">
+                  {{ item.DoctorQualifications }}
+                </span>
+              </div>
+              <span class="text-success fw-semibold">Fee: ₹{{ item.ConsultancyFee }}</span>
+            </div>
+          </div>
+        </ng-template>
         </ng-select>
 
         <div

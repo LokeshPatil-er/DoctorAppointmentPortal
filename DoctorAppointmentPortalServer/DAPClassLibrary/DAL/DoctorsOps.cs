@@ -483,7 +483,8 @@ namespace DAPClassLibrary
                         {
                             DoctorId = Convert.ToInt32(row["DoctorId"]),
                             FullName=Convert.ToString(row["FullName"]),
-                            DoctorQualifications = Convert.ToString(row["Qualifications"])
+                            DoctorQualifications = Convert.ToString(row["Qualifications"]),
+                            ConsultancyFee = Convert.ToInt32(row["ConsultancyFee"])
                         });
                     }
                 }

@@ -87,7 +87,7 @@ namespace DoctorAppointmentPortalServer.Controllers
 
                 response = Request.CreateResponse(HttpStatusCode.OK, new
                 {
-                    Success = true,
+                    success = true,
                     Data = objAppointmentFormDropDowns
                 });
             }
@@ -96,8 +96,8 @@ namespace DoctorAppointmentPortalServer.Controllers
                 ExceptionLogService.LogExceptionInDB(ex, nameof(PatientController), nameof(GetAppointmentFormDropDowns));
                 response = Request.CreateResponse(HttpStatusCode.InternalServerError, new
                 {
-                    Success = false,
-                    Message = "Error occurred while fetching dropdown data.",
+                    success = false,
+                    message = "Error occurred while fetching dropdown data.",
                     Details = ex.Message
                 });
             }
@@ -115,8 +115,8 @@ namespace DoctorAppointmentPortalServer.Controllers
                 {
                     return Request.CreateResponse(HttpStatusCode.BadRequest, new
                     {
-                        Success = false,
-                        Message = "Invalid doctor ID."
+                        success = false,
+                        message = "Invalid doctor ID."
                     });
                 }
 
@@ -125,7 +125,7 @@ namespace DoctorAppointmentPortalServer.Controllers
 
                 response = Request.CreateResponse(HttpStatusCode.OK, new
                 {
-                    Success = true,
+                    success = true,
                     Data = availableSlots
                 });
             }
@@ -134,8 +134,8 @@ namespace DoctorAppointmentPortalServer.Controllers
                 ExceptionLogService.LogExceptionInDB(ex, nameof(PatientController), nameof(GetAvailableSlotsAtPatient));
                 response = Request.CreateResponse(HttpStatusCode.InternalServerError, new
                 {
-                    Success = false,
-                    Message = "Error occurred while fetching available slots.",
+                    success = false,
+                    message = "Error occurred while fetching available slots.",
                     Details = ex.Message
                 });
             }
@@ -156,8 +156,8 @@ namespace DoctorAppointmentPortalServer.Controllers
                 {
                     return Request.CreateResponse(HttpStatusCode.BadRequest, new
                     {
-                        Success = false,
-                        Message = "Missing appointment data."
+                        success = false,
+                        message = "Missing appointment data."
                     });
                 }
 
@@ -174,8 +174,8 @@ namespace DoctorAppointmentPortalServer.Controllers
                     {
                         return Request.CreateResponse(HttpStatusCode.InternalServerError, new
                         {
-                            Success = false,
-                            Message = "Some files could not be saved. Please try again."
+                           success = false,
+                            message = "Some files could not be saved. Please try again."
                         });
                     }
                 }
@@ -190,8 +190,8 @@ namespace DoctorAppointmentPortalServer.Controllers
                     fileService.ClearTempFolder();
                     return Request.CreateResponse(HttpStatusCode.InternalServerError, new
                     {
-                        Success = false,
-                        Message = "Error while saving appointment data."
+                        success = false,
+                        message = "Error while saving appointment data."
                     });
                 }
 
@@ -213,8 +213,8 @@ namespace DoctorAppointmentPortalServer.Controllers
 
                 response = Request.CreateResponse(HttpStatusCode.OK, new
                 {
-                    Success = true,
-                    Message = "Appointment submitted successfully and notification sent.",
+                    success = true,
+                    message = "Appointment submitted successfully and notification sent.",
                
                 });
             }
@@ -223,9 +223,9 @@ namespace DoctorAppointmentPortalServer.Controllers
                 ExceptionLogService.LogExceptionInDB(ex, nameof(PatientController), nameof(InsertPatientAppointmentRequest));
                 response = Request.CreateResponse(HttpStatusCode.InternalServerError, new
                 {
-                    Success = false,
-                    Message = "An unexpected error occurred while processing the appointment.",
-                    Details = ex.Message
+                    success = false,
+                    message = "An unexpected error occurred while processing the appointment.",
+                    details = ex.Message
                 });
             }
 

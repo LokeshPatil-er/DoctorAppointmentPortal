@@ -93,8 +93,8 @@ namespace DoctorAppointmentPortalServer.Controllers
                 {
                     return Request.CreateResponse(HttpStatusCode.BadRequest, new
                     {
-                        Success = false,
-                        Message = "Provide all required data."
+                        success = false,
+                        message = "Provide all required data."
                     });
                 }
 
@@ -111,8 +111,8 @@ namespace DoctorAppointmentPortalServer.Controllers
                     {
                         return Request.CreateResponse(HttpStatusCode.Conflict, new
                         {
-                            Success = false,
-                            Message = "The selected slot is already approved for another appointment."
+                            success = false,
+                            message = "The selected slot is already approved for another appointment."
                         });
                     }
                 }
@@ -142,16 +142,16 @@ namespace DoctorAppointmentPortalServer.Controllers
 
                     response = Request.CreateResponse(HttpStatusCode.OK, new
                     {
-                        Success = true,
-                        Message = "Appointment status updated successfully."
+                        success = true,
+                        message = "Appointment status updated successfully."
                     });
                 }
                 else
                 {
                     response = Request.CreateResponse(HttpStatusCode.NotFound, new
                     {
-                        Success = false,
-                        Message = "No appointment record was updated. Please check the provided data."
+                        success = false,
+                        message = "No appointment record was updated. Please check the provided data."
                     });
                 }
             }
@@ -159,8 +159,8 @@ namespace DoctorAppointmentPortalServer.Controllers
             {
                 response = Request.CreateResponse(HttpStatusCode.InternalServerError, new
                 {
-                    Success = false,
-                    Message = "An unexpected error occurred while processing your request.",
+                    success = false,
+                    message = "An unexpected error occurred while processing your request.",
                     Details = ex.Message
                 });
             }
@@ -179,7 +179,7 @@ namespace DoctorAppointmentPortalServer.Controllers
 
                 response = Request.CreateResponse(HttpStatusCode.OK, new
                 {
-                    Success = true,
+                    success = true,
                     Data = availableSlots
                 });
             }
@@ -187,8 +187,8 @@ namespace DoctorAppointmentPortalServer.Controllers
             {
                 response = Request.CreateResponse(HttpStatusCode.InternalServerError, new
                 {
-                    Success = false,
-                    Message = "Error occurred while retrieving available slots.",
+                    success = false,
+                    message = "Error occurred while retrieving available slots.",
                     Details = ex.Message
                 });
             }
