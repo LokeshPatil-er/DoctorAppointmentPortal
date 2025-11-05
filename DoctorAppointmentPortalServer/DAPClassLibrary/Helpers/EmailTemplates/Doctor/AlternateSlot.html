@@ -1,0 +1,351 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alternate Slots Proposed - Confirmation</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            padding: 20px;
+            margin: 0;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            background: #ffffff;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #f39c12 0%, #e67e22 100%);
+            padding: 30px 20px;
+            text-align: center;
+            color: white;
+        }
+
+            .header h1 {
+                margin: 0;
+                font-size: 28px;
+                font-weight: 600;
+                letter-spacing: 0.5px;
+            }
+
+        .header-icon {
+            font-size: 40px;
+            margin-bottom: 10px;
+        }
+
+        .content {
+            padding: 30px 20px;
+        }
+
+        .greeting {
+            font-size: 16px;
+            color: #333333;
+            margin-bottom: 20px;
+            line-height: 1.6;
+        }
+
+            .greeting strong {
+                color: #e67e22;
+            }
+
+        .success-box {
+            background: #fff8e1;
+            border-left: 4px solid #f39c12;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 6px;
+        }
+
+            .success-box p {
+                margin: 8px 0;
+                color: #d68910;
+                font-size: 14px;
+                line-height: 1.6;
+            }
+
+        .patient-info {
+            background: #f3e5f5;
+            border-left: 4px solid #9c27b0;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 6px;
+        }
+
+            .patient-info p {
+                margin: 8px 0;
+                color: #555555;
+                font-size: 14px;
+            }
+
+            .patient-info strong {
+                color: #4a148c;
+            }
+
+        .slots-title {
+            font-size: 16px;
+            font-weight: 700;
+            color: #333333;
+            margin: 25px 0 15px 0;
+            text-align: center;
+            padding: 10px;
+            background: #f0f4ff;
+            border-radius: 6px;
+        }
+
+        .slots-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .slot-item {
+            background: linear-gradient(135deg, #fff8e1 0%, #ffe0b2 100%);
+            padding: 15px;
+            margin: 10px 0;
+            border-radius: 8px;
+            border-left: 4px solid #f39c12;
+            color: #333333;
+            font-size: 14px;
+            display: flex;
+            align-items: center;
+        }
+
+        .slot-icon {
+            color: #f39c12;
+            margin-right: 12px;
+            font-weight: bold;
+            font-size: 18px;
+        }
+
+        .status-info {
+            background: #e8f5e9;
+            border-left: 4px solid #4caf50;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 6px;
+        }
+
+            .status-info p {
+                margin: 8px 0;
+                color: #2e7d32;
+                font-size: 13px;
+                line-height: 1.6;
+            }
+
+            .status-info strong {
+                color: #1b5e20;
+                display: block;
+                margin-bottom: 8px;
+            }
+
+        .timeline-box {
+            background: #e1f5fe;
+            border-left: 4px solid #0288d1;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 6px;
+        }
+
+            .timeline-box p {
+                margin: 6px 0;
+                color: #01579b;
+                font-size: 13px;
+                line-height: 1.6;
+            }
+
+            .timeline-box strong {
+                display: block;
+                margin-bottom: 8px;
+                color: #0d47a1;
+            }
+
+        .action-section {
+            background: #f0f4ff;
+            padding: 20px;
+            margin: 25px 0;
+            border-radius: 8px;
+            text-align: center;
+            border: 2px dashed #f39c12;
+        }
+
+            .action-section p {
+                color: #333;
+                margin-bottom: 15px;
+                font-size: 14px;
+                line-height: 1.6;
+            }
+
+        .button-group {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .action-button {
+            display: inline-block;
+            background: linear-gradient(135deg, #f39c12 0%, #e67e22 100%);
+            color: white;
+            padding: 12px 25px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 13px;
+            transition: transform 0.2s;
+        }
+
+            .action-button:hover {
+                transform: translateY(-2px);
+                box-shadow: 0 4px 12px rgba(243, 156, 18, 0.4);
+            }
+
+        .secondary-button {
+            background: #ffffff;
+            color: #f39c12;
+            border: 2px solid #f39c12;
+        }
+
+            .secondary-button:hover {
+                background: #fff8e1;
+            }
+
+        .info-box {
+            background: #e3f2fd;
+            border-left: 4px solid #3498db;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 6px;
+        }
+
+            .info-box p {
+                margin: 8px 0;
+                color: #1565c0;
+                font-size: 13px;
+                line-height: 1.6;
+            }
+
+        .divider {
+            height: 1px;
+            background: #e0e0e0;
+            margin: 20px 0;
+        }
+
+        .footer {
+            background: #f5f5f5;
+            padding: 20px;
+            text-align: center;
+            border-top: 1px solid #e0e0e0;
+        }
+
+        .footer-text {
+            font-size: 13px;
+            color: #666666;
+            margin: 5px 0;
+            line-height: 1.6;
+        }
+
+        .footer-links a {
+            color: #f39c12;
+            text-decoration: none;
+            margin: 0 10px;
+            font-size: 13px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+      
+        <div class="header">
+            <div class="header-icon">⏰</div>
+            <h1>Alternate Slots Proposed</h1>
+        </div>
+
+       
+        <div class="content">
+           
+            <div class="greeting">
+                Hello Dr. <strong>{{DoctorName}}</strong>,
+                <br><br>
+                Your proposed alternative appointment times have been sent to the patient. They will review your suggestions and respond within 24 hours.
+            </div>
+
+       
+            <div class="success-box">
+                <p>
+                    <strong>✓ Alternate slots proposed successfully</strong>
+                </p>
+                <p>
+                    {{PatientName}} has been notified and will choose one of your suggested times or provide feedback.
+                </p>
+            </div>
+
+       
+            <div class="patient-info">
+                <p><strong>👤 Patient Name:</strong> {{PatientName}}</p>
+                <p><strong>📞 Contact:</strong> {{PatientPhone}}</p>
+                <p><strong>✉️ Email:</strong> {{PatientEmail}}</p>
+                <p><strong>🏥 Reason for Visit:</strong> {{ReasonForVisit}}</p>
+            </div>
+
+          
+            <div class="slots-title">📅 Your Proposed Alternate Time Slot</div>
+            <ul class="slots-list">
+                {{ProposedSlotsList}}
+            </ul>
+
+          
+            <div class="status-info">
+                <strong>✓ What to Expect:</strong>
+                <p>• Patient will review these slots within 24 hours</p>
+                <p>• They can accept any slot to confirm the appointment</p>
+                <p>• Or they can decline and request different times</p>
+                <p>• You will receive a notification of their response</p>
+            </div>
+
+     
+            <div class="timeline-box">
+                <strong>⏳ Timeline:</strong>
+                <p>📤 Slots sent: Now</p>
+                <p>⏱️ Patient response expected: Within 24 hours</p>
+                <p>✅ If accepted: Appointment confirmed immediately</p>
+                <p>⛔ If rejected: Further negotiation may be needed</p>
+            </div>
+
+          
+
+          
+
+            
+            <div class="info-box">
+                <p>
+                    <strong>💡 Pro Tip:</strong> Keep an eye on your notifications for the patient's response. If they reject all slots, you can propose more times or discuss the issue directly with them.
+                </p>
+            </div>
+        </div>
+
+        <div class="footer">
+            <div class="footer-text">
+                Questions? Contact our support team
+            </div>
+            <div class="footer-text">
+                📞 +18005551234 | 📧 support@careconnect.in
+            </div>
+            <div class="divider"></div>
+            <div class="footer-links">
+                <a href="#">FAQ</a>
+                <a href="#">Help</a>
+            </div>
+            <div class="footer-text" style="margin-top: 15px; font-size: 12px;">
+                © {{CurrentYear}} Medical Appointment Portal
+            </div>
+        </div>
+    </div>
+</body>
+</html>

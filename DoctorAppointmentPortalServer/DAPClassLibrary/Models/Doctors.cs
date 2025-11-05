@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -9,54 +10,111 @@ namespace DAPClassLibrary
     public class Doctors
     {
         public int DoctorId { get; set; }
+
         public int UserId { get; set; }
+
+        [Required]
         public string Email { get; set; }
+
+       
         public string Password { get; set; }
+
+        [Required]
         public string RoleShortCode { get; set; }
+
+        [Required]
         public string FirstName { get; set; }
+
+        [Required]
         public string LastName { get; set; }
+
+        [Required]
         public DateTime DateOfBirth { get; set; }
+
+        [Required]
         public string ContactNo { get; set; }
+
+        [Required]
         public int BloodGroupId { get; set; }
+
+     
         public string BloodGroupName { get; set; }
+
+        [Required]
         public int GenderId { get; set; }
+
         public string GenderName { get; set; }
+
         public int AddressId { get; set; }
+
+        [Required]
         public string AddressLine1 { get; set; }
+
+        [Required]
         public int TalukaId { get; set; }
+
         public string TalukaName { get; set; }
+
+        [Required]
+        public int DistrictId { get; set; }
+
+        public string DistrictName { get; set; }
+
+        [Required]
+        public int StateId { get; set; }
+
+        public string StateName { get; set; }
+
+        [Required]
+        public int CountryId { get; set; }
+
+        public string CountryName { get; set; }
+
+        [Required]
         public string Pincode { get; set; }
-        public int YearOfExperience { get; set; }
+
+        [Required]
+        public DateTime ExperienceStartDate { get; set; }
+
+        [Required]
         public int ConsultancyFee { get; set; }
+
         public bool IsActive { get; set; }
+
         public int CreatedBy { get; set; }
+
         public DateTime CreatedOn { get; set; }
+
         public int? ModifiedBy { get; set; }
+
         public DateTime? ModifiedOn { get; set; }
-        public List<int> DoctorQulificationsIdList { get; set; }
-        public List<int> DoctorSpecializationsIdList { get; set; }
-        public List<AvailableSlots> DoctorAvailableSlots { get; set; }
-        public List<Countries> CountriesList { get; set; }
-        public List<States> StatesList { get; set; }
-        public List<Districts> DistrictsList { get; set; }
-        public List<Talukas> TalukasList { get; set; }
-        public List<BloodGroups> BloodGroupsList { get; set; }
-        public List<Genders> GendersList { get; set; }
-        public List<Qualifications> QualificationsList { get; set; }
-        public List<Specializations> SpecializationsList { get; set; }
+
+        [Required]
+        public List<int> DoctorQulificationsIdList { get; set; }=new List<int>();
+
+        [Required]
+        public List<int> DoctorSpecializationsIdList { get; set; }= new List<int>();
+
+        [Required]
+        public List<DoctorAvailableSlots> DoctorAvailableSlots { get; set; }
+
+
+        public List<Qualifications> DoctorQualificationsList { get; set; }=new List<Qualifications> { };
+
+        public string DoctorQualification=> string.Join(", ", DoctorSpecializationsList);
+        public List<Specializations> DoctorSpecializationsList { get; set; }=new List<Specializations> { };
+        public string DoctorSpecialization=>string.Join(", ",DoctorSpecializationsList);
+
+
+
+
 
     }
 
-    public class AvailableSlots
-    {
-        public int AvaliableSlotId { get; set; }
-        public string dayOfWeek { get; set; }
-        public string StartTime { get; set; }
-        public string EndTime { get; set; }
-        public bool IsAvailable { get; set; }
-        public int CreatedBy { get; set; }
-        public DateTime CreatedOn { get; set; }
-        public int ModifiedBy { get; set; }
-        public DateTime ModifiedOn { get; set; }
-    }
+ 
+
+   
+
+    
+
 }

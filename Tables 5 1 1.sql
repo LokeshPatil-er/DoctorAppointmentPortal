@@ -1,4 +1,5 @@
-﻿--0
+﻿
+--0
 CREATE TABLE DAP_Genders
 (
    GenderId INT PRIMARY KEY IDENTITY(1,1),
@@ -9,15 +10,6 @@ CREATE TABLE DAP_Genders
    ModifiedBy INT FOREIGN KEY REFERENCES DAP_Users(UserId) NULL,
    ModifiedOn DATETIME2 NULL,
 );
-
-INSERT INTO DAP_Genders (Gender, IsActive, CreatedBy, CreatedOn)
-VALUES
-('Male', 1, NULL, GETDATE()),
-('Female', 1, NULL, GETDATE()),
-('Transgender', 1, NULL, GETDATE()),
-('Non-Binary', 1, NULL, GETDATE()),
-('Prefer Not to Say', 1, NULL, GETDATE()),
-('Other', 1, NULL, GETDATE());
 
 
 --1
@@ -58,13 +50,7 @@ CREATE  TABLE DAP_Countries (
 	ModifiedOn DATETIME2 NULL,
 );
 
-INSERT INTO DAP_Countries (CountryName, CreatedBy, CreatedOn)
-VALUES
-('India', 1, SYSDATETIME()),
-('United States', 1, SYSDATETIME()),
-('Canada', 1, SYSDATETIME()),
-('United Kingdom', 1, SYSDATETIME()),
-('Australia', 1, SYSDATETIME());
+
 
 
 --4
@@ -95,15 +81,6 @@ CREATE  TABLE DELETE FROM DAP_Districts (
 
 DBCC CHECKIDENT ('dbo.DAP_Districts', RESEED, 0);
 
-
-INSERT INTO DAP_States (StateName, CountryId, CreatedBy, CreatedOn)
-VALUES
-('Maharashtra', 1, 1, SYSDATETIME()),
-('Gujarat', 1, 1, SYSDATETIME()),
-('Karnataka', 1, 1, SYSDATETIME()),
-('Madhya Pradesh', 1, 1, SYSDATETIME()),
-('Rajasthan', 1, 1, SYSDATETIME());
-
 --6
 CREATE  TABLE DAP_Talukas (
     TalukaId INT IDENTITY PRIMARY KEY,
@@ -115,14 +92,6 @@ CREATE  TABLE DAP_Talukas (
 	ModifiedBy INT FOREIGN KEY REFERENCES DAP_Users(UserId) NULL,
 	ModifiedOn DATETIME2 NULL,
 );
-
-INSERT INTO DAP_Districts (DistrictName, StateId, CreatedBy, CreatedOn)
-VALUES
-('Pune', 1, 1, SYSDATETIME()),
-('Mumbai', 1, 1, SYSDATETIME()),
-('Nagpur', 1, 1, SYSDATETIME()),
-('Nashik', 1, 1, SYSDATETIME()),
-('Aurangabad', 1, 1, SYSDATETIME());
 
 
 --7
@@ -138,29 +107,6 @@ CREATE  TABLE DAP_Addresses (
 	ModifiedOn DATETIME2 NULL,
 );
 
-INSERT INTO DAP_Talukas (TalukaName, DistrictId, CreatedBy, CreatedOn)
-VALUES
-('Haveli', 1, 1, SYSDATETIME()),
-('Mulshi', 1, 1, SYSDATETIME()),
-('Bhor', 1, 1, SYSDATETIME()),
-('Baramati', 1, 1, SYSDATETIME()),
-('Maval', 1, 1, SYSDATETIME());
-
-INSERT INTO DAP_Addresses 
-(
-    AddressLine1,
-    Pincode,
-    TalukaId,
-    CreatedBy,
-    CreatedOn
-)
-VALUES
-('123 Shivaji Nagar', '411005', 1, 1, SYSDATETIME()),
-('56 MG Road', '411001', 1, 1, SYSDATETIME()),
-('Plot No 45, Baramati Industrial Area', '413102', 4, 1, SYSDATETIME()),
-('Near Central Park, Mulshi', '412108', 2, 1, SYSDATETIME()),
-('Main Street, Haveli', '411041', 3, 1, SYSDATETIME());
---8
 CREATE  TABLE DAP_Specializations (
     SpecializationId INT IDENTITY PRIMARY KEY,
     Specialization NVARCHAR(150) NOT NULL UNIQUE, 
@@ -171,23 +117,7 @@ CREATE  TABLE DAP_Specializations (
 	ModifiedBy INT FOREIGN KEY REFERENCES DAP_Users(UserId),
 	ModifiedOn DATETIME2,
 );
-INSERT INTO DAP_Specializations
-(
-    Specialization,
-    [Description],
-    IsActive,
-    CreatedBy,
-    CreatedOn
-)
-VALUES
-('Cardiology', 'Specialist in heart and blood vessel disorders', 1, 1, SYSDATETIME()),
-('Dermatology', 'Specialist in skin, hair, and nail conditions', 1, 1, SYSDATETIME()),
-('Neurology', 'Specialist in brain, spinal cord, and nerve disorders', 1, 1, SYSDATETIME()),
-('Pediatrics', 'Specialist in medical care for children', 1, 1, SYSDATETIME()),
-('Orthopedics', 'Specialist in bones, joints, ligaments, tendons, and muscles', 1, 1, SYSDATETIME()),
-('Gynecology', 'Specialist in female reproductive health', 1, 1, SYSDATETIME()),
-('Ophthalmology', 'Specialist in eye and vision care', 1, 1, SYSDATETIME()),
-('ENT', 'Specialist in ear, nose, and throat disorders', 1, 1, SYSDATETIME());
+
 
 
 --9
@@ -202,17 +132,6 @@ ALTER TABLE DAP_BloodGroups
 ALTER COLUMN BloodGroupName NVARCHAR(10) NOT NULL;
 
 
-INSERT INTO DAP_BloodGroups (BloodGroupName, CreatedOn)
-VALUES
-('A+','2025-10-14 14:40:00'),
-('A-','2025-10-14 14:40:00'),
-('B+','2025-10-14 14:40:00'),
-('B-','2025-10-14 14:40:00'),
-('AB+','2025-10-14 14:40:00'),
-('AB-','2025-10-14 14:40:00'),
-('O+','2025-10-14 14:40:00'),
-('O-','2025-10-14 14:40:00');
-
 --10
 CREATE  TABLE DAP_Qualifications (
     QualificationId INT PRIMARY KEY IDENTITY(1,1),
@@ -224,23 +143,6 @@ CREATE  TABLE DAP_Qualifications (
 	ModifiedBy INT FOREIGN KEY REFERENCES DAP_Users(UserId) NULL,
 	ModifiedOn DATETIME2 NULL
 );
-INSERT INTO DAP_Qualifications
-(
-    Degree,
-    DegreeDescription,
-    IsActive,
-    CreatedBy,
-    CreatedOn
-)
-VALUES
-('MBBS', 'Bachelor of Medicine, Bachelor of Surgery', 1, 1, SYSDATETIME()),
-('MD', 'Doctor of Medicine', 1, 1, SYSDATETIME()),
-('MS', 'Master of Surgery', 1, 1, SYSDATETIME()),
-('BDS', 'Bachelor of Dental Surgery', 1, 1, SYSDATETIME()),
-('MDS', 'Master of Dental Surgery', 1, 1, SYSDATETIME()),
-('DM', 'Doctorate in Medicine', 1, 1, SYSDATETIME()),
-('MCh', 'Master of Chirurgical', 1, 1, SYSDATETIME()),
-('PhD', 'Doctor of Philosophy', 1, 1, SYSDATETIME());
 
 --11
 CREATE  TABLE DAP_DoctorQualifications (
@@ -291,7 +193,7 @@ CREATE  TABLE DAP_DoctorSpecializations (
 --13
 CREATE  TABLE DAP_DoctorAvailableSlots
 (
-	SlotId INT PRIMARY KEY IDENTITY(0,1),
+	SlotId INT PRIMARY KEY IDENTITY(1,1),
 	DoctorId INT FOREIGN KEY REFERENCES DAP_Doctors(DoctorId) NOT NULL,
 	[DayOfWeek] NVARCHAR(20) NOT NULL,
 	StartTime TIME NOT NULL,
@@ -303,23 +205,27 @@ CREATE  TABLE DAP_DoctorAvailableSlots
 	ModifiedOn DATETIME2 NULL,
 );
 
+
 --14
 CREATE TABLE DAP_Patients
 (
-	PatientId INT PRIMARY KEY IDENTITY(0,1),
-	FirstName NVARCHAR(50) NOT NULL UNIQUE,
-	LastName NVARCHAR(50) NOT NULL UNIQUE,
+	PatientId INT PRIMARY KEY IDENTITY(1,1),
+	FirstName NVARCHAR(50) NOT NULL ,
+	LastName NVARCHAR(50) NOT NULL ,
 	GenderId INT FOREIGN KEY REFERENCES DAP_Genders(GenderId) NOT NULL,
 	DOB DATE NOT NULL,
+	BloodGroupId INT FOREIGN KEY REFERENCES DAP_BloodGroups(BloodGroupId) NOT NULL,
+	AddressId INT FOREIGN KEY REFERENCES DAP_Addresses(AddressId) NOT NULL,
 	ContactNo NVARCHAR(10) NOT NULL ,
-	Email NVARCHAR(320) NOT NULL,
-	CreateOn DATETIME NOT NULL,
+	Email NVARCHAR(320) NOT NULL ,
+	IsActive BIT DEFAULT 1,
+	CreatedOn DATETIME NOT NULL,
 );
 
 --15
 CREATE TABLE DAP_AppointmentStatus
 (
-	StatusId INT PRIMARY KEY IDENTITY(0,1),
+	AppointmentStatusId INT PRIMARY KEY IDENTITY(1,1),
 	[Status] NVARCHAR(50) NOT NULL,
 	ShortCode NVARCHAR(10) NOT NULL,
 	IsActive BIT DEFAULT 1,
@@ -330,14 +236,17 @@ CREATE TABLE DAP_AppointmentStatus
 
 );
 
+
+
+
 --16
 CREATE TABLE DAP_PatientInsurancesInfo (
     InsuranceId INT PRIMARY KEY IDENTITY(1,1),
     PatientId INT FOREIGN KEY REFERENCES DAP_Patients(PatientId) NOT NULL,
     ProviderName NVARCHAR(100) NOT NULL,
-    PolicyNumber NVARCHAR(50) NOT NULL UNIQUE,
+    PolicyNumber NVARCHAR(50) NOT NULL ,
+	PolicyName NVARCHAR(255) NOT NULL,
     ValidTill DATE NULL,
-    CoverageType NVARCHAR(50) NULL,
     IsActive BIT DEFAULT 1,
 	CreatedBy INT FOREIGN KEY REFERENCES DAP_Users(UserId) NULL,
 	CreatedOn DATETIME2 NULL,
@@ -345,20 +254,16 @@ CREATE TABLE DAP_PatientInsurancesInfo (
 	ModifiedOn DATETIME2 NULL,
 );
 
-
 --17
 CREATE TABLE DAP_Appointments
 (
 	AppointmentId INT PRIMARY KEY IDENTITY(0,1),
 	PatientId INT FOREIGN KEY REFERENCES DAP_Patients(PatientId) NOT NULL,
 	DoctorId INT FOREIGN KEY REFERENCES DAP_Doctors(DoctorId) NOT NULL,
-	AppointmentReason NVARCHAR(MAX) NOT NULL,
-	AppointmentStatusId INT FOREIGN KEY REFERENCES DAP_AppointmentStatus(StatusId) NOT NULL,
+	ReasonForVisit NVARCHAR(MAX) NOT NULL,
+	AppointmentStatusId INT FOREIGN KEY REFERENCES DAP_AppointmentStatus(AppointmentStatusId) NOT NULL,
 	PatientInsuranceId INT FOREIGN KEY REFERENCES DAP_PatientInsurancesInfo(InsuranceId) NULL,
-	MedicalHistroy NVARCHAR(MAX),
-	ConfirmedDate DATE NULL,
-	ConfirmedStartTime TIME NULL,
-	ConfirmedEndTime TIME NULL,
+	MedicalHistory NVARCHAR(MAX),
 	IsActive BIT DEFAULT 1,
 	CreatedBy INT FOREIGN KEY REFERENCES DAP_Users(UserId) NULL,
 	CreatedOn DATETIME2 NULL,
@@ -371,10 +276,11 @@ CREATE TABLE DAP_Appointments
 CREATE TABLE DAP_PreferredSlots
 (
 	PreferredSlotId INT PRIMARY KEY IDENTITY(0,1),
-	AppointmentId INT FOREIGN KEY REFERENCES DAP_Appointments(AppointmentId) NOT NULL,
+	AppointmentId INT FOREIGN KEY REFERENCES DAP_Appointments(AppointmentId),
 	PreferredDate DATE NOT NULL,
 	PreferredStartTime TIME NOT NULL,
 	PreferredEndTime TIME NOT NULL,
+	IsApproved BIT DEFAULT 0,
 	IsActive BIT DEFAULT 1,
 	CreatedBy INT FOREIGN KEY REFERENCES DAP_Users(UserId) NULL,
 	CreatedOn DATETIME2 NULL,
@@ -384,13 +290,15 @@ CREATE TABLE DAP_PreferredSlots
 );
 
 
+
 --19
-CREATE TABLE DAP_PatientExsistingReports
+CREATE TABLE DAP_PatientExistingReports
 (
 	ReportId INT PRIMARY KEY IDENTITY(0,1),
 	AppointmentId INT FOREIGN KEY REFERENCES DAP_Appointments(AppointmentId),
 	ReportName NVARCHAR(50),
-	ReportFullName NVARCHAR(50),
+	ReportFileName NVARCHAR(255),
+	FileType NVARCHAR(50),
 	IsActive BIT DEFAULT 1,
 	CreatedBy INT FOREIGN KEY REFERENCES DAP_Users(UserId) NULL,
 	CreatedOn DATETIME2 NULL,
@@ -414,8 +322,6 @@ CREATE TABLE NotificationEmailTrack
 	
 );
 
---detete tvp table of DoctorQualifications and create new with below
-
 
 CREATE TYPE DAP_DoctorQualificationsTVP AS TABLE
 (
@@ -424,11 +330,13 @@ CREATE TYPE DAP_DoctorQualificationsTVP AS TABLE
 GO
 
 
+
 CREATE TYPE DAP_DoctorAvailableSlotsTVP AS TABLE
 (
+	SlotId INT NULL,
     [DayOfWeek] NVARCHAR(20),
-    StartTime TIME,
-    EndTime TIME,
+    StartTime TIME(3),
+    EndTime TIME(3),
 	IsAvailable  BIT
 	
 );
@@ -442,7 +350,6 @@ CREATE TYPE DAP_DoctorSpecializationsTVP AS TABLE
 );
 GO
 
---ADD check for user email is already exists or not with is active before add in data into user table
 CREATE OR ALTER PROCEDURE dap_doctorInsertOrUpdate  
 /* 
 ---------------------------------------------------------------------------------- 
@@ -487,7 +394,7 @@ BEGIN
         BEGIN TRANSACTION;  
   
         ----------------------------------------------------------------------------------
-        -- 1️ USER TABLE (DAP_Users)
+        -- USER TABLE (DAP_Users)
         ----------------------------------------------------------------------------------
         SELECT @RoleId = RoleId 
         FROM DAP_Roles 
@@ -512,7 +419,7 @@ BEGIN
         END  
   
         ----------------------------------------------------------------------------------
-        -- 2️⃣ ADDRESS TABLE (DAP_Addresses)
+        -- ADDRESS TABLE (DAP_Addresses)
         ----------------------------------------------------------------------------------
         IF @AddressId IS NULL OR @AddressId=0 
         BEGIN  
@@ -533,7 +440,7 @@ BEGIN
         END  
   
         ----------------------------------------------------------------------------------
-        -- 3 DOCTOR TABLE (DAP_Doctors)
+        -- DOCTOR TABLE (DAP_Doctors)
         ----------------------------------------------------------------------------------
         IF @DoctorId IS NULL  OR @DoctorId = 0
         BEGIN  
@@ -564,7 +471,7 @@ BEGIN
         END  
   
         ----------------------------------------------------------------------------------
-        -- 4 DOCTOR AVAILABLE SLOTS (DAP_DoctorAvailableSlots)
+        --  DOCTOR AVAILABLE SLOTS (DAP_DoctorAvailableSlots)
         ----------------------------------------------------------------------------------
         -- Deactivate slots not in the current list  
         UPDATE s  
@@ -609,7 +516,7 @@ BEGIN
         );  
   
         ----------------------------------------------------------------------------------
-        -- 5️ DOCTOR SPECIALIZATIONS (DAP_DoctorSpecializations)
+        --  DOCTOR SPECIALIZATIONS (DAP_DoctorSpecializations)
         ----------------------------------------------------------------------------------
         -- Deactivate removed ones  
         UPDATE s  
@@ -635,7 +542,7 @@ BEGIN
         );  
   
         ----------------------------------------------------------------------------------
-        -- 6️ DOCTOR QUALIFICATIONS (DAP_DoctorQualifications)
+        --  DOCTOR QUALIFICATIONS (DAP_DoctorQualifications)
         ----------------------------------------------------------------------------------
         -- Deactivate removed ones  
         UPDATE dq  
@@ -669,4 +576,620 @@ BEGIN
         THROW;  
     END CATCH;  
 END  
+
+GO
+
+
+
+CREATE OR ALTER PROCEDURE dap_doctorsGet
+(
+    @DoctorId INT = NULL
+)
+AS
+BEGIN
+    SET NOCOUNT ON;
+
+    SELECT 
+        D.DoctorId,
+        D.UserId,
+
+        ISNULL(U.Email, '') AS Email,
+        ISNULL(R.ShortCode, '') AS RoleShortCode,
+
+        ISNULL(D.FirstName, '') AS FirstName,
+        ISNULL(D.LastName, '') AS LastName,
+         DOB,
+        ISNULL(D.ContactNo, '') AS ContactNo,
+        ISNULL(D.YearOfExperience, 0) AS YearOfExperience,
+        ISNULL(D.ConsultancyFee, 0) AS ConsultancyFee,
+        ISNULL(D.IsActive, 0) AS IsActive,
+
+        ISNULL(G.Gender, '') AS Gender,
+        ISNULL(BG.BloodGroupName, '') AS BloodGroupName,
+
+        ISNULL(A.AddressLine1, '') AS AddressLine1,
+        ISNULL(A.TalukaId, 0) AS TalukaId,
+        ISNULL(A.Pincode, '') AS Pincode,
+
+        ISNULL(D.CreatedBy, 0) AS CreatedBy,
+      
+        D.CreatedOn,
+
+        D.ModifiedOn,
+        
+        ISNULL(D.ModifiedBy,0) AS ModifiedBy
+
+    FROM 
+        DAP_Doctors D
+        INNER JOIN DAP_Users U ON D.UserId = U.UserId
+		INNER JOIN DAP_Roles R ON R.RoleId=U.RoleId
+        INNER JOIN DAP_Genders G ON D.GenderId = G.GenderId
+        INNER JOIN DAP_BloodGroups BG ON D.BloodGroupId = BG.BloodGroupId
+        INNER JOIN DAP_Addresses A ON D.AddressId = A.AddressId
+        INNER JOIN DAP_Users UC ON D.CreatedBy = UC.UserId
+        LEFT JOIN DAP_Users UM ON D.ModifiedBy = UM.UserId
+
+    WHERE D.IsActive=1 AND
+        (@DoctorId IS NULL OR D.DoctorId = @DoctorId)
+
+    ORDER BY 
+        D.DoctorId DESC;
+
+	 SELECT 
+        DS.DoctorSpecializationId,
+        DS.DoctorId,
+        DS.SpecializationId,
+        ISNULL(S.Specialization, '') AS Specialization,
+        ISNULL(DS.IsActive, 0) AS IsActive,
+        ISNULL(DS.CreatedBy, 0) AS CreatedBy,
+        DS.CreatedOn,
+        ISNULL(DS.ModifiedBy, 0) AS ModifiedBy,
+        DS.ModifiedOn
+    FROM 
+        DAP_DoctorSpecializations DS
+        INNER JOIN DAP_Specializations S ON DS.SpecializationId = S.SpecializationId
+        INNER JOIN DAP_Users UCS ON DS.CreatedBy = UCS.UserId
+        LEFT JOIN DAP_Users UMS ON DS.ModifiedBy = UMS.UserId
+    WHERE 
+        DS.IsActive = 1
+        AND (@DoctorId IS NULL OR DS.DoctorId = @DoctorId)
+    ORDER BY 
+        DS.DoctorSpecializationId DESC;
+
+
+    SELECT 
+        DQ.DoctorQualificationId,
+        DQ.DoctorId,
+        DQ.QualificationId,
+        ISNULL(Q.Degree, '') AS Degree,
+        ISNULL(DQ.IsActive, 0) AS IsActive,
+        ISNULL(DQ.CreatedBy, 0) AS CreatedBy,
+        
+        DQ.CreatedOn,
+        ISNULL(DQ.ModifiedBy, 0) AS ModifiedBy,
+        
+        DQ.ModifiedOn
+    FROM 
+        DAP_DoctorQualifications DQ
+        INNER JOIN DAP_Qualifications Q ON DQ.QualificationId = Q.QualificationId
+        LEFT JOIN DAP_Users UQ ON DQ.CreatedBy = UQ.UserId
+        LEFT JOIN DAP_Users UMQ ON DQ.ModifiedBy = UMQ.UserId
+    WHERE 
+        DQ.IsActive = 1
+        AND (@DoctorId IS NULL OR DQ.DoctorId = @DoctorId)
+    ORDER BY 
+        DQ.DoctorQualificationId DESC;
+
+
+   
+    SELECT 
+        S.SlotId,
+        S.DoctorId,
+        ISNULL(S.[DayOfWeek], '') AS [DayOfWeek],
+        ISNULL(S.StartTime, '00:00') AS StartTime,
+        ISNULL(S.EndTime, '00:00') AS EndTime,
+        ISNULL(S.IsActive, 0) AS IsActive,
+        ISNULL(S.CreatedBy, 0) AS CreatedBy,
+         S.CreatedOn,
+        ISNULL(S.ModifiedBy, 0) AS ModifiedBy,
+        S.ModifiedOn
+    FROM 
+        DAP_DoctorAvailableSlots S
+        INNER JOIN DAP_Users UCSlot ON S.CreatedBy = UCSlot.UserId
+        LEFT JOIN DAP_Users UMSlot ON S.ModifiedBy = UMSlot.UserId
+    WHERE 
+        S.IsActive = 1
+        AND (@DoctorId IS NULL OR S.DoctorId = @DoctorId)
+    ORDER BY 
+        S.SlotId DESC;
+END;
+GO
+
+CREATE OR ALTER PROCEDURE dap_doctorsGet   
+(
+	@SearchDoctorName NVARCHAR(100) = NULL,
+    @SpecializationIds NVARCHAR(MAX) = NULL,
+    @PageNumber INT = 1,
+    @PageSize INT 
+)
+AS
+BEGIN
+    SET NOCOUNT ON;
+
+	IF @PageSize IS NULL OR @PageSize =0
+	BEGIN 
+	  SELECT @PageSize=COUNT(DoctorId) FROM DAP_Doctors 
+	  WHERE IsActive=1
+	END
+
+    ----------------------------------------------------------
+    -- Get Doctor Basic Info into Temp Table
+    ----------------------------------------------------------
+    SELECT 
+		ROW_NUMBER() OVER (ORDER BY D.DoctorId) AS RowNum,
+        D.DoctorId,
+        D.UserId,
+        ISNULL(U.Email, '') AS Email,
+        ISNULL(R.ShortCode, '') AS RoleShortCode,
+        ISNULL(D.FirstName, '') AS FirstName,
+        ISNULL(D.LastName, '') AS LastName,
+        D.DOB,
+        ISNULL(D.ContactNo, '') AS ContactNo,
+        ISNULL(D.YearOfExperience, 0) AS YearOfExperience,
+        ISNULL(D.ConsultancyFee, 0) AS ConsultancyFee,
+        ISNULL(D.IsActive, 0) AS IsActive,
+        ISNULL(G.GenderId, 0) AS GenderId,
+        ISNULL(G.Gender, '') AS Gender,
+        ISNULL(BG.BloodGroupId, 0) AS BloodGroupId,
+        ISNULL(BG.BloodGroupName, '') AS BloodGroupName,
+        ISNULL(A.AddressLine1, '') AS AddressLine1,
+        ISNULL(A.TalukaId, 0) AS TalukaId,
+        ISNULL(A.Pincode, '') AS Pincode,
+        ISNULL(D.CreatedBy, 0) AS CreatedBy,
+        D.CreatedOn,
+        ISNULL(D.ModifiedBy, 0) AS ModifiedBy,
+        D.ModifiedOn
+    INTO #Doctors
+    FROM 
+        DAP_Doctors D
+        INNER JOIN DAP_Users U ON D.UserId = U.UserId
+        INNER JOIN DAP_Roles R ON R.RoleId = U.RoleId
+        INNER JOIN DAP_Genders G ON D.GenderId = G.GenderId
+        INNER JOIN DAP_BloodGroups BG ON D.BloodGroupId = BG.BloodGroupId
+        INNER JOIN DAP_Addresses A ON D.AddressId = A.AddressId
+        INNER JOIN DAP_Talukas T ON A.TalukaId = T.TalukaId
+        INNER JOIN DAP_Users UC ON D.CreatedBy = UC.UserId
+        LEFT JOIN DAP_Users UM ON D.ModifiedBy = UM.UserId
+    WHERE 
+        D.IsActive = 1
+		AND (
+            @SearchDoctorName IS NULL 
+            OR D.FirstName LIKE '%' + @SearchDoctorName + '%'
+            OR D.LastName LIKE '%' + @SearchDoctorName + '%'
+			)
+		AND (
+        @SpecializationIds IS NULL
+        OR EXISTS (
+            SELECT 1 
+            FROM DAP_DoctorSpecializations DS
+            WHERE DS.DoctorId = D.DoctorId
+              AND DS.IsActive = 1
+              AND DS.SpecializationId IN (SELECT TRY_CAST(value AS INT) FROM STRING_SPLIT(@SpecializationIds, ','))
+        )
+    );
+		
+
+    ----------------------------------------------------------
+    -- Return Doctor Basic Info
+    ----------------------------------------------------------
+    SELECT 
+        DoctorId,
+        UserId,
+        Email,
+        RoleShortCode,
+        FirstName,
+        LastName,
+        DOB,
+        ContactNo,
+        YearOfExperience,
+        ConsultancyFee,
+        IsActive,
+        GenderId,
+        Gender,
+        BloodGroupId,
+        BloodGroupName,
+        AddressLine1,
+        TalukaId,
+        Pincode,
+        CreatedBy,
+        CreatedOn,
+        ModifiedBy,
+        ModifiedOn
+    FROM 
+        #Doctors
+    WHERE RowNum BETWEEN ((@PageNumber - 1) * @PageSize + 1) AND (@PageNumber * @PageSize);
+
+    ----------------------------------------------------------
+    -- Doctor Specializations
+    ----------------------------------------------------------
+    SELECT 
+        DS.DoctorSpecializationId,
+        DS.DoctorId,
+        DS.SpecializationId,
+        ISNULL(S.Specialization, '') AS Specialization,
+        ISNULL(DS.IsActive, 0) AS IsActive,
+        ISNULL(DS.CreatedBy, 0) AS CreatedBy,
+        DS.CreatedOn,
+        ISNULL(DS.ModifiedBy, 0) AS ModifiedBy,
+        DS.ModifiedOn
+    FROM 
+        DAP_DoctorSpecializations DS
+        INNER JOIN DAP_Specializations S ON DS.SpecializationId = S.SpecializationId
+        INNER JOIN #Doctors D ON DS.DoctorId = D.DoctorId
+    WHERE 
+        DS.IsActive = 1
+    
+
+    ----------------------------------------------------------
+    --  Doctor Qualifications
+    ----------------------------------------------------------
+    SELECT 
+        DQ.DoctorQualificationId,
+        DQ.DoctorId,
+        DQ.QualificationId,
+        ISNULL(Q.Degree, '') AS Degree,
+        ISNULL(DQ.IsActive, 0) AS IsActive,
+        ISNULL(DQ.CreatedBy, 0) AS CreatedBy,
+        DQ.CreatedOn,
+        ISNULL(DQ.ModifiedBy, 0) AS ModifiedBy,
+        DQ.ModifiedOn
+    FROM 
+        DAP_DoctorQualifications DQ
+        INNER JOIN DAP_Qualifications Q ON DQ.QualificationId = Q.QualificationId
+        INNER JOIN #Doctors D ON DQ.DoctorId = D.DoctorId
+    WHERE 
+        DQ.IsActive = 1
+   
+
+    ----------------------------------------------------------
+    -- Doctor Slots
+    ----------------------------------------------------------
+    SELECT 
+        S.SlotId,
+        S.DoctorId,
+        ISNULL(S.[DayOfWeek], '') AS [DayOfWeek],
+        ISNULL(S.StartTime, '00:00') AS StartTime,
+        ISNULL(S.EndTime, '00:00') AS EndTime,
+        ISNULL(S.IsActive, 0) AS IsActive,
+        ISNULL(S.CreatedBy, 0) AS CreatedBy,
+        S.CreatedOn,
+        ISNULL(S.ModifiedBy, 0) AS ModifiedBy,
+        S.ModifiedOn
+    FROM 
+        DAP_DoctorAvailableSlots S
+        INNER JOIN #Doctors D ON S.DoctorId = D.DoctorId
+    WHERE 
+        S.IsActive = 1
+    
+
+	SELECT COUNT(*) AS TotalRecords FROM #Doctors;
+
+    DROP TABLE #Doctors;
+END;
+GO
+
+CREATE OR ALTER PROCEDURE dap_doctorGetById 
+(
+    @DoctorId INT
+)
+AS
+BEGIN
+    SET NOCOUNT ON;
+
+    ----------------------------------------------------------
+    --  Get Doctor Basic Info into Temp Table
+    ----------------------------------------------------------
+    SELECT 
+        D.DoctorId,
+        D.UserId,
+        ISNULL(U.Email, '') AS Email,
+        ISNULL(R.ShortCode, '') AS RoleShortCode,
+        ISNULL(D.FirstName, '') AS FirstName,
+        ISNULL(D.LastName, '') AS LastName,
+        D.DOB,
+        ISNULL(D.ContactNo, '') AS ContactNo,
+        ISNULL(D.YearOfExperience, 0) AS YearOfExperience,
+        ISNULL(D.ConsultancyFee, 0) AS ConsultancyFee,
+        ISNULL(D.IsActive, 0) AS IsActive,
+        ISNULL(G.GenderId, 0) AS GenderId,
+        ISNULL(G.Gender, '') AS Gender,
+        ISNULL(BG.BloodGroupId, 0) AS BloodGroupId,
+        ISNULL(BG.BloodGroupName, '') AS BloodGroupName,
+        ISNULL(A.AddressLine1, '') AS AddressLine1,
+        ISNULL(A.TalukaId, 0) AS TalukaId,
+        ISNULL(T.TalukaName, '') AS TalukaName,
+        ISNULL(T.DistrictId, 0) AS DistrictId,
+        ISNULL(DT.DistrictName, '') AS DistrictName,
+        ISNULL(DT.StateId, 0) AS StateId,
+        ISNULL(S.StateName, '') AS StateName,
+        ISNULL(S.CountryId, 0) AS CountryId,
+        ISNULL(C.CountryName, '') AS CountryName,
+        ISNULL(A.Pincode, '') AS Pincode,
+        ISNULL(D.CreatedBy, 0) AS CreatedBy,
+        D.CreatedOn,
+        ISNULL(D.ModifiedBy, 0) AS ModifiedBy,
+        D.ModifiedOn
+    INTO #Doctor
+    FROM 
+        DAP_Doctors D
+        INNER JOIN DAP_Users U ON D.UserId = U.UserId
+        INNER JOIN DAP_Roles R ON R.RoleId = U.RoleId
+        INNER JOIN DAP_Genders G ON D.GenderId = G.GenderId
+        INNER JOIN DAP_BloodGroups BG ON D.BloodGroupId = BG.BloodGroupId
+        INNER JOIN DAP_Addresses A ON D.AddressId = A.AddressId
+        INNER JOIN DAP_Talukas T ON A.TalukaId = T.TalukaId
+        INNER JOIN DAP_Districts DT ON T.DistrictId = DT.DistrictId
+        INNER JOIN DAP_States S ON DT.StateId = S.StateId
+        INNER JOIN DAP_Countries C ON S.CountryId = C.CountryId
+    WHERE 
+        D.DoctorId = @DoctorId 
+        AND D.IsActive = 1;
+
+    ----------------------------------------------------------
+    --  Doctor Basic Info
+    ----------------------------------------------------------
+    SELECT 
+        DoctorId,
+        UserId,
+        Email,
+        RoleShortCode,
+        FirstName,
+        LastName,
+        DOB,
+        ContactNo,
+        YearOfExperience,
+        ConsultancyFee,
+        IsActive,
+        GenderId,
+        Gender,
+        BloodGroupId,
+        BloodGroupName,
+        AddressLine1,
+        TalukaId,
+        TalukaName,
+        DistrictId,
+        DistrictName,
+        StateId,
+        StateName,
+        CountryId,
+        CountryName,
+        Pincode,
+        CreatedBy,
+        CreatedOn,
+        ModifiedBy,
+        ModifiedOn
+    FROM #Doctor;
+
+    ----------------------------------------------------------
+    -- Doctor Specializations
+    ----------------------------------------------------------
+    SELECT 
+        DS.DoctorSpecializationId,
+        DS.DoctorId,
+        DS.SpecializationId,
+        ISNULL(S.Specialization, '') AS Specialization,
+        ISNULL(DS.IsActive, 0) AS IsActive,
+        ISNULL(DS.CreatedBy, 0) AS CreatedBy,
+        DS.CreatedOn,
+        ISNULL(DS.ModifiedBy, 0) AS ModifiedBy,
+        DS.ModifiedOn
+    FROM 
+        DAP_DoctorSpecializations DS
+        INNER JOIN DAP_Specializations S ON DS.SpecializationId = S.SpecializationId
+    WHERE 
+        DS.DoctorId = @DoctorId 
+        AND DS.IsActive = 1;
+
+    ----------------------------------------------------------
+    --  Doctor Qualifications
+    ----------------------------------------------------------
+    SELECT 
+        DQ.DoctorQualificationId,
+        DQ.DoctorId,
+        DQ.QualificationId,
+        ISNULL(Q.Degree, '') AS Degree,
+        ISNULL(DQ.IsActive, 0) AS IsActive,
+        ISNULL(DQ.CreatedBy, 0) AS CreatedBy,
+        DQ.CreatedOn,
+        ISNULL(DQ.ModifiedBy, 0) AS ModifiedBy,
+        DQ.ModifiedOn
+    FROM 
+        DAP_DoctorQualifications DQ
+        INNER JOIN DAP_Qualifications Q ON DQ.QualificationId = Q.QualificationId
+    WHERE 
+        DQ.DoctorId = @DoctorId 
+        AND DQ.IsActive = 1;
+
+    ----------------------------------------------------------
+    -- Doctor Available Slots
+    ----------------------------------------------------------
+    SELECT 
+        S.SlotId,
+        S.DoctorId,
+        ISNULL(S.[DayOfWeek], '') AS [DayOfWeek],
+        ISNULL(S.StartTime, '00:00') AS StartTime,
+        ISNULL(S.EndTime, '00:00') AS EndTime,
+        ISNULL(S.IsActive, 0) AS IsActive,
+        ISNULL(S.CreatedBy, 0) AS CreatedBy,
+        S.CreatedOn,
+        ISNULL(S.ModifiedBy, 0) AS ModifiedBy,
+        S.ModifiedOn
+    FROM 
+        DAP_DoctorAvailableSlots S
+    WHERE 
+        S.DoctorId = @DoctorId 
+        AND S.IsActive = 1;
+
+   
+    DROP TABLE #Doctor;
+END;
+GO
+
+
+
+CREATE OR ALTER PROCEDURE dap_doctorDeleteById
+(
+    @DoctorId INT,
+    @DeletedBy INT
+)
+AS
+BEGIN
+  
+
+    DECLARE @UserId INT, @AddressId INT;
+
+    BEGIN TRY
+        BEGIN TRANSACTION;
+
+       
+        SELECT 
+            @UserId = UserId,
+            @AddressId = AddressId
+        FROM DAP_Doctors
+        WHERE DoctorId = @DoctorId;
+
+       
+        UPDATE DAP_Doctors
+        SET IsActive = 0,
+            ModifiedBy = @DeletedBy,
+            ModifiedOn = SYSDATETIME()
+        WHERE DoctorId = @DoctorId;
+
+      
+        UPDATE DAP_Users
+        SET IsActive = 0,
+            ModifiedBy = @DeletedBy,
+            ModifiedOn = SYSDATETIME()
+        WHERE UserId = @UserId;
+
+      
+        UPDATE DAP_Addresses
+        SET IsActive = 0,
+            ModifiedBy = @DeletedBy,
+            ModifiedOn = SYSDATETIME()
+        WHERE AddressId = @AddressId;
+
+        ----------------------------------------------------------------------
+        -- 4️⃣ Soft Delete Doctor’s Available Slots
+        ----------------------------------------------------------------------
+        UPDATE DAP_DoctorAvailableSlots
+        SET IsActive = 0,
+            ModifiedBy = @DeletedBy,
+            ModifiedOn = SYSDATETIME()
+        WHERE DoctorId = @DoctorId;
+
+        UPDATE DAP_DoctorSpecializations
+        SET IsActive = 0,
+            ModifiedBy = @DeletedBy,
+            ModifiedOn = SYSDATETIME()
+        WHERE DoctorId = @DoctorId;
+
+       
+        UPDATE DAP_DoctorQualifications
+        SET IsActive = 0,
+            ModifiedBy = @DeletedBy,
+            ModifiedOn = SYSDATETIME()
+        WHERE DoctorId = @DoctorId;
+
+       
+        COMMIT TRANSACTION;
+    END TRY
+    BEGIN CATCH
+        ROLLBACK TRANSACTION;
+        THROW;
+    END CATCH;
+END;
+
+GO
+
+CREATE OR ALTER PROCEDURE dap_doctorsBySpecialization
+  @SpecializationId INT
+AS
+BEGIN
+  SELECT D.DoctorId, 
+		 D.FirstName + ' ' + D.LastName AS FullName
+
+  FROM DAP_Doctors D
+  INNER JOIN DAP_DoctorSpecializations DS
+    ON D.DoctorId = DS.DoctorId
+  WHERE D.IsActive = 1 AND DS.SpecializationId = @SpecializationId AND DS.IsActive = 1;
+END
+GO;
+
+CREATE OR ALTER PROCEDURE dap_appointmentAcceptedSlotsGetByDate
+(
+    @DoctorId INT,
+    @RequestedDate DATE
+)
+AS
+BEGIN
+    SET NOCOUNT ON;
+
+    SELECT 
+        PS.PreferredSlotId,
+		A.DoctorId,
+		A.PatientId,
+        PS.AppointmentId,
+        PS.PreferredDate,
+        PS.PreferredStartTime,
+        PS.PreferredEndTime,
+        PS.IsApproved,
+        A.AppointmentStatusId,
+        AST.Status AS AppointmentStatus,
+        AST.ShortCode
+    FROM DAP_PreferredSlots PS
+    INNER JOIN DAP_Appointments A 
+        ON PS.AppointmentId = A.AppointmentId
+    LEFT JOIN DAP_AppointmentStatus AST 
+        ON A.AppointmentStatusId = AST.AppointmentStatusId
+    WHERE 
+        A.DoctorId = @DoctorId
+        AND PS.PreferredDate = @RequestedDate
+        AND PS.IsActive = 1
+        AND A.IsActive = 1
+        AND PS.IsApproved = 1
+        AND AST.ShortCode = 'ACPT'     
+    ORDER BY 
+        PS.PreferredStartTime;
+END;
+GO 
+
+CREATE OR ALTER PROCEDURE dap_doctorAvailableSlotsGetByDate
+(
+    @DoctorId INT,
+    @RequestedDate DATE
+)
+AS
+BEGIN
+    SET NOCOUNT ON;
+
+    DECLARE @DayOfWeek NVARCHAR(20);
+    SET @DayOfWeek = DATENAME(WEEKDAY, @RequestedDate);
+
+    SELECT 
+        DAS.SlotId,
+        DAS.DoctorId,
+        DAS.DayOfWeek,
+        DAS.StartTime,
+        DAS.EndTime,
+        DAS.IsActive
+    FROM DAP_DoctorAvailableSlots DAS
+    WHERE 
+        DAS.DoctorId = @DoctorId
+        AND DAS.DayOfWeek = @DayOfWeek
+        AND DAS.IsActive = 1
+    ORDER BY 
+        DAS.StartTime;
+END;
+GO
 

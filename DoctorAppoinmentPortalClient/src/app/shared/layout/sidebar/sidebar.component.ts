@@ -1,4 +1,6 @@
 import { Component, Input } from '@angular/core';
+import { AuthService } from '../../../core/services/auth.service';
+import { UserRoles } from '../../../core/enums/user-roles.enum';
 
 @Component({
   selector: 'app-sidebar',
@@ -7,7 +9,13 @@ import { Component, Input } from '@angular/core';
 })
 export class SidebarComponent {
   isSidebarOpen:boolean;
+
   @Input() isMinimized: boolean = false; 
+
+  userRoles=UserRoles
+
+  constructor(protected authService:AuthService){}
+
   ngOninit():void{
     this.isSidebarOpen=true;
   }

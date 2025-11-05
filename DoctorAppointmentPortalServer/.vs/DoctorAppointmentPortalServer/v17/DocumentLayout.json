@@ -3,32 +3,76 @@
   "WorkspaceRootPath": "D:\\DoctorAppoinmentPortal\\DoctorAppointmentPortalServer\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{4C95264C-FC38-4673-9571-2714732090B1}|DAPClassLibrary\\DAPServerLibrary.csproj|d:\\doctorappoinmentportal\\doctorappointmentportalserver\\dapclasslibrary\\helpers\\jwtauthorizationattribute.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{4C95264C-FC38-4673-9571-2714732090B1}|DAPClassLibrary\\DAPServerLibrary.csproj|solutionrelative:dapclasslibrary\\helpers\\jwtauthorizationattribute.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{0250BBC7-B282-434F-9996-C5D924F136FC}|DoctorAppointmentPortalServer\\DoctorAppointmentPortalServer.csproj|D:\\DoctorAppoinmentPortal\\DoctorAppointmentPortalServer\\doctorappointmentportalserver\\controllers\\admincontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{0250BBC7-B282-434F-9996-C5D924F136FC}|DoctorAppointmentPortalServer\\DoctorAppointmentPortalServer.csproj|solutionrelative:doctorappointmentportalserver\\controllers\\admincontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{4C95264C-FC38-4673-9571-2714732090B1}|DAPClassLibrary\\DAPServerLibrary.csproj|d:\\doctorappoinmentportal\\doctorappointmentportalserver\\dapclasslibrary\\helpers\\tokenservices.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{4C95264C-FC38-4673-9571-2714732090B1}|DAPClassLibrary\\DAPServerLibrary.csproj|solutionrelative:dapclasslibrary\\helpers\\tokenservices.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{4C95264C-FC38-4673-9571-2714732090B1}|DAPClassLibrary\\DAPServerLibrary.csproj|D:\\DoctorAppoinmentPortal\\DoctorAppointmentPortalServer\\dapclasslibrary\\helpers\\services\\fileservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4C95264C-FC38-4673-9571-2714732090B1}|DAPClassLibrary\\DAPServerLibrary.csproj|solutionrelative:dapclasslibrary\\helpers\\services\\fileservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{4C95264C-FC38-4673-9571-2714732090B1}|DAPClassLibrary\\DAPServerLibrary.csproj|D:\\DoctorAppoinmentPortal\\DoctorAppointmentPortalServer\\dapclasslibrary\\dal\\doctorsops.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{4C95264C-FC38-4673-9571-2714732090B1}|DAPClassLibrary\\DAPServerLibrary.csproj|solutionrelative:dapclasslibrary\\dal\\doctorsops.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{0250BBC7-B282-434F-9996-C5D924F136FC}|DoctorAppointmentPortalServer\\DoctorAppointmentPortalServer.csproj|d:\\doctorappoinmentportal\\doctorappointmentportalserver\\doctorappointmentportalserver\\web.config||{FA3CD31E-987B-443A-9B81-186104E8DAC1}",
+      "AbsoluteMoniker": "D:0:0:{0250BBC7-B282-434F-9996-C5D924F136FC}|DoctorAppointmentPortalServer\\DoctorAppointmentPortalServer.csproj|D:\\DoctorAppoinmentPortal\\DoctorAppointmentPortalServer\\doctorappointmentportalserver\\controllers\\admincontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{0250BBC7-B282-434F-9996-C5D924F136FC}|DoctorAppointmentPortalServer\\DoctorAppointmentPortalServer.csproj|solutionrelative:doctorappointmentportalserver\\controllers\\admincontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4C95264C-FC38-4673-9571-2714732090B1}|DAPClassLibrary\\DAPServerLibrary.csproj|D:\\DoctorAppoinmentPortal\\DoctorAppointmentPortalServer\\dapclasslibrary\\dal\\usersops.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4C95264C-FC38-4673-9571-2714732090B1}|DAPClassLibrary\\DAPServerLibrary.csproj|solutionrelative:dapclasslibrary\\dal\\usersops.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4C95264C-FC38-4673-9571-2714732090B1}|DAPClassLibrary\\DAPServerLibrary.csproj|D:\\DoctorAppoinmentPortal\\DoctorAppointmentPortalServer\\dapclasslibrary\\models\\doctors.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4C95264C-FC38-4673-9571-2714732090B1}|DAPClassLibrary\\DAPServerLibrary.csproj|solutionrelative:dapclasslibrary\\models\\doctors.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0250BBC7-B282-434F-9996-C5D924F136FC}|DoctorAppointmentPortalServer\\DoctorAppointmentPortalServer.csproj|d:\\doctorappoinmentportal\\doctorappointmentportalserver\\doctorappointmentportalserver\\controllers\\accountcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{0250BBC7-B282-434F-9996-C5D924F136FC}|DoctorAppointmentPortalServer\\DoctorAppointmentPortalServer.csproj|solutionrelative:doctorappointmentportalserver\\controllers\\accountcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0250BBC7-B282-434F-9996-C5D924F136FC}|DoctorAppointmentPortalServer\\DoctorAppointmentPortalServer.csproj|D:\\DoctorAppoinmentPortal\\DoctorAppointmentPortalServer\\doctorappointmentportalserver\\controllers\\patientcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{0250BBC7-B282-434F-9996-C5D924F136FC}|DoctorAppointmentPortalServer\\DoctorAppointmentPortalServer.csproj|solutionrelative:doctorappointmentportalserver\\controllers\\patientcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4C95264C-FC38-4673-9571-2714732090B1}|DAPClassLibrary\\DAPServerLibrary.csproj|D:\\DoctorAppoinmentPortal\\DoctorAppointmentPortalServer\\dapclasslibrary\\helpers\\services\\appointmentemailnotifier.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4C95264C-FC38-4673-9571-2714732090B1}|DAPClassLibrary\\DAPServerLibrary.csproj|solutionrelative:dapclasslibrary\\helpers\\services\\appointmentemailnotifier.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4C95264C-FC38-4673-9571-2714732090B1}|DAPClassLibrary\\DAPServerLibrary.csproj|D:\\DoctorAppoinmentPortal\\DoctorAppointmentPortalServer\\dapclasslibrary\\helpers\\emailtemplates\\doctor\\alternateslotaccept.html||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{4C95264C-FC38-4673-9571-2714732090B1}|DAPClassLibrary\\DAPServerLibrary.csproj|solutionrelative:dapclasslibrary\\helpers\\emailtemplates\\doctor\\alternateslotaccept.html||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0250BBC7-B282-434F-9996-C5D924F136FC}|DoctorAppointmentPortalServer\\DoctorAppointmentPortalServer.csproj|D:\\DoctorAppoinmentPortal\\DoctorAppointmentPortalServer\\doctorappointmentportalserver\\controllers\\doctorcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{0250BBC7-B282-434F-9996-C5D924F136FC}|DoctorAppointmentPortalServer\\DoctorAppointmentPortalServer.csproj|solutionrelative:doctorappointmentportalserver\\controllers\\doctorcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4C95264C-FC38-4673-9571-2714732090B1}|DAPClassLibrary\\DAPServerLibrary.csproj|D:\\DoctorAppoinmentPortal\\DoctorAppointmentPortalServer\\dapclasslibrary\\enums\\emailscenario.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4C95264C-FC38-4673-9571-2714732090B1}|DAPClassLibrary\\DAPServerLibrary.csproj|solutionrelative:dapclasslibrary\\enums\\emailscenario.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4C95264C-FC38-4673-9571-2714732090B1}|DAPClassLibrary\\DAPServerLibrary.csproj|D:\\DoctorAppoinmentPortal\\DoctorAppointmentPortalServer\\dapclasslibrary\\dal\\appointmentsops.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4C95264C-FC38-4673-9571-2714732090B1}|DAPClassLibrary\\DAPServerLibrary.csproj|solutionrelative:dapclasslibrary\\dal\\appointmentsops.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4C95264C-FC38-4673-9571-2714732090B1}|DAPClassLibrary\\DAPServerLibrary.csproj|D:\\DoctorAppoinmentPortal\\DoctorAppointmentPortalServer\\dapclasslibrary\\enums\\appointmentstatuses.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4C95264C-FC38-4673-9571-2714732090B1}|DAPClassLibrary\\DAPServerLibrary.csproj|solutionrelative:dapclasslibrary\\enums\\appointmentstatuses.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4C95264C-FC38-4673-9571-2714732090B1}|DAPClassLibrary\\DAPServerLibrary.csproj|D:\\DoctorAppoinmentPortal\\DoctorAppointmentPortalServer\\dapclasslibrary\\models\\appointmentstatusupdate.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4C95264C-FC38-4673-9571-2714732090B1}|DAPClassLibrary\\DAPServerLibrary.csproj|solutionrelative:dapclasslibrary\\models\\appointmentstatusupdate.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4C95264C-FC38-4673-9571-2714732090B1}|DAPClassLibrary\\DAPServerLibrary.csproj|D:\\DoctorAppoinmentPortal\\DoctorAppointmentPortalServer\\dapclasslibrary\\dal\\appointmentalternateslotactiontokenops.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4C95264C-FC38-4673-9571-2714732090B1}|DAPClassLibrary\\DAPServerLibrary.csproj|solutionrelative:dapclasslibrary\\dal\\appointmentalternateslotactiontokenops.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4C95264C-FC38-4673-9571-2714732090B1}|DAPClassLibrary\\DAPServerLibrary.csproj|D:\\DoctorAppoinmentPortal\\DoctorAppointmentPortalServer\\dapclasslibrary\\models\\doctortablelist.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4C95264C-FC38-4673-9571-2714732090B1}|DAPClassLibrary\\DAPServerLibrary.csproj|solutionrelative:dapclasslibrary\\models\\doctortablelist.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4C95264C-FC38-4673-9571-2714732090B1}|DAPClassLibrary\\DAPServerLibrary.csproj|D:\\DoctorAppoinmentPortal\\DoctorAppointmentPortalServer\\dapclasslibrary\\models\\appointmentsinfolist.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4C95264C-FC38-4673-9571-2714732090B1}|DAPClassLibrary\\DAPServerLibrary.csproj|solutionrelative:dapclasslibrary\\models\\appointmentsinfolist.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0250BBC7-B282-434F-9996-C5D924F136FC}|DoctorAppointmentPortalServer\\DoctorAppointmentPortalServer.csproj|D:\\DoctorAppoinmentPortal\\DoctorAppointmentPortalServer\\doctorappointmentportalserver\\web.config||{FA3CD31E-987B-443A-9B81-186104E8DAC1}",
       "RelativeMoniker": "D:0:0:{0250BBC7-B282-434F-9996-C5D924F136FC}|DoctorAppointmentPortalServer\\DoctorAppointmentPortalServer.csproj|solutionrelative:doctorappointmentportalserver\\web.config||{FA3CD31E-987B-443A-9B81-186104E8DAC1}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{4C95264C-FC38-4673-9571-2714732090B1}|DAPClassLibrary\\DAPServerLibrary.csproj|D:\\DoctorAppoinmentPortal\\DoctorAppointmentPortalServer\\dapclasslibrary\\dal\\talukasops.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{4C95264C-FC38-4673-9571-2714732090B1}|DAPClassLibrary\\DAPServerLibrary.csproj|solutionrelative:dapclasslibrary\\dal\\talukasops.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{4C95264C-FC38-4673-9571-2714732090B1}|DAPClassLibrary\\DAPServerLibrary.csproj|D:\\DoctorAppoinmentPortal\\DoctorAppointmentPortalServer\\dapclasslibrary\\dal\\districtsops.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{4C95264C-FC38-4673-9571-2714732090B1}|DAPClassLibrary\\DAPServerLibrary.csproj|solutionrelative:dapclasslibrary\\dal\\districtsops.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -38,7 +82,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 96,
-          "SelectedChildIndex": 6,
+          "SelectedChildIndex": 18,
           "Children": [
             {
               "$type": "Bookmark",
@@ -66,92 +110,228 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "JwtAuthorizationAttribute.cs",
-              "DocumentMoniker": "D:\\DoctorAppoinmentPortal\\DoctorAppointmentPortalServer\\DAPClassLibrary\\Helpers\\JwtAuthorizationAttribute.cs",
-              "RelativeDocumentMoniker": "DAPClassLibrary\\Helpers\\JwtAuthorizationAttribute.cs",
-              "ToolTip": "D:\\DoctorAppoinmentPortal\\DoctorAppointmentPortalServer\\DAPClassLibrary\\Helpers\\JwtAuthorizationAttribute.cs",
-              "RelativeToolTip": "DAPClassLibrary\\Helpers\\JwtAuthorizationAttribute.cs",
-              "ViewState": "AgIAAAcAAAAAAAAAAAAkwBMAAAAMAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-10-19T17:01:40.934Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "TokenServices.cs",
-              "DocumentMoniker": "D:\\DoctorAppoinmentPortal\\DoctorAppointmentPortalServer\\DAPClassLibrary\\Helpers\\TokenServices.cs",
-              "RelativeDocumentMoniker": "DAPClassLibrary\\Helpers\\TokenServices.cs",
-              "ToolTip": "D:\\DoctorAppoinmentPortal\\DoctorAppointmentPortalServer\\DAPClassLibrary\\Helpers\\TokenServices.cs",
-              "RelativeToolTip": "DAPClassLibrary\\Helpers\\TokenServices.cs",
-              "ViewState": "AgIAADUAAAAAAAAAAAAmwFAAAAAIAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-10-19T16:51:06.823Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "Web.config",
-              "DocumentMoniker": "D:\\DoctorAppoinmentPortal\\DoctorAppointmentPortalServer\\DoctorAppointmentPortalServer\\Web.config",
-              "RelativeDocumentMoniker": "DoctorAppointmentPortalServer\\Web.config",
-              "ToolTip": "D:\\DoctorAppoinmentPortal\\DoctorAppointmentPortalServer\\DoctorAppointmentPortalServer\\Web.config",
-              "RelativeToolTip": "DoctorAppointmentPortalServer\\Web.config",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA8AAABfAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000601|",
-              "WhenOpened": "2025-10-18T15:21:50.919Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 1,
               "Title": "DoctorsOps.cs",
               "DocumentMoniker": "D:\\DoctorAppoinmentPortal\\DoctorAppointmentPortalServer\\DAPClassLibrary\\DAL\\DoctorsOps.cs",
               "RelativeDocumentMoniker": "DAPClassLibrary\\DAL\\DoctorsOps.cs",
               "ToolTip": "D:\\DoctorAppoinmentPortal\\DoctorAppointmentPortalServer\\DAPClassLibrary\\DAL\\DoctorsOps.cs",
               "RelativeToolTip": "DAPClassLibrary\\DAL\\DoctorsOps.cs",
-              "ViewState": "AgIAACgAAAAAAAAAAAAmwMoAAAAIAAAAAAAAAA==",
+              "ViewState": "AgIAACUAAAAAAAAAAAAuwJ8AAAAJAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-10-17T11:59:49.022Z",
+              "WhenOpened": "2025-11-04T17:48:30.356Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "Doctors.cs",
+              "DocumentMoniker": "D:\\DoctorAppoinmentPortal\\DoctorAppointmentPortalServer\\DAPClassLibrary\\Models\\Doctors.cs",
+              "RelativeDocumentMoniker": "DAPClassLibrary\\Models\\Doctors.cs",
+              "ToolTip": "D:\\DoctorAppoinmentPortal\\DoctorAppointmentPortalServer\\DAPClassLibrary\\Models\\Doctors.cs",
+              "RelativeToolTip": "DAPClassLibrary\\Models\\Doctors.cs",
+              "ViewState": "AgIAAAYAAAAAAAAAAAAuwBIAAAAHAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-04T17:39:46.407Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 5,
-              "Title": "TalukasOps.cs",
-              "DocumentMoniker": "D:\\DoctorAppoinmentPortal\\DoctorAppointmentPortalServer\\DAPClassLibrary\\DAL\\TalukasOps.cs",
-              "RelativeDocumentMoniker": "DAPClassLibrary\\DAL\\TalukasOps.cs",
-              "ToolTip": "D:\\DoctorAppoinmentPortal\\DoctorAppointmentPortalServer\\DAPClassLibrary\\DAL\\TalukasOps.cs",
-              "RelativeToolTip": "DAPClassLibrary\\DAL\\TalukasOps.cs",
-              "ViewState": "AgIAACMAAAAAAAAAAAA7wCoAAAAPAAAAAAAAAA==",
+              "Title": "AccountController.cs",
+              "DocumentMoniker": "D:\\DoctorAppoinmentPortal\\DoctorAppointmentPortalServer\\DoctorAppointmentPortalServer\\Controllers\\AccountController.cs",
+              "RelativeDocumentMoniker": "DoctorAppointmentPortalServer\\Controllers\\AccountController.cs",
+              "ToolTip": "D:\\DoctorAppoinmentPortal\\DoctorAppointmentPortalServer\\DoctorAppointmentPortalServer\\Controllers\\AccountController.cs",
+              "RelativeToolTip": "DoctorAppointmentPortalServer\\Controllers\\AccountController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABMAAAAIAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-10-15T09:48:41.411Z"
+              "WhenOpened": "2025-11-04T13:31:53.128Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "DistrictsOps.cs",
-              "DocumentMoniker": "D:\\DoctorAppoinmentPortal\\DoctorAppointmentPortalServer\\DAPClassLibrary\\DAL\\DistrictsOps.cs",
-              "RelativeDocumentMoniker": "DAPClassLibrary\\DAL\\DistrictsOps.cs",
-              "ToolTip": "D:\\DoctorAppoinmentPortal\\DoctorAppointmentPortalServer\\DAPClassLibrary\\DAL\\DistrictsOps.cs",
-              "RelativeToolTip": "DAPClassLibrary\\DAL\\DistrictsOps.cs",
-              "ViewState": "AgIAAB4AAAAAAAAAAAAhwDIAAAARAAAAAAAAAA==",
+              "DocumentIndex": 3,
+              "Title": "UsersOps.cs",
+              "DocumentMoniker": "D:\\DoctorAppoinmentPortal\\DoctorAppointmentPortalServer\\DAPClassLibrary\\DAL\\UsersOps.cs",
+              "RelativeDocumentMoniker": "DAPClassLibrary\\DAL\\UsersOps.cs",
+              "ToolTip": "D:\\DoctorAppoinmentPortal\\DoctorAppointmentPortalServer\\DAPClassLibrary\\DAL\\UsersOps.cs",
+              "RelativeToolTip": "DAPClassLibrary\\DAL\\UsersOps.cs",
+              "ViewState": "AgIAACoAAAAAAAAAAAA5wF4AAABbAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-10-15T09:43:23.928Z"
+              "WhenOpened": "2025-11-04T10:55:05.012Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 8,
+              "Title": "AlternateSlotAccept.html",
+              "DocumentMoniker": "D:\\DoctorAppoinmentPortal\\DoctorAppointmentPortalServer\\DAPClassLibrary\\Helpers\\EmailTemplates\\Doctor\\AlternateSlotAccept.html",
+              "RelativeDocumentMoniker": "DAPClassLibrary\\Helpers\\EmailTemplates\\Doctor\\AlternateSlotAccept.html",
+              "ToolTip": "D:\\DoctorAppoinmentPortal\\DoctorAppointmentPortalServer\\DAPClassLibrary\\Helpers\\EmailTemplates\\Doctor\\AlternateSlotAccept.html",
+              "RelativeToolTip": "DAPClassLibrary\\Helpers\\EmailTemplates\\Doctor\\AlternateSlotAccept.html",
+              "ViewState": "AgIAAAYAAAAAAAAAAAAAAOQAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001512|",
+              "WhenOpened": "2025-11-04T10:30:47.997Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "EmailScenario.cs",
+              "DocumentMoniker": "D:\\DoctorAppoinmentPortal\\DoctorAppointmentPortalServer\\DAPClassLibrary\\Enums\\EmailScenario.cs",
+              "RelativeDocumentMoniker": "DAPClassLibrary\\Enums\\EmailScenario.cs",
+              "ToolTip": "D:\\DoctorAppoinmentPortal\\DoctorAppointmentPortalServer\\DAPClassLibrary\\Enums\\EmailScenario.cs",
+              "RelativeToolTip": "DAPClassLibrary\\Enums\\EmailScenario.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-04T08:54:00.094Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "AppointmentStatuses.cs",
+              "DocumentMoniker": "D:\\DoctorAppoinmentPortal\\DoctorAppointmentPortalServer\\DAPClassLibrary\\Enums\\AppointmentStatuses.cs",
+              "RelativeDocumentMoniker": "DAPClassLibrary\\Enums\\AppointmentStatuses.cs",
+              "ToolTip": "D:\\DoctorAppoinmentPortal\\DoctorAppointmentPortalServer\\DAPClassLibrary\\Enums\\AppointmentStatuses.cs",
+              "RelativeToolTip": "DAPClassLibrary\\Enums\\AppointmentStatuses.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-04T08:43:34.779Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 13,
+              "Title": "AppointmentStatusUpdate.cs",
+              "DocumentMoniker": "D:\\DoctorAppoinmentPortal\\DoctorAppointmentPortalServer\\DAPClassLibrary\\Models\\AppointmentStatusUpdate.cs",
+              "RelativeDocumentMoniker": "DAPClassLibrary\\Models\\AppointmentStatusUpdate.cs",
+              "ToolTip": "D:\\DoctorAppoinmentPortal\\DoctorAppointmentPortalServer\\DAPClassLibrary\\Models\\AppointmentStatusUpdate.cs",
+              "RelativeToolTip": "DAPClassLibrary\\Models\\AppointmentStatusUpdate.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-04T08:42:06.129Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "AppointmentsOps.cs",
+              "DocumentMoniker": "D:\\DoctorAppoinmentPortal\\DoctorAppointmentPortalServer\\DAPClassLibrary\\DAL\\AppointmentsOps.cs",
+              "RelativeDocumentMoniker": "DAPClassLibrary\\DAL\\AppointmentsOps.cs",
+              "ToolTip": "D:\\DoctorAppoinmentPortal\\DoctorAppointmentPortalServer\\DAPClassLibrary\\DAL\\AppointmentsOps.cs",
+              "RelativeToolTip": "DAPClassLibrary\\DAL\\AppointmentsOps.cs",
+              "ViewState": "AgIAAN4BAAAAAAAAAAAQwNUBAABaAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-04T08:25:12.651Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 14,
+              "Title": "AppointmentAlternateSlotActionTokenOps.cs",
+              "DocumentMoniker": "D:\\DoctorAppoinmentPortal\\DoctorAppointmentPortalServer\\DAPClassLibrary\\DAL\\AppointmentAlternateSlotActionTokenOps.cs",
+              "RelativeDocumentMoniker": "DAPClassLibrary\\DAL\\AppointmentAlternateSlotActionTokenOps.cs",
+              "ToolTip": "D:\\DoctorAppoinmentPortal\\DoctorAppointmentPortalServer\\DAPClassLibrary\\DAL\\AppointmentAlternateSlotActionTokenOps.cs",
+              "RelativeToolTip": "DAPClassLibrary\\DAL\\AppointmentAlternateSlotActionTokenOps.cs",
+              "ViewState": "AgIAABcAAAAAAAAAAAAowEgAAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-04T07:25:44.925Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 15,
+              "Title": "DoctorTableList.cs",
+              "DocumentMoniker": "D:\\DoctorAppoinmentPortal\\DoctorAppointmentPortalServer\\DAPClassLibrary\\Models\\DoctorTableList.cs",
+              "RelativeDocumentMoniker": "DAPClassLibrary\\Models\\DoctorTableList.cs",
+              "ToolTip": "D:\\DoctorAppoinmentPortal\\DoctorAppointmentPortalServer\\DAPClassLibrary\\Models\\DoctorTableList.cs",
+              "RelativeToolTip": "DAPClassLibrary\\Models\\DoctorTableList.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-04T04:23:32.307Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
               "Title": "AdminController.cs",
               "DocumentMoniker": "D:\\DoctorAppoinmentPortal\\DoctorAppointmentPortalServer\\DoctorAppointmentPortalServer\\Controllers\\AdminController.cs",
               "RelativeDocumentMoniker": "DoctorAppointmentPortalServer\\Controllers\\AdminController.cs",
               "ToolTip": "D:\\DoctorAppoinmentPortal\\DoctorAppointmentPortalServer\\DoctorAppointmentPortalServer\\Controllers\\AdminController.cs",
               "RelativeToolTip": "DoctorAppointmentPortalServer\\Controllers\\AdminController.cs",
-              "ViewState": "AgIAAA4AAAAAAAAAAAAowBwAAAAQAAAAAAAAAA==",
+              "ViewState": "AgIAAI0AAAAAAAAAAAAIwKMAAAAQAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-10-15T09:12:31.437Z",
+              "WhenOpened": "2025-11-03T19:27:27.359Z",
               "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "FileService.cs",
+              "DocumentMoniker": "D:\\DoctorAppoinmentPortal\\DoctorAppointmentPortalServer\\DAPClassLibrary\\Helpers\\Services\\FileService.cs",
+              "RelativeDocumentMoniker": "DAPClassLibrary\\Helpers\\Services\\FileService.cs",
+              "ToolTip": "D:\\DoctorAppoinmentPortal\\DoctorAppointmentPortalServer\\DAPClassLibrary\\Helpers\\Services\\FileService.cs",
+              "RelativeToolTip": "DAPClassLibrary\\Helpers\\Services\\FileService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAKAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-03T19:07:27.31Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "PatientController.cs",
+              "DocumentMoniker": "D:\\DoctorAppoinmentPortal\\DoctorAppointmentPortalServer\\DoctorAppointmentPortalServer\\Controllers\\PatientController.cs",
+              "RelativeDocumentMoniker": "DoctorAppointmentPortalServer\\Controllers\\PatientController.cs",
+              "ToolTip": "D:\\DoctorAppoinmentPortal\\DoctorAppointmentPortalServer\\DoctorAppointmentPortalServer\\Controllers\\PatientController.cs",
+              "RelativeToolTip": "DoctorAppointmentPortalServer\\Controllers\\PatientController.cs",
+              "ViewState": "AgIAABwBAAAAAAAAAAAcwCkBAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-03T16:59:23.393Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "DoctorController.cs",
+              "DocumentMoniker": "D:\\DoctorAppoinmentPortal\\DoctorAppointmentPortalServer\\DoctorAppointmentPortalServer\\Controllers\\DoctorController.cs",
+              "RelativeDocumentMoniker": "DoctorAppointmentPortalServer\\Controllers\\DoctorController.cs",
+              "ToolTip": "D:\\DoctorAppoinmentPortal\\DoctorAppointmentPortalServer\\DoctorAppointmentPortalServer\\Controllers\\DoctorController.cs",
+              "RelativeToolTip": "DoctorAppointmentPortalServer\\Controllers\\DoctorController.cs",
+              "ViewState": "AgIAAHoAAAAAAAAAAAAowHoAAAAgAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-03T13:53:32.052Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 16,
+              "Title": "AppointmentsInfoList.cs",
+              "DocumentMoniker": "D:\\DoctorAppoinmentPortal\\DoctorAppointmentPortalServer\\DAPClassLibrary\\Models\\AppointmentsInfoList.cs",
+              "RelativeDocumentMoniker": "DAPClassLibrary\\Models\\AppointmentsInfoList.cs",
+              "ToolTip": "D:\\DoctorAppoinmentPortal\\DoctorAppointmentPortalServer\\DAPClassLibrary\\Models\\AppointmentsInfoList.cs",
+              "RelativeToolTip": "DAPClassLibrary\\Models\\AppointmentsInfoList.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAABHAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-03T14:00:43.978Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 17,
+              "Title": "Web.config",
+              "DocumentMoniker": "D:\\DoctorAppoinmentPortal\\DoctorAppointmentPortalServer\\DoctorAppointmentPortalServer\\Web.config",
+              "RelativeDocumentMoniker": "DoctorAppointmentPortalServer\\Web.config",
+              "ToolTip": "D:\\DoctorAppoinmentPortal\\DoctorAppointmentPortalServer\\DoctorAppointmentPortalServer\\Web.config",
+              "RelativeToolTip": "DoctorAppointmentPortalServer\\Web.config",
+              "ViewState": "AgIAABIAAAAAAAAAAAAAAB8AAAA+AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000601|",
+              "WhenOpened": "2025-11-03T13:45:13.572Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "AppointmentEmailNotifier.cs",
+              "DocumentMoniker": "D:\\DoctorAppoinmentPortal\\DoctorAppointmentPortalServer\\DAPClassLibrary\\Helpers\\Services\\AppointmentEmailNotifier.cs",
+              "RelativeDocumentMoniker": "DAPClassLibrary\\Helpers\\Services\\AppointmentEmailNotifier.cs",
+              "ToolTip": "D:\\DoctorAppoinmentPortal\\DoctorAppointmentPortalServer\\DAPClassLibrary\\Helpers\\Services\\AppointmentEmailNotifier.cs",
+              "RelativeToolTip": "DAPClassLibrary\\Helpers\\Services\\AppointmentEmailNotifier.cs",
+              "ViewState": "AgIAABEAAAAAAAAAAAAAwMsAAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-03T13:40:22.542Z"
             }
           ]
         }

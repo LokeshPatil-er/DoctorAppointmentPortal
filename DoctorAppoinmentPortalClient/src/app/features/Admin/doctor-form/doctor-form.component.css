@@ -1,11 +1,11 @@
-/* 🌈 Soft background for section headers */
 
-/* Highlight invalid inputs */
+
 input.ng-invalid.ng-touched,
 select.ng-invalid.ng-touched,
 ng-select.ng-invalid.ng-touched .ng-select-container {
   border: 1px solid red !important;
 }
+
 
 .validation-message {
   color: red;
@@ -24,14 +24,14 @@ ng-select.ng-invalid.ng-touched .ng-select-container {
   margin-bottom: 10px;
 }
 
-/* 🎨 Card styling */
+
 .doctor-form-card {
   border: none;
   border-radius: 10px;
   overflow: hidden;
 }
 
-/* Header area */
+
 .form-header {
   background-color: #e9f0fa;
   color: #004085;
@@ -39,19 +39,19 @@ ng-select.ng-invalid.ng-touched .ng-select-container {
   padding: 15px;
 }
 
-/* Inputs */
+
 .form-control,
 .form-select {
   border-radius: 6px;
 }
 
-/* Buttons */
+
 button.btn {
   border-radius: 6px;
   font-weight: 500;
 }
 
-/* Spacing and typography */
+
 label.form-label {
   font-weight: 500;
   color: #333;
@@ -64,3 +64,5 @@ h4 {
 .row {
   margin-bottom: 5px;
 }
+
+

@@ -1,0 +1,277 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Appointment Request Submitted</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            padding: 20px;
+            margin: 0;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            background: #ffffff;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 30px 20px;
+            text-align: center;
+            color: white;
+        }
+
+            .header h1 {
+                margin: 0;
+                font-size: 28px;
+                font-weight: 600;
+                letter-spacing: 0.5px;
+            }
+
+        .header-icon {
+            font-size: 40px;
+            margin-bottom: 10px;
+        }
+
+        .content {
+            padding: 30px 20px;
+        }
+
+        .greeting {
+            font-size: 16px;
+            color: #333333;
+            margin-bottom: 20px;
+            line-height: 1.6;
+        }
+
+            .greeting strong {
+                color: #667eea;
+            }
+
+        .appointment-info {
+            background: #f8f9ff;
+            border-left: 4px solid #667eea;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 6px;
+        }
+
+            .appointment-info p {
+                margin: 8px 0;
+                color: #555555;
+                font-size: 14px;
+            }
+
+            .appointment-info strong {
+                color: #333333;
+            }
+
+        .slots-title {
+            font-size: 15px;
+            font-weight: 600;
+            color: #333333;
+            margin: 20px 0 10px 0;
+        }
+
+        .slots-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .slot-item {
+            background: #f0f4ff;
+            padding: 12px 15px;
+            margin: 8px 0;
+            border-radius: 6px;
+            border-left: 3px solid #667eea;
+            color: #555555;
+            font-size: 14px;
+            display: flex;
+            align-items: center;
+        }
+
+        .slot-icon {
+            color: #667eea;
+            margin-right: 10px;
+            font-weight: bold;
+        }
+
+        .status-message {
+            background: #e8f5e9;
+            border-left: 4px solid #4caf50;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 6px;
+            color: #2e7d32;
+            font-size: 14px;
+            line-height: 1.6;
+        }
+
+            .status-message strong {
+                color: #1b5e20;
+            }
+
+        .action-section {
+            background: #f8f9ff;
+            padding: 20px;
+            margin: 25px 0;
+            border-radius: 8px;
+            text-align: center;
+        }
+
+        .action-button {
+            display: inline-block;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 12px 30px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 14px;
+            margin: 10px 5px;
+            transition: transform 0.2s;
+        }
+
+            .action-button:hover {
+                transform: translateY(-2px);
+                box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
+            }
+
+        .secondary-button {
+            background: #ffffff;
+            color: #667eea;
+            border: 2px solid #667eea;
+        }
+
+            .secondary-button:hover {
+                background: #f0f4ff;
+            }
+
+        .reference-id {
+            background: #fff3e0;
+            border-left: 4px solid #ff9800;
+            padding: 12px 15px;
+            margin: 20px 0;
+            border-radius: 6px;
+            font-size: 13px;
+            color: #666666;
+        }
+
+            .reference-id strong {
+                color: #e65100;
+            }
+
+        .footer {
+            background: #f5f5f5;
+            padding: 20px;
+            text-align: center;
+            border-top: 1px solid #e0e0e0;
+        }
+
+        .footer-text {
+            font-size: 13px;
+            color: #666666;
+            margin: 5px 0;
+            line-height: 1.6;
+        }
+
+        .footer-links a {
+            color: #667eea;
+            text-decoration: none;
+            margin: 0 10px;
+            font-size: 13px;
+        }
+
+        .divider {
+            height: 1px;
+            background: #e0e0e0;
+            margin: 20px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+       
+        <div class="header">
+            <div class="header-icon">📋</div>
+            <h1>Appointment Request Submitted</h1>
+        </div>
+
+     
+        <div class="content">
+           
+            <div class="greeting">
+                Hello <strong>{{PatientName}}</strong>,
+                <br><br>
+                Thank you for booking an appointment! Your request has been successfully submitted and we're processing it.
+            </div>
+
+            
+            <div class="appointment-info">
+                <p>
+                    <strong>🏥 Doctor:</strong> Dr. {{DoctorName}}
+                </p>
+                <p>
+                    <strong>📞 Specialization:</strong> {{DoctorSpecialization}}
+                </p>
+            </div>
+
+           
+            <div class="slots-title">✓ Your Preferred Time Slots:</div>
+            <ul class="slots-list">
+                {{PreferredSlotsList}}
+            </ul>
+
+           
+            <div class="status-message">
+                <strong>What's next?</strong> The doctor will review your preferred slots and confirm the appointment within 24 hours. You'll receive a confirmation email once your appointment is scheduled.
+            </div>
+
+          
+            <div class="reference-id">
+                <strong>Reference ID:</strong> {{AppointmentRequestID}}
+            </div>
+
+          
+
+            <div class="divider"></div>
+
+          
+            <div class="greeting" style="font-size: 14px; color: #666666;">
+                <strong>📌 Important Reminders:</strong><br>
+                • Please arrive 10 minutes early on the day of your appointment<br>
+                • Keep your reference ID handy for future inquiries<br>
+                • In case of emergency, contact our support team immediately
+            </div>
+        </div>
+
+      
+        <div class="footer">
+            <div class="footer-text">
+                Questions? We're here to help!
+            </div>
+            <div class="footer-text">
+                📞 Call us: +18005551234<br>
+                📧 Email us: support@careconnect.in
+            </div>
+            <div class="divider"></div>
+            <div class="footer-links">
+                <a href="#">FAQ</a>
+                <a href="#">Privacy Policy</a>
+                <a href="#">Terms</a>
+            </div>
+            <div class="footer-text" style="margin-top: 15px; font-size: 12px;">
+                © {{CurrentYear}} Your Medical Portal. All rights reserved.
+            </div>
+        </div>
+    </div>
+</body>
+</html>

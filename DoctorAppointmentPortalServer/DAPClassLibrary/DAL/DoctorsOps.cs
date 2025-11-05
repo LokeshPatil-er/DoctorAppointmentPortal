@@ -6,6 +6,7 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using DAPClassLibrary.Helpers.Services;
 using Microsoft.Practices.EnterpriseLibrary.Data;
 
 namespace DAPClassLibrary
@@ -28,13 +29,15 @@ namespace DAPClassLibrary
         public int AddressId { get; set; }
         public string AddressLine1 { get; set; }
         public string Pincode { get; set; }
-        public int YearOfExperience { get; set; }
+        public DateTime ExperienceStartDate { get; set; }
         public int ConsultancyFee { get; set; }
         public bool IsActive { get; set; }
         public int CreatedBy { get; set; }
         public DateTime CreatedOn { get; set; }
         public int? ModifiedBy { get; set; }
         public DateTime? ModifiedOn { get; set; }
+
+        public int SpecializationId { get; set; }
 
 
         private Database db;
@@ -50,8 +53,114 @@ namespace DAPClassLibrary
             this.DoctorId = doctorId;
         }
 
+        public Doctors loadDoctor()
+        {
+            Doctors doctor = new Doctors();
 
-        public bool InsertOrUpdateDoctors(Doctors doctorModel)
+            try
+            {
+                if(this.DoctorId <= 0)
+                {
+                    return new Doctors();
+                }
+
+                Database db = DatabaseFactory.CreateDatabase();
+
+              
+                DbCommand dbCommand = db.GetStoredProcCommand("dap_doctorGetById");
+                db.AddInParameter(dbCommand, "@DoctorId", DbType.Int32, this.DoctorId);
+
+                DataSet ds = db.ExecuteDataSet(dbCommand);
+
+                if (ds != null && ds.Tables.Count > 0 && ds.Tables[0].Rows.Count > 0)
+                {
+                    DataRow row = ds.Tables[0].Rows[0];
+
+                    doctor = new Doctors
+                    {
+                        DoctorId = Convert.ToInt32(row["DoctorId"]),
+                        UserId = Convert.ToInt32(row["UserId"]),
+                        Email = Convert.ToString(row["Email"]),
+                        RoleShortCode = Convert.ToString(row["RoleShortCode"]),
+                        FirstName = Convert.ToString(row["FirstName"]),
+                        LastName = Convert.ToString(row["LastName"]),
+                        DateOfBirth = row["DOB"] != DBNull.Value ? Convert.ToDateTime(row["DOB"]) : DateTime.MinValue,
+                        ContactNo = Convert.ToString(row["ContactNo"]),
+                        ExperienceStartDate = Convert.ToDateTime(row["ExperienceStartDate"]),
+                        ConsultancyFee = Convert.ToInt32(row["ConsultancyFee"]),
+                        IsActive = Convert.ToBoolean(row["IsActive"]),
+                        GenderId = Convert.ToInt32(row["GenderId"]),
+                        GenderName = Convert.ToString(row["Gender"]),
+                        BloodGroupId = Convert.ToInt32(row["BloodGroupId"]),
+                        BloodGroupName = Convert.ToString(row["BloodGroupName"]),
+                        AddressId = Convert.ToInt32(row["AddressId"]),
+                        AddressLine1 = Convert.ToString(row["AddressLine1"]),
+                        TalukaId = Convert.ToInt32(row["TalukaId"]),
+                        DistrictId = Convert.ToInt32(row["DistrictId"]),
+                        StateId = Convert.ToInt32(row["StateId"]),
+                        CountryId = Convert.ToInt32(row["CountryId"]),
+                        Pincode = Convert.ToString(row["Pincode"]),
+                        CreatedBy = Convert.ToInt32(row["CreatedBy"]),
+                        CreatedOn = row["CreatedOn"] != DBNull.Value ? Convert.ToDateTime(row["CreatedOn"]) : DateTime.MinValue,
+                        ModifiedBy = row["ModifiedBy"] != DBNull.Value ? Convert.ToInt32(row["ModifiedBy"]) : 0,
+                        ModifiedOn = row["ModifiedOn"] != DBNull.Value ? Convert.ToDateTime(row["ModifiedOn"]) : (DateTime?)null
+                    };
+
+                  
+
+                    
+                    if (ds.Tables.Count > 1)
+                    {
+                        doctor.DoctorSpecializationsIdList = ds.Tables[1]
+                            .AsEnumerable()
+                            .Where(s => Convert.ToInt32(s["DoctorId"]) == doctor.DoctorId)
+                            .Select(s => Convert.ToInt32(s["SpecializationId"]))
+                            .ToList();
+                    }
+
+                    
+                    if (ds.Tables.Count > 2)
+                    {
+                        doctor.DoctorQulificationsIdList = ds.Tables[2]
+                            .AsEnumerable()
+                            .Where(q => Convert.ToInt32(q["DoctorId"]) == doctor.DoctorId)
+                            .Select(q => Convert.ToInt32(q["QualificationId"]))
+                            .ToList();
+                    }
+
+                    
+                    if (ds.Tables.Count > 3)
+                    {
+                        doctor.DoctorAvailableSlots = ds.Tables[3]
+                            .AsEnumerable()
+                            .Where(sl => Convert.ToInt32(sl["DoctorId"]) == doctor.DoctorId)
+                            .Select(sl => new DoctorAvailableSlots
+                            {
+                                AvaliableSlotId = Convert.ToInt32(sl["SlotId"]),
+                                DayOfWeek = Convert.ToString(sl["DayOfWeek"]),
+                                StartTime = Convert.ToString(sl["StartTime"]),
+                                EndTime = Convert.ToString(sl["EndTime"]),
+                                IsActive = Convert.ToBoolean(sl["IsActive"]),
+                                CreatedBy = Convert.ToInt32(sl["CreatedBy"]),
+                                CreatedOn = sl["CreatedOn"] != DBNull.Value ? Convert.ToDateTime(sl["CreatedOn"]) : DateTime.MinValue,
+                                ModifiedBy = sl["ModifiedBy"] != DBNull.Value ? Convert.ToInt32(sl["ModifiedBy"]) : 0,
+                                ModifiedOn = sl["ModifiedOn"] != DBNull.Value ? Convert.ToDateTime(sl["ModifiedOn"]) : DateTime.MinValue
+                            }).ToList();
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                ExceptionLogService.LogExceptionInDB(ex, nameof(DoctorsOps), nameof(loadDoctor));
+                
+                throw new Exception("Error while loading doctor details: " + ex.Message, ex);
+            }
+
+            return doctor;
+        }
+
+
+        public bool insertOrUpdateDoctors(Doctors doctorModel)
         {
             try
             {
@@ -59,9 +168,7 @@ namespace DAPClassLibrary
 
                 DbCommand dbCommand = db.GetStoredProcCommand("dap_doctorInsertOrUpdate");
                 
-                    //------------------------------------------------------
-                    // DoctorId
-                    //------------------------------------------------------
+                   
                     if (doctorModel.DoctorId > 0)
                         db.AddInParameter(dbCommand, "@DoctorId", DbType.Int32, doctorModel.DoctorId);
                     else
@@ -87,9 +194,7 @@ namespace DAPClassLibrary
                     else
                         db.AddInParameter(dbCommand, "@Email", DbType.String, DBNull.Value);
 
-                    //------------------------------------------------------
-                    // Personal Details
-                    //------------------------------------------------------
+                  
                     if (!string.IsNullOrWhiteSpace(doctorModel.FirstName))
                         db.AddInParameter(dbCommand, "@FirstName", DbType.String, doctorModel.FirstName);
                     else
@@ -120,9 +225,7 @@ namespace DAPClassLibrary
                     else
                         db.AddInParameter(dbCommand, "@GenderId", DbType.Int32, DBNull.Value);
 
-                    //------------------------------------------------------
-                    // Address
-                    //------------------------------------------------------
+                   
                     if (doctorModel.AddressId > 0)
                         db.AddInParameter(dbCommand, "@AddressId", DbType.Int32, doctorModel.AddressId);
                     else
@@ -143,99 +246,260 @@ namespace DAPClassLibrary
                     else
                         db.AddInParameter(dbCommand, "@Pincode", DbType.String, DBNull.Value);
 
-                    //------------------------------------------------------
-                    // Professional Info
-                    //------------------------------------------------------
-                    if (doctorModel.YearOfExperience > 0)
-                        db.AddInParameter(dbCommand, "@YearOfExperience", DbType.Int32, doctorModel.YearOfExperience);
+                   
+                    if (doctorModel.ExperienceStartDate != default(DateTime))
+                        db.AddInParameter(dbCommand, "@ExperienceStartDate", DbType.Date, doctorModel.ExperienceStartDate);
                     else
-                        db.AddInParameter(dbCommand, "@YearOfExperience", DbType.Int32, DBNull.Value);
+                        db.AddInParameter(dbCommand, "@ExperienceStartDate", DbType.Date, DBNull.Value);
 
                     if (doctorModel.ConsultancyFee > 0)
                         db.AddInParameter(dbCommand, "@ConsultancyFee", DbType.Int32, doctorModel.ConsultancyFee);
                     else
                         db.AddInParameter(dbCommand, "@ConsultancyFee", DbType.Int32, DBNull.Value);
 
-                    //------------------------------------------------------
-                    // Audit Info
-                    //------------------------------------------------------
                     if (doctorModel.CreatedBy > 0)
-                        db.AddInParameter(dbCommand, "@CreatedBy", DbType.Int32, 1);
+                        db.AddInParameter(dbCommand, "@CreatedBy", DbType.Int32, doctorModel.CreatedBy);
                     else
-                        db.AddInParameter(dbCommand, "@CreatedBy", DbType.Int32, 1);
+                        db.AddInParameter(dbCommand, "@CreatedBy", DbType.Int32, DBNull.Value);
 
                     if (doctorModel.ModifiedBy > 0)
-                        db.AddInParameter(dbCommand, "@ModifiedBy", DbType.Int32, 1);
+                        db.AddInParameter(dbCommand, "@ModifiedBy", DbType.Int32, doctorModel.ModifiedBy);
                     else
-                        db.AddInParameter(dbCommand, "@ModifiedBy", DbType.Int32, 1);
+                        db.AddInParameter(dbCommand, "@ModifiedBy", DbType.Int32, DBNull.Value);
 
-                    // Available Slots TVP
-                    DataTable availableSlotsTable = CreateAvailableSlotsDataTable(doctorModel.DoctorAvailableSlots);
+
+                TVPTableService objTVPTableService = new TVPTableService();
+
+                    DataTable availableSlotsTable = objTVPTableService.CreateAvailableSlotsDataTable(doctorModel.DoctorAvailableSlots);
                     db.AddParameter(dbCommand, "@AvailableSlotList", DbType.Object, ParameterDirection.Input,null, DataRowVersion.Current, availableSlotsTable);
                     ((SqlParameter)dbCommand.Parameters["@AvailableSlotList"]).SqlDbType = SqlDbType.Structured;
                     ((SqlParameter)dbCommand.Parameters["@AvailableSlotList"]).TypeName = "dbo.DAP_DoctorAvailableSlotsTVP";
 
-                    // Specializations TVP
-                    DataTable specializationTable = ConvertListToDataTable(doctorModel.DoctorSpecializationsIdList, "SpecializationId");
+                    DataTable specializationTable = objTVPTableService.IdsListToDataTable(doctorModel.DoctorSpecializationsIdList, "SpecializationId");
                     db.AddParameter(dbCommand, "@DoctorSpecializationList", DbType.Object, ParameterDirection.Input,null, DataRowVersion.Current, specializationTable);
                     ((SqlParameter)dbCommand.Parameters["@DoctorSpecializationList"]).SqlDbType = SqlDbType.Structured;
                     ((SqlParameter)dbCommand.Parameters["@DoctorSpecializationList"]).TypeName = "dbo.DAP_DoctorSpecializationsTVP";
 
-                    // Qualifications TVP
-                    DataTable qualificationTable = ConvertListToDataTable(doctorModel.DoctorQulificationsIdList, "QualificationId");
+                    DataTable qualificationTable = objTVPTableService.IdsListToDataTable(doctorModel.DoctorQulificationsIdList, "QualificationId");
                     db.AddParameter(dbCommand, "@DoctorQualificationList", DbType.Object, ParameterDirection.Input,null, DataRowVersion.Current, qualificationTable);
                     ((SqlParameter)dbCommand.Parameters["@DoctorQualificationList"]).SqlDbType = SqlDbType.Structured;
                     ((SqlParameter)dbCommand.Parameters["@DoctorQualificationList"]).TypeName = "dbo.DAP_DoctorQualificationsTVP";
 
 
-                    //------------------------------------------------------
-                    // Execute Stored Procedure
-                    //------------------------------------------------------
+                   
                     db.ExecuteNonQuery(dbCommand);
                     return true;
                 
             }
             catch (Exception ex)
             {
-                // Optionally log exception details here
-                return false;
+                ExceptionLogService.LogExceptionInDB(ex, nameof(DoctorsOps), nameof(insertOrUpdateDoctors));
+                
+                throw new ApplicationException("Error adding doctor details.", ex);
+               
             }
         }
 
 
-        private DataTable ConvertListToDataTable(List<int> idList, string columnName)
+        public DoctorTableList getDoctorsDetailsWithFilters(DoctorTableListFilter doctorFilter)
         {
-            DataTable dt = new DataTable();
-            dt.Columns.Add(columnName, typeof(int));
+            DoctorTableList result = new DoctorTableList();
 
-            if (idList != null)
+            try
             {
-                foreach (int id in idList)
-                    dt.Rows.Add(id);
-            }
+                DbCommand dbCommand = db.GetStoredProcCommand("dap_doctorsGetAll");
 
-            return dt;
-        }
+                if (!string.IsNullOrWhiteSpace(doctorFilter.SearchDoctorName))
+                    db.AddInParameter(dbCommand, "@SearchDoctorName", DbType.String, doctorFilter.SearchDoctorName);
+                else
+                    db.AddInParameter(dbCommand, "@SearchDoctorName", DbType.String, DBNull.Value);
 
-        private DataTable CreateAvailableSlotsDataTable(List<AvailableSlots> slotList)
-        {
-            DataTable dt = new DataTable();
-            dt.Columns.Add("DayOfWeek", typeof(string));
-            dt.Columns.Add("StartTime", typeof(string));
-            dt.Columns.Add("EndTime", typeof(string));
-            dt.Columns.Add("IsAvailable", typeof(bool));
-            
-            if (slotList != null)
-            {
-                foreach (var slot in slotList)
+                if (!string.IsNullOrWhiteSpace(doctorFilter.DoctorSpecializationIds))
+                    db.AddInParameter(dbCommand, "@SpecializationIds", DbType.String, doctorFilter.DoctorSpecializationIds);
+                else
+                    db.AddInParameter(dbCommand, "@SpecializationIds", DbType.String, DBNull.Value);
+
+                if (doctorFilter.PageNumber > 0)
+                    db.AddInParameter(dbCommand, "@PageNumber", DbType.Int32, doctorFilter.PageNumber);
+                else
+                    db.AddInParameter(dbCommand, "@PageNumber", DbType.Int32, 1);
+
+                if (doctorFilter.PageSize > 0)
+                    db.AddInParameter(dbCommand, "@PageSize", DbType.Int32, doctorFilter.PageSize);
+                else
+                    db.AddInParameter(dbCommand, "@PageSize", DbType.Int32, DBNull.Value);
+
+                DataSet ds = db.ExecuteDataSet(dbCommand);
+
+                if (ds != null && ds.Tables.Count > 0 && ds.Tables[0].Rows.Count > 0)
                 {
-                    dt.Rows.Add(slot.dayOfWeek, slot.StartTime, slot.EndTime, slot.IsAvailable);
+                    foreach (DataRow row in ds.Tables[0].Rows)
+                    {
+                        Doctors doctor = new Doctors
+                        {
+                            DoctorId = Convert.ToInt32(row["DoctorId"]),
+                            UserId = Convert.ToInt32(row["UserId"]),
+                            Email = Convert.ToString(row["Email"]),
+                            RoleShortCode = Convert.ToString(row["RoleShortCode"]),
+                            FirstName = Convert.ToString(row["FirstName"]),
+                            LastName = Convert.ToString(row["LastName"]),
+                            DateOfBirth = row["DOB"] != DBNull.Value ? Convert.ToDateTime(row["DOB"]) : DateTime.MinValue,
+                            ContactNo = Convert.ToString(row["ContactNo"]),
+                            ExperienceStartDate = Convert.ToDateTime(row["ExperienceStartDate"]),
+                            ConsultancyFee = Convert.ToInt32(row["ConsultancyFee"]),
+                            IsActive = Convert.ToBoolean(row["IsActive"]),
+                            GenderName = Convert.ToString(row["Gender"]),
+                            BloodGroupName = Convert.ToString(row["BloodGroupName"]),
+                            AddressId = Convert.ToInt32(row["AddressId"]),
+                            AddressLine1 = Convert.ToString(row["AddressLine1"]),
+                            TalukaId = Convert.ToInt32(row["TalukaId"]),
+                            Pincode = Convert.ToString(row["Pincode"]),
+                            CreatedBy = Convert.ToInt32(row["CreatedBy"]),
+                            CreatedOn = row["CreatedOn"] != DBNull.Value ? Convert.ToDateTime(row["CreatedOn"]) : DateTime.MinValue,
+                            ModifiedBy = row["ModifiedBy"] != DBNull.Value ? Convert.ToInt32(row["ModifiedBy"]) : 0,
+                            ModifiedOn = row["ModifiedOn"] != DBNull.Value ? Convert.ToDateTime(row["ModifiedOn"]) : (DateTime?)null
+                        };
+
+                        doctor.DoctorSpecializationsList = new List<Specializations>();
+                        doctor.DoctorQualificationsList = new List<Qualifications>();
+                        doctor.DoctorAvailableSlots = new List<DoctorAvailableSlots>();
+
+                        if (ds.Tables.Count > 1)
+                        {
+                            foreach (DataRow sRow in ds.Tables[1].Select($"DoctorId = {doctor.DoctorId}"))
+                            {
+                                doctor.DoctorSpecializationsList.Add(new Specializations
+                                {
+                                    SpecializationId = Convert.ToInt32(sRow["SpecializationId"]),
+                                    Specialization = Convert.ToString(sRow["Specialization"])
+                                });
+                            }
+                        }
+
+                        if (ds.Tables.Count > 2)
+                        {
+                            foreach (DataRow qRow in ds.Tables[2].Select($"DoctorId = {doctor.DoctorId}"))
+                            {
+                                doctor.DoctorQualificationsList.Add(new Qualifications
+                                {
+                                    QualificationId = Convert.ToInt32(qRow["QualificationId"]),
+                                    Degree = Convert.ToString(qRow["Degree"])
+                                });
+                            }
+                        }
+
+                        if (ds.Tables.Count > 3)
+                        {
+                            foreach (DataRow slotRow in ds.Tables[3].Select($"DoctorId = {doctor.DoctorId}"))
+                            {
+                                doctor.DoctorAvailableSlots.Add(new DoctorAvailableSlots
+                                {
+                                    AvaliableSlotId = Convert.ToInt32(slotRow["SlotId"]),
+                                    DayOfWeek = Convert.ToString(slotRow["DayOfWeek"]),
+                                    StartTime = Convert.ToString(slotRow["StartTime"]),
+                                    EndTime = Convert.ToString(slotRow["EndTime"]),
+                                    IsAvailable = Convert.ToBoolean(slotRow["IsActive"]),
+                                    CreatedBy = Convert.ToInt32(slotRow["CreatedBy"]),
+                                    CreatedOn = slotRow["CreatedOn"] != DBNull.Value ? Convert.ToDateTime(slotRow["CreatedOn"]) : DateTime.MinValue,
+                                    ModifiedBy = slotRow["ModifiedBy"] != DBNull.Value ? Convert.ToInt32(slotRow["ModifiedBy"]) : 0,
+                                    ModifiedOn = slotRow["ModifiedOn"] != DBNull.Value ? Convert.ToDateTime(slotRow["ModifiedOn"]) : DateTime.MinValue
+                                });
+                            }
+                        }
+
+                        result.Doctors.Add(doctor);
+                    }
+                }
+
+                if (ds.Tables.Count > 4 && ds.Tables[4].Rows.Count > 0)
+                {
+                    result.TotalRecords = Convert.ToInt32(ds.Tables[4].Rows[0]["TotalRecords"]);
                 }
             }
+            catch (Exception ex)
+            {
+                ExceptionLogService.LogExceptionInDB(ex, nameof(DoctorsOps), nameof(getDoctorsDetailsWithFilters));
+                
+                throw new Exception("Error while fetching doctor details: " + ex.Message, ex);
+            }
 
-            return dt;
-
-
+            return result;
         }
+
+        public bool deleteDoctorById()
+        {
+            try
+            {
+                if(this.DoctorId<=0 || this.ModifiedBy<=0)
+                {
+                    return false;
+                }
+
+                DbCommand dbCommand = db.GetStoredProcCommand("dap_doctorDeleteById");
+
+               
+                db.AddInParameter(dbCommand, "@DoctorId", DbType.Int32, this.DoctorId);
+                db.AddInParameter(dbCommand, "@DeletedBy", DbType.Int32, this.ModifiedBy);
+
+                int rowsAffected = db.ExecuteNonQuery(dbCommand);
+                return rowsAffected > 0;
+                
+            }
+            catch (Exception ex)
+            {
+                ExceptionLogService.LogExceptionInDB(ex, nameof(DoctorsOps), nameof(deleteDoctorById));
+               
+                throw new ApplicationException("Error deleting doctor record.", ex);
+            }
+        }
+
+        public List<DoctorsDropDownList> getDoctorsListAllOrBySpecialization()
+        {
+            List<DoctorsDropDownList> doctorsLists = new List<DoctorsDropDownList>();
+            try
+            {
+              
+
+                DbCommand dbCommand = db.GetStoredProcCommand("dap_doctorsListAllOrBySpecialization");
+
+                if(SpecializationId>0)
+                {
+                    db.AddInParameter(dbCommand,"@SpecializationId", DbType.Int32, this.SpecializationId);
+                }
+                else
+                {
+                    db.AddInParameter(dbCommand, "@SpecializationId", DbType.Int32, DBNull.Value);
+                }
+
+                
+
+                DataSet ds=db.ExecuteDataSet(dbCommand);
+
+                if(ds != null && ds.Tables[0].Rows.Count>0 )
+                {
+                    foreach(DataRow row  in ds.Tables[0].Rows)
+                    {
+                        doctorsLists.Add(new DoctorsDropDownList ()
+                        {
+                            DoctorId = Convert.ToInt32(row["DoctorId"]),
+                            FullName=Convert.ToString(row["FullName"]),
+                            DoctorQualifications = Convert.ToString(row["Qualifications"])
+                        });
+                    }
+                }
+
+                return doctorsLists;
+            }
+            catch (Exception ex)
+            {
+                ExceptionLogService.LogExceptionInDB(ex, nameof(DoctorsOps), nameof(getDoctorsListAllOrBySpecialization));
+               
+                throw new ApplicationException("Error while feaching doctors based on specializations",ex);
+            }
+        }
+
+
+       
+
     }
 }

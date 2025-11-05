@@ -8,15 +8,40 @@
 
   <div class="ms-auto d-flex align-items-center">
     
+<div class="dropdown ms-3">
+  <a
+    class="d-flex align-items-center text-decoration-none"
+    href="#"
+    id="profileDropdown"
+    role="button"
+    data-bs-toggle="dropdown"
+    aria-expanded="false"
+  >
+    <img
+      src="assets/avatar-profile.jpg"
+      alt="Profile"
+      class="rounded-circle border border-primary p-1"
+      width="40"
+      height="40"
+    />
+  </a>
 
-    <div class="dropdown ms-3">
-      <a class="d-flex align-items-center text-decoration-none" href="#" id="profileDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-        <img src="assets/avatar-profile.jpg" alt="Profile" class="rounded-circle border border-primary p-1" width="40" height="40" />
+  <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="profileDropdown">
+   
+    <li class="dropdown-item-text">
+      <strong>{{ userEmail }}</strong><br />
+      <small class="text-muted">{{ userRoleName }}</small>
+    </li>
+
+    <li><hr class="dropdown-divider" /></li>
+
+    <li>
+      <a class="dropdown-item text-danger" (click)="logout()">
+        <i class="bi bi-box-arrow-right me-2"></i> Logout
       </a>
-      <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="profileDropdown">
-        <li><hr class="dropdown-divider"></li>
-        <li><a class="dropdown-item text-danger"  (click)="logout()" ><i class="bi bi-box-arrow-right me-2"></i> Logout</a></li>
-      </ul>
-    </div>
+    </li>
+  </ul>
+</div>
+
   </div>
 </nav>

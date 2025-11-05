@@ -8,12 +8,14 @@ namespace DAPClassLibrary
 {
     public class DoctorAvailableSlots
     {
-        public int SlotId { get; set; }
+        public int AvaliableSlotId { get; set; }
         public int DoctorId { get; set; }
-        public string DayOfWeek { get; set; }
-        public TimeSpan StartTime { get; set; }
-        public TimeSpan EndTime { get; set; }
 
+        public DateTime SlotDate { get; set; }
+        public string DayOfWeek { get; set; }
+        public string StartTime { get; set; }
+        public string EndTime { get; set; }
+        public bool IsAvailable { get; set; } = true;
         public bool IsActive { get; set; }
         public int CreatedBy { get; set; }
         public DateTime CreatedOn { get; set; }

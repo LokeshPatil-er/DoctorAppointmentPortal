@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Output } from '@angular/core';
 import { AuthService } from '../../../core/services/auth.service';
+import { UserRoles } from '../../../core/enums/user-roles.enum';
 
 @Component({
   selector: 'app-navbar',
@@ -8,9 +9,9 @@ import { AuthService } from '../../../core/services/auth.service';
 })
 export class NavbarComponent {
 
-  userRole: string | null = ''; 
+  userRoleName: string | null = ''; 
   isLoggedIn: boolean = false;
-  userName: string = '' ;
+  userEmail: string | null = '' ;
 
  @Output() toggleSidebarEvent = new EventEmitter<void>();
 
@@ -21,11 +22,26 @@ export class NavbarComponent {
   }
 
 ngOnInit() {
-  const token = "";
+  const token = this.authService.getToken();
   if (token) {
     this.isLoggedIn =true;
-    this.userRole = this.authService.getUserRole();
-    this.userName = "";
+   this.loadUserInfo()
+  }
+}
+loadUserInfo() {
+  this.userEmail = this.authService.getUserEmail() || '';
+  const userRoleCode = this.authService.getUserRole() || '';
+
+  
+  switch (userRoleCode) {
+    case UserRoles.Admin:
+      this.userRoleName = "Admin";
+      break;
+    case UserRoles.Doctor:
+      this.userRoleName = "Doctor";
+      break;
+    default:
+      this.userRoleName = userRoleCode; 
   }
 }
 

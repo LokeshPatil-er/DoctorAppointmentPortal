@@ -4,7 +4,7 @@ export class DoctorInfo {
     DoctorId:number
     FirstName:string
     LastName:string
-    DateOfBirth:number
+    DateOfBirth:string
     ContactNo:string
     GenderId:number
     RoleShortCode:string
@@ -19,10 +19,16 @@ export class DoctorInfo {
     StateId:number
     DistrictId:number
     TalukaId:number
-    YearOfExperience:number
-    QualificationsIdList:number[]
-    SpecializationsIdList:number[]
+    ExperienceStartDate:Date
+    CreatedBy:number;
+    ModifiedBy:number
+    DoctorQulificationsIdList:number[]
+    DoctorSpecializationsIdList:number[]
     DoctorAvailableSlots:AvailableSlots[]=[]
+
+    DoctorQualificationsList:any[];
+    DoctorSpecializationsList:any[];
+    DoctorspecializationsString:string=''
 
 
 }

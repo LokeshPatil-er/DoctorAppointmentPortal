@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
 import {jwtDecode} from 'jwt-decode';
-import { AuthUserModel } from '../models/AuthUser.model';
 import { Router } from '@angular/router';
+import { AuthUserModel } from '../models/authUser.model';
+import { ToastService } from './toast.service';
 
 
 @Injectable({
@@ -9,7 +10,7 @@ import { Router } from '@angular/router';
 })
 export class AuthService {
 
-  constructor(private router:Router) { }
+  constructor(private router:Router,private toastService:ToastService) { }
 
   private hasSessionStorage(): boolean {
     return (typeof window !== 'undefined' && !!window.localStorage);
@@ -30,8 +31,6 @@ export class AuthService {
     return jwtDecode<AuthUserModel>(token);
   }
 
-  
-  
   setAuthData(token: string): void {
     if (this.hasSessionStorage()) {
       sessionStorage.setItem("Token", token);
@@ -49,16 +48,33 @@ export class AuthService {
   }
 
   getUserRole(): string | null {
-    return sessionStorage.getItem("UserRole");
+    let userRole=null;
+    if(this.hasSessionStorage())
+    {
+      userRole=sessionStorage.getItem("UserRole");
+    }
+    return userRole;
   }
   
-  getUserId(): number | null {
-    const id = sessionStorage.getItem("UserId");
-    return id ? parseInt(id) : null;
+  getUserId(): number  {
+    let id = null
+    if(this.hasSessionStorage())
+    {
+      id=sessionStorage.getItem("UserId");
+    }
+    
+    return id ? parseInt(id) : 0;
   }
   
   getUserEmail(): string | null {
-    return sessionStorage.getItem("UserEmail");
+
+    let userEmail=null;
+
+    if(this.hasSessionStorage())
+    {
+      userEmail=sessionStorage.getItem("UserEmail");
+    }
+    return userEmail;
   }
 
   isTokenExpired(): boolean {
@@ -80,6 +96,7 @@ export class AuthService {
     if(this.hasSessionStorage())
     {
       sessionStorage.clear();
+      this.toastService.successToastr("Logout successfully ...","Logout Success")
       this.router.navigate(['/login']);
     }
   }

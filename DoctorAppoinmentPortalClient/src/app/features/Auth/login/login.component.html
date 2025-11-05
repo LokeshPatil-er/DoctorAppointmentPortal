@@ -28,48 +28,81 @@
                 id="email"
                 [(ngModel)]="userEmail"
                 name="email"
+                #email="ngModel"
+                pattern="^[a-zA-Z0-9._%+\-]+@[a-zA-Z0-9.\-]+\.[a-zA-Z]{2,}$"
+                maxlength="320"
                 required
+                email
                 class="form-control rounded-3 py-2"
                 placeholder="Enter your email"
-                [class.is-invalid]="loginForm.submitted && !loginForm.controls['email'].valid"
+                [ngClass]="{'is-invalid': email.invalid && (email.touched || loginForm.submitted)}"
               />
-              <div *ngIf="loginForm.submitted && !loginForm.controls['email']?.valid"
-                class="invalid-feedback d-block">
-                Please enter a valid email.
+              <div *ngIf="email.invalid && (email.touched || loginForm.submitted)" class="invalid-feedback d-block">
+                <small *ngIf="email.errors?.['required']">Email is required.</small><br/>
+                <small *ngIf="email.errors?.['maxlength']">Max 320 characters allowed in email address.</small>
+
+                <small *ngIf="email.errors?.['email'] || email.errors?.['pattern']">Please enter a valid email.(e.g. example&#64;gmail.com)</small>
               </div>
             </div>
+
   
             <!-- Password -->
-            <div class="mb-3 position-relative">
-              <label for="password" class="form-label small fw-semibold">Password</label>
-              <input
-                type="password"
-                id="password"
-                [(ngModel)]="userPassword"
-                name="password"
-                required
-                minlength="6"
-                class="form-control rounded-3 py-2 pe-5"
-                placeholder="Enter your password"
-                [class.is-invalid]="loginForm.submitted && !loginForm.controls['password'].valid"
-              />
-             
-              <div *ngIf="loginForm.submitted && !loginForm.controls['password']?.valid"
-                class="invalid-feedback d-block">
-                Password must be at least 6 characters.
-              </div>
-            </div>
+          <div class="mb-3 position-relative">
+  <label for="password" class="form-label small fw-semibold">Password</label>
+
+  <div class="input-group">
+    <input
+      [type]="showPassword ? 'text' : 'password'"
+      id="password"
+      [(ngModel)]="userPassword"
+      name="password"
+      #password="ngModel"
+      required
+      minlength="6"
+      pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{6,}$"
+      class="form-control rounded-start-3 py-2"
+      placeholder="Enter your password"
+      [ngClass]="{'is-invalid': password.invalid && (password.touched || loginForm.submitted)}"
+    />
+
+    <button 
+      type="button" 
+      class="btn btn-outline-secondary rounded-end-3" 
+      (click)="togglePasswordVisibility()" 
+      tabindex="-1">
+      <i class="bi" [ngClass]="showPassword ? 'bi-eye-slash' : 'bi-eye'"></i>
+    </button>
+  </div>
+
+  <div *ngIf="password.invalid && (password.touched || loginForm.submitted)" class="invalid-feedback d-block">
+    <small *ngIf="password.errors?.['required']">Password is required.</small>
+    <small *ngIf="password.errors?.['minlength']">Password must be at least 6 characters.<br/></small>
+    <small *ngIf="password.errors?.['pattern']">
+      Password must include uppercase, lowercase, number, and special character(&#64;, $, !, %, *, ?, &).
+    </small>
+  </div>
+</div>
+
+
+
   
           
   
 
   
             <!-- Submit -->
-            <button type="submit" class="btn btn-primary w-100 py-2 fw-semibold rounded-3 shadow-sm mt-3 mb-4">
-              Login
-            </button>
+         <button type="submit" class="btn btn-primary w-100 py-2 fw-semibold rounded-3 shadow-sm mt-3 mb-4" [disabled]="loginForm.invalid"> Login </button>
+
   
-           
+           <div class="text-center">
+            <a
+              routerLink="/landingPage"
+              class="text-decoration-none small text-primary fw-semibold"
+            >
+              ← Back to Home
+            </a>
+          </div>
+
           </form>
         </div>
       </div>

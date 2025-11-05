@@ -16,8 +16,8 @@ import { ToastrModule } from "ngx-toastr";
     ],
     imports:[
         RouterModule,
-        CommonModule,
-        ToastrModule
+        CommonModule
+
     ]
 
 })

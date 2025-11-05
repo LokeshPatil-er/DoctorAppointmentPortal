@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.Practices.EnterpriseLibrary.Data;
+using DAPClassLibrary.Helpers.Services;
 
 namespace DAPClassLibrary
 {
@@ -74,6 +75,8 @@ namespace DAPClassLibrary
             }
             catch (Exception ex)
             {
+                ExceptionLogService.LogExceptionInDB(ex, nameof(DistrictsOps), nameof(GetDistrictsListAllOrByStateId));
+               
                 throw new Exception("Error occurred while fetching districts list: " + ex.Message, ex);
             }
 

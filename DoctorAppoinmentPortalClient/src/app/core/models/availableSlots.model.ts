@@ -1,6 +1,6 @@
 export class AvailableSlots{
-    AvaliableSlotId: number
-    dayOfWeek:string | null
+    AvailableSlotId: number
+    DayOfWeek:string | null
     StartTime:string
     EndTime:string
     IsAvailable:boolean   

@@ -30,6 +30,7 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup />
   <ItemGroup>
     <Reference Include="Microsoft.IdentityModel.JsonWebTokens, Version=6.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.IdentityModel.JsonWebTokens.6.5.0\lib\net461\Microsoft.IdentityModel.JsonWebTokens.dll</HintPath>
@@ -53,11 +54,13 @@
       <HintPath>..\..\..\OneDrive - Rheal Software Pvt Ltd\EnterpriseLibraries\Microsoft.Practices.ObjectBuilder2.dll</HintPath>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.IdentityModel.Tokens.Jwt, Version=6.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\System.IdentityModel.Tokens.Jwt.6.5.0\lib\net461\System.IdentityModel.Tokens.Jwt.dll</HintPath>
     </Reference>
+    <Reference Include="System.Web" />
     <Reference Include="System.Web.Http">
       <HintPath>..\DoctorAppointmentPortalServer\bin\System.Web.Http.dll</HintPath>
     </Reference>
@@ -73,19 +76,53 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Class1.cs" />
+    <Compile Include="DAL\AppointmentAlternateSlotActionTokenOps.cs" />
+    <Compile Include="DAL\AppointmentsOps.cs" />
+    <Compile Include="DAL\AppointmentStatusOps.cs" />
     <Compile Include="DAL\BloodGroupsOps.cs" />
     <Compile Include="DAL\CountriesOps.cs" />
     <Compile Include="DAL\DistrictsOps.cs" />
     <Compile Include="DAL\DoctorsOps.cs" />
+    <Compile Include="DAL\ExceptionsLogOps.cs" />
     <Compile Include="DAL\GendersOps.cs" />
+    <Compile Include="DAL\PreferredSlotsOps.cs" />
     <Compile Include="DAL\QualificationsOps.cs" />
     <Compile Include="DAL\SpecializationsOps.cs" />
     <Compile Include="DAL\StatesOps.cs" />
     <Compile Include="DAL\TalukasOps.cs" />
     <Compile Include="DAL\UsersOps.cs" />
-    <Compile Include="Helpers\JwtAuthorizationAttribute.cs" />
-    <Compile Include="Helpers\TokenServices.cs" />
+    <Compile Include="Enums\AppointmentActions.cs" />
+    <Compile Include="Enums\AppointmentStatuses.cs" />
+    <Compile Include="Enums\EmailScenario.cs" />
+    <Compile Include="Helpers\Services\AppointmentEmailNotifier.cs" />
+    <Compile Include="Helpers\Services\AppointmentService.cs" />
+    <Compile Include="Helpers\Services\EmailTemplateHelper.cs" />
+    <Compile Include="Helpers\Services\EmailTemplatePathConfig.cs" />
+    <Compile Include="Helpers\Services\ExceptionLogService.cs" />
+    <Compile Include="Helpers\Services\FileService.cs" />
+    <Compile Include="Helpers\Services\JwtAuthorizationAttribute.cs" />
+    <Compile Include="Helpers\Services\MailService.cs" />
+    <Compile Include="Helpers\Services\TokenServices.cs" />
+    <Compile Include="Helpers\Services\TVPTableService.cs" />
+    <Compile Include="Models\AppointmentFormDropDowns.cs" />
+    <Compile Include="Models\Appointments.cs" />
+    <Compile Include="Models\AppointmentsInfoList.cs" />
+    <Compile Include="Models\AppointmentsListFilters.cs" />
+    <Compile Include="Models\AppointmentStatus.cs" />
+    <Compile Include="Models\AppointmentStatusUpdate.cs" />
+    <Compile Include="Models\AvailableSlots.cs" />
+    <Compile Include="Models\DoctorAvailability.cs" />
+    <Compile Include="Models\DoctorFormDropDownsList.cs" />
+    <Compile Include="Models\DoctorsDropDownList.cs" />
+    <Compile Include="Models\DoctorTableList.cs" />
+    <Compile Include="Models\DoctorTableListFilter.cs" />
+    <Compile Include="Models\ExceptionsLog.cs" />
+    <Compile Include="Models\FilePreviewData.cs" />
     <Compile Include="Models\Genders.cs" />
+    <Compile Include="Models\PatientAppointmentRequest.cs" />
+    <Compile Include="Models\Patients.cs" />
+    <Compile Include="Models\PreferredSlots.cs" />
+    <Compile Include="Models\ReportFiles.cs" />
     <Compile Include="Models\Roles.cs" />
     <Compile Include="Models\Users.cs" />
     <Compile Include="Models\States.cs" />
@@ -104,6 +141,20 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <Content Include="Helpers\EmailTemplates\Doctor\AlternateSlot.html" />
+    <Content Include="Helpers\EmailTemplates\Doctor\AlternateSlotAccept.html" />
+    <Content Include="Helpers\EmailTemplates\Doctor\AlternateSlotReject.html" />
+    <Content Include="Helpers\EmailTemplates\Doctor\AppointmentAccepted.html" />
+    <Content Include="Helpers\EmailTemplates\Doctor\AppointmentRejected.html" />
+    <Content Include="Helpers\EmailTemplates\Doctor\AppointmentRequestSubmitted.html" />
+    <Content Include="Helpers\EmailTemplates\Patient\AlternateSlot.html" />
+    <Content Include="Helpers\EmailTemplates\Patient\AlternateSlotReject.html" />
+    <Content Include="Helpers\EmailTemplates\Patient\AppointmentAccepted.html" />
+    <Content Include="Helpers\EmailTemplates\Patient\AppointmentRejected.html" />
+    <Content Include="Helpers\EmailTemplates\Patient\AppointmentRequestSubmitted.html" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
