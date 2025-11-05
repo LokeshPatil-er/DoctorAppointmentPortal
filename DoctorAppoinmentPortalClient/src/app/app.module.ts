@@ -13,7 +13,7 @@ import { ToastrModule } from 'ngx-toastr';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import{NgxSpinnerModule} from 'ngx-spinner';
 import { authInterceptor } from './core/interceptors/auth.interceptor';
-
+import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
 import { CommonModule } from '@angular/common';
 
 
@@ -36,6 +36,7 @@ import { CommonModule } from '@angular/common';
     FormsModule,
     CommonModule,
     HttpClientModule,
+    SweetAlert2Module.forRoot({}),
     NgxSpinnerModule.forRoot({ type: 'ball-scale-multiple' }),
      ToastrModule.forRoot({
       timeOut: 3000,

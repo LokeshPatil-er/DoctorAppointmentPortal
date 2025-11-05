@@ -5,6 +5,7 @@ import { UserRoles } from '../../../core/enums/user-roles.enum';
 import { ToastService } from '../../../core/services/toast.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AuthService } from '../../../core/services/auth.service';
+import { AlertService } from '../../../core/services/alert.service';
 
 @Component({
   selector: 'app-doctor-form',
@@ -46,6 +47,7 @@ export class DoctorFormComponent {
   constructor(
     private doctorFormService: DoctorFormService,
     private toastService: ToastService,
+    private alertService: AlertService,
     private route: ActivatedRoute,
     private authService: AuthService,
     private router: Router
@@ -221,7 +223,7 @@ export class DoctorFormComponent {
     return adjustedEndMinutes - startMinutes >= 60;
   }
 
-  onSubmit(form: any) {
+  async onSubmit(form: any) {
     if (form.invalid) {
       console.log('error toast appear');
 
@@ -242,7 +244,6 @@ export class DoctorFormComponent {
       return;
     }
 
-   
     if (!this.isAgeValid()) {
       this.toastService.errorToastr(
         'Doctor must be at least 25 years old.',
@@ -294,11 +295,15 @@ export class DoctorFormComponent {
 
     const actionText =
       this.formMode === 'add' ? 'add this doctor?' : 'update doctor details?';
-    const confirmAction = window.confirm(
-      `Are you sure you want to ${actionText}`
+
+    const confirmed = await this.alertService.confirm(
+      'Please Confirm',
+      `Are you sure you want to ${actionText}`,
+      'Yes, Proceed',
+      'Cancel'
     );
 
-    if (!confirmAction) {
+    if (!confirmed) {
       this.toastService.infoToastr('Action cancelled by user.', 'Cancelled');
       return;
     }

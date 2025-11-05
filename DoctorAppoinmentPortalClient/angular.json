@@ -49,6 +49,7 @@
               "node_modules/@ng-select/ng-select/themes/default.theme.css",
                "node_modules/ngx-toastr/toastr.css",
                "node_modules/ngx-spinner/animations/ball-clip-rotate-multiple.css",
+                "node_modules/sweetalert2/dist/sweetalert2.min.css",
               "src/styles.css"
             ],
             "scripts": [
