@@ -98,6 +98,7 @@
                 class="form-control"
                 [ngModel]="appointmentFilters.FromDate | date : 'yyyy-MM-dd'"
                 (ngModelChange)="appointmentFilters.FromDate = $event"
+                [max]="appointmentFilters.ToDate | date : 'yyyy-MM-dd'"
                 name="fromDate"
               />
               <i class="bi bi-arrow-right text-muted fs-5"></i>
@@ -180,7 +181,7 @@
             <td>{{ appt.Appointment.ReasonOfAppointment }}</td>
             <td>
               <ng-container
-                *ngIf="getSlotListByStatus(appt)?.length; else noSlot"
+                *ngIf="getSlotListByStatus(appt); else noSlot"
               >
                 <ul class="list-unstyled mb-0">
                   <li

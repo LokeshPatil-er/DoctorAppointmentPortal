@@ -368,14 +368,14 @@ namespace DAPClassLibrary
                         FirstName = Convert.ToString(row["PatientFirstName"]),
                         LastName = Convert.ToString(row["PatientLastName"]),
                         DateOfBirth = Convert.ToDateTime(row["DOB"]),
-                        ContactNo = row["ContactNo"].ToString(),
+                        ContactNo =Convert.ToString( row["ContactNo"]),
                         Gender = Convert.ToString(row["Gender"]),
-                        Email = row["Email"].ToString(),
-                        AddressLine1 = row["AddressLine1"].ToString(),
-                        Pincode = row["Pincode"].ToString(),
-                        ProviderName = row["InsuranceProvider"] == DBNull.Value ? null : row["InsuranceProvider"].ToString(),
-                        PolicyNumber = row["PolicyNumber"] == DBNull.Value ? null : row["PolicyNumber"].ToString(),
-                        PolicyName = row["PolicyName"] == DBNull.Value ? null : row["PolicyName"].ToString(),
+                        Email = Convert.ToString(row["Email"]),
+                        AddressLine1 = Convert.ToString(row["AddressLine1"]),
+                        Pincode = Convert.ToString(row["Pincode"]),
+                        ProviderName = row["InsuranceProvider"] == DBNull.Value ? null : Convert.ToString(row["InsuranceProvider"]),
+                        PolicyNumber = row["PolicyNumber"] == DBNull.Value ? null : Convert.ToString(row["PolicyNumber"]),
+                        PolicyName = row["PolicyName"] == DBNull.Value ? null : Convert.ToString(row["PolicyName"]),
                         ValidTill = row["InsuranceValidTill"] == DBNull.Value ? (DateTime?)null : Convert.ToDateTime(row["InsuranceValidTill"]),
                         PreferredSlotsList = new List<PreferredSlots>(),
                         UploadReports = new List<ReportFiles>()
@@ -388,9 +388,9 @@ namespace DAPClassLibrary
                         DoctorId = Convert.ToInt32(row["DoctorId"]),
                         DoctorFirstName = Convert.ToString(row["DoctorFirstName"]),
                         DoctorLastName = Convert.ToString(row["DoctorLastName"]),
-                        ReasonOfAppointment = row["ReasonForVisit"].ToString(),
-                        MedicalHistory = row["MedicalHistory"] == DBNull.Value ? null : row["MedicalHistory"].ToString(),
-                        AppointmentStatus = row["AppointmentStatusShortCode"].ToString(),
+                        ReasonOfAppointment = Convert.ToString(row["ReasonForVisit"]),
+                        MedicalHistory = row["MedicalHistory"] == DBNull.Value ? null : Convert.ToString(row["MedicalHistory"]),
+                        AppointmentStatus = Convert.ToString(row["AppointmentStatusShortCode"]),
                         DoctorSpecializations = new List<string>()
                     };
 
@@ -412,8 +412,8 @@ namespace DAPClassLibrary
                         {
                             PreferredSlotId = Convert.ToInt32(slot["PreferredSlotId"]),
                             PreferredDate = Convert.ToDateTime(slot["PreferredDate"]),
-                            PreferredStartTime = slot["PreferredStartTime"].ToString(),
-                            PreferredEndTime = slot["PreferredEndTime"].ToString(),
+                            PreferredStartTime = Convert.ToString(slot["PreferredStartTime"]),
+                            PreferredEndTime = Convert.ToString(slot["PreferredEndTime"]),
                             IsApproved = Convert.ToBoolean(slot["IsApproved"]),
                             IsAlternateSlot = Convert.ToBoolean(slot["IsAlternateSlot"]),
                             IsActive = true
@@ -428,9 +428,9 @@ namespace DAPClassLibrary
                         {
                             AppointmentId = Convert.ToInt32(report["AppointmentId"]),
                             ReportId = Convert.ToInt32(report["ReportId"]),
-                            ReportName = report["ReportName"].ToString(),
-                            ReportFileName = report["ReportFileName"].ToString(),
-                            FileType = report["FileType"].ToString()
+                            ReportName = Convert.ToString(report["ReportName"]),
+                            ReportFileName = Convert.ToString(report["ReportFileName"]),
+                            FileType = Convert.ToString(report["FileType"])
                         });
                     }
 

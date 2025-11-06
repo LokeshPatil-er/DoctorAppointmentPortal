@@ -7,6 +7,7 @@ import { ToastService } from '../../../core/services/toast.service';
 import { Router } from '@angular/router';
 import { AbstractControl, ValidationErrors, ValidatorFn } from '@angular/forms';
 import { finalize } from 'rxjs';
+import { AlertService } from '../../../core/services/alert.service';
 
 @Component({
   selector: 'app-appointment-form',
@@ -50,14 +51,12 @@ export class AppointmentFormComponent {
   today: Date = new Date();
   maxDate: Date = new Date();
 
-  isFutureDOB(value: any): boolean {
-    if (!value) return false;
-    return new Date(value) > new Date();
-  }
+ 
 
   constructor(
     private appointmentFormService: AppointmentFormService,
     private toastService: ToastService,
+    private alertService:AlertService,
     private router: Router
   ) {}
 
@@ -118,6 +117,16 @@ export class AppointmentFormComponent {
       });
   }
 
+  get minDateForAge100(): Date {
+    const today = new Date();
+    const maxDate = new Date(
+      today.getFullYear() - 100,
+      today.getMonth(),
+      today.getDate()
+    );
+    return maxDate;
+  }
+
   fetchAvailableSlots(doctorId: number, date: string) {
     this.appointmentFormService.getAvailableSlots(doctorId, date).subscribe({
       next: (res: any) => {
@@ -156,7 +165,7 @@ export class AppointmentFormComponent {
     this.loadDoctorsBySpecialization(this.selectedSpecialization);
   }
 
-  onSubmit(form: any) {
+  async onSubmit(form: any) {
     if (!form.valid) {
       this.toastService.errorToastr(
         'Please fill all required fields correctly.',
@@ -236,10 +245,7 @@ export class AppointmentFormComponent {
       }
     }
 
-    const confirmSubmit = window.confirm(
-      'Are you sure you want to submit this appointment request?'
-    );
-
+    const confirmSubmit =await this.alertService.confirm("Appointment Submit","Are you sure you want to submit this appointment request?","Yes","Cancel")
     if (!confirmSubmit) {
       this.toastService.infoToastr(
         'Appointment submission cancelled.',
@@ -413,6 +419,14 @@ export class AppointmentFormComponent {
     );
   }
 
+  isFutureDOB(value: any): boolean {
+    if (!value) return false;
+    return new Date(value) > new Date();
+  }
+
+  isTooOldDOB(date: string): boolean {
+    return date ? new Date(date) < this.minDateForAge100 : false;
+  }
   onDoctorChange() {
     this.preferredDate = '';
     this.availableSlots = [];
@@ -450,11 +464,12 @@ export class AppointmentFormComponent {
     event.target.value = '';
   }
 
-  removeFile(index: number): void {
+ async removeFile(index: number) {
     const fileName = this.selectedFiles[index].name;
-    if (
-      window.confirm(`Are you sure you want to remove the file "${fileName}"?`)
-    ) {
+
+
+    const removeConform=await this.alertService.confirm(`File Remove","Are you sure you want to remove the file "${fileName}"?`,"Yes","Cancel")
+    if ( removeConform) {
       this.selectedFiles.splice(index, 1);
     }
   }
@@ -483,11 +498,8 @@ export class AppointmentFormComponent {
     // });
   }
 
-  clearForm(form: any) {
-    const confirmClear = window.confirm(
-      'Are you sure you want to clear the form? All entered data will be lost.'
-    );
-
+ async clearForm(form: any) {
+    const confirmClear =await this.alertService.confirm("Form Clear","Are you sure you want to clear the form? All entered data will be lost.","Yes","Cancel")
     if (!confirmClear) {
       this.toastService.infoToastr('Form clear action cancelled.', 'Cancelled');
       return;

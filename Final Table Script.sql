@@ -21,6 +21,7 @@ CREATE TABLE DAP_Roles
 	CreatedOn DATETIME2 NULL,
 	ModifiedOn DATETIME2 NULL,
 );
+GO
 
 CREATE TABLE DAP_Users
 (
@@ -37,6 +38,8 @@ CREATE TABLE DAP_Users
 	
 );
 
+GO
+select * from DAP_Users
 CREATE  TABLE DAP_Countries (
     CountryId INT IDENTITY(1,1) PRIMARY KEY,
     CountryName NVARCHAR(100) NOT NULL UNIQUE,
@@ -46,6 +49,8 @@ CREATE  TABLE DAP_Countries (
 	ModifiedBy INT FOREIGN KEY REFERENCES DAP_Users(UserId) NULL,
 	ModifiedOn DATETIME2 NULL,
 );
+
+GO
 
 CREATE  TABLE  DAP_States (
     StateId INT IDENTITY(1,1) PRIMARY KEY,
@@ -58,6 +63,8 @@ CREATE  TABLE  DAP_States (
 	ModifiedOn DATETIME2 NULL,
 );
 
+GO
+
 CREATE  TABLE DAP_Districts (
     DistrictId INT IDENTITY(1,1) PRIMARY KEY,
     DistrictName NVARCHAR(100) NOT NULL UNIQUE,
@@ -68,6 +75,8 @@ CREATE  TABLE DAP_Districts (
 	ModifiedBy INT FOREIGN KEY REFERENCES DAP_Users(UserId) NULL,
 	ModifiedOn DATETIME2 NULL,
 );
+
+GO
 
 CREATE  TABLE DAP_Talukas (
     TalukaId INT IDENTITY PRIMARY KEY,
@@ -80,10 +89,12 @@ CREATE  TABLE DAP_Talukas (
 	ModifiedOn DATETIME2 NULL,
 );
 
+GO
+
 CREATE  TABLE DAP_Addresses (
     AddressId INT IDENTITY PRIMARY KEY,
     AddressLine1 NVARCHAR(200) NOT NULL,
-    Pincode NVARCHAR(10) NOT NULL,
+    Pincode NVARCHAR(6) NOT NULL,
     TalukaId INT NOT NULL FOREIGN KEY REFERENCES DAP_Talukas(TalukaId),
 	IsActive BIT DEFAULT 1,
 	CreatedBy INT FOREIGN KEY REFERENCES DAP_Users(UserId) NULL,
@@ -91,6 +102,8 @@ CREATE  TABLE DAP_Addresses (
 	ModifiedBy INT FOREIGN KEY REFERENCES DAP_Users(UserId) NULL,
 	ModifiedOn DATETIME2 NULL,
 );
+
+GO
 
 CREATE  TABLE DAP_Specializations (
     SpecializationId INT IDENTITY PRIMARY KEY,
@@ -103,12 +116,16 @@ CREATE  TABLE DAP_Specializations (
 	ModifiedOn DATETIME2,
 );
 
+GO
+
 CREATE  TABLE DAP_BloodGroups (
     BloodGroupId INT IDENTITY PRIMARY KEY,
     BloodGroupName NVARCHAR(100) NOT NULL UNIQUE,
     IsActive BIT DEFAULT 1,
 	CreatedOn DATETIME2 NOT NULL,
 );
+
+GO
 
 CREATE  TABLE DAP_Qualifications (
     QualificationId INT PRIMARY KEY IDENTITY(1,1),
@@ -121,6 +138,8 @@ CREATE  TABLE DAP_Qualifications (
 	ModifiedOn DATETIME2 NULL
 );
 
+GO
+
 CREATE  TABLE DAP_DoctorQualifications (
     DoctorQualificationId INT PRIMARY KEY IDENTITY(1,1),
     DoctorId INT FOREIGN KEY REFERENCES DAP_Doctors(DoctorId) NOT NULL,
@@ -132,6 +151,8 @@ CREATE  TABLE DAP_DoctorQualifications (
 	ModifiedBy INT FOREIGN KEY REFERENCES DAP_Users(UserId) NULL,
 	ModifiedOn DATETIME2 NULL,
 );
+
+GO
 
 CREATE  TABLE DAP_Doctors
 (
@@ -154,6 +175,8 @@ CREATE  TABLE DAP_Doctors
 
 );
 
+GO
+
 CREATE  TABLE DAP_DoctorSpecializations (
   DoctorSpecializationId INT PRIMARY KEY IDENTITY(1,1),
   DoctorId INT FOREIGN KEY REFERENCES DAP_Doctors(DoctorId),
@@ -164,6 +187,8 @@ CREATE  TABLE DAP_DoctorSpecializations (
   ModifiedBy INT FOREIGN KEY REFERENCES DAP_Users(UserId) NULL,
   ModifiedOn DATETIME2 NULL,
 );
+
+GO
 
 CREATE TABLE DAP_Patients
 (
@@ -180,6 +205,8 @@ CREATE TABLE DAP_Patients
 	CreatedOn DATETIME NOT NULL,
 );
 
+GO
+
 CREATE TABLE DAP_AppointmentStatus
 (
 	AppointmentStatusId INT PRIMARY KEY IDENTITY(1,1),
@@ -192,6 +219,8 @@ CREATE TABLE DAP_AppointmentStatus
 	ModifiedOn DATETIME2 NULL,
 
 );
+
+GO
 
 CREATE TABLE DAP_Appointments
 (
@@ -210,6 +239,8 @@ CREATE TABLE DAP_Appointments
 
 );
 
+GO
+
 CREATE TABLE DAP_PreferredSlots
 (
 	PreferredSlotId INT PRIMARY KEY IDENTITY(0,1),
@@ -227,6 +258,8 @@ CREATE TABLE DAP_PreferredSlots
 	
 );
 
+GO
+
 CREATE TABLE DAP_PatientExistingReports
 (
 	ReportId INT PRIMARY KEY IDENTITY(0,1),
@@ -240,6 +273,8 @@ CREATE TABLE DAP_PatientExistingReports
 	ModifiedBy INT FOREIGN KEY REFERENCES DAP_Users(UserId) NULL,
 	ModifiedOn DATETIME2 NULL,
 );
+
+GO
 
 CREATE TABLE DAP_PatientInsurancesInfo (
     InsuranceId INT PRIMARY KEY IDENTITY(1,1),
@@ -270,6 +305,8 @@ CREATE  TABLE DAP_DoctorAvailableSlots
 	ModifiedOn DATETIME2 NULL,
 );
 
+GO
+
 CREATE TABLE DAP_AppointmentAlternateSlotActionToken
 (
 	ActionTokenId INT PRIMARY KEY IDENTITY(1,1),
@@ -280,6 +317,8 @@ CREATE TABLE DAP_AppointmentAlternateSlotActionToken
 	IsUsed BIT ,
 	CreatedOn DATETIME NOT NULL
 );
+
+GO
 
 CREATE TABLE DAP_ExceptionLog
 (
@@ -295,10 +334,10 @@ CREATE TABLE DAP_ExceptionLog
     IsResolved BIT NULL
 );
 
-
+GO
 
 --SP's 
-CREATE  PROC dap_usersLoadByEmail     
+CREATE OR ALTER   PROCEDURE dap_usersLoadByEmail     
 /*      
 ******************************************************************************************************      
 Date            Created By         Purpose Of Creation      
@@ -330,7 +369,7 @@ BEGIN
 END;
 GO
 
-CREATE  PROC dap_usersCheckEmailExists    
+CREATE OR ALTER   PROCEDURE dap_usersCheckEmailExists    
 /*    
 ******************************************************************************************************    
 Date            Created By         Purpose Of Creation    
@@ -355,51 +394,57 @@ BEGIN
 END;
 GO
 
-CREATE   PROC dap_doctorsListAllOrBySpecialization      
- /*    
- -----------------------------------------------------------------------------------------------------------------------    
- Date			Created By		Purpose of creation    
- 10 OCT 2025	Lokesh Patil	To get doctor list all or based on specialization    
- -----------------------------------------------------------------------------------------------------------------------    
- */    
-  @SpecializationId INT = NULL      
-AS      
-BEGIN      
-    SELECT      
-        D.DoctorId,    
-        D.FirstName + ' ' + D.LastName AS FullName,      
-  D.ConsultancyFee,    
-        ISNULL(STRING_AGG(Q.Degree, ', '), 'N/A') AS Qualifications      
-    FROM DAP_Doctors D      
-    INNER JOIN DAP_DoctorSpecializations DS      
-        ON D.DoctorId = DS.DoctorId      
-    LEFT JOIN DAP_DoctorQualifications DQ      
-        ON D.DoctorId = DQ.DoctorId      
-    LEFT JOIN DAP_Qualifications Q      
-        ON DQ.QualificationId = Q.QualificationId      
-    INNER JOIN DAP_Users U    
-        ON D.UserId = U.UserId    
-    INNER JOIN DAP_Roles R    
-        ON U.RoleId = R.RoleId    
-    WHERE      
-        D.IsActive = 1                
-        AND DS.IsActive = 1           
-        AND R.IsActive = 1             
-        AND (DQ.IsActive = 1 )    
-        AND ( @SpecializationId IS NULL OR DS.SpecializationId = @SpecializationId )    
-    GROUP BY      
-        D.DoctorId,      
-        D.FirstName,      
-        D.LastName,    
-  D.ConsultancyFee,    
-        D.ExperienceStartDate    
-    ORDER BY    
-        D.ExperienceStartDate ASC;     
-END;  
-  
+CREATE OR ALTER PROCEDURE dap_doctorsListAllOrBySpecialization
+/*  
+-----------------------------------------------------------------------------------------------------------------------
+Date			Created By		Purpose of creation
+10 OCT 2025		Lokesh Patil	To get doctor list all or based on specialization
+-----------------------------------------------------------------------------------------------------------------------
+*/
+@SpecializationId INT = NULL
+AS
+BEGIN
+    SELECT
+        D.DoctorId,
+        D.FirstName + ' ' + D.LastName AS FullName,
+        D.ConsultancyFee,
+        ISNULL(QQ.Qualifications, 'N/A') AS Qualifications
+    FROM DAP_Doctors D
+    INNER JOIN DAP_DoctorSpecializations DS
+        ON D.DoctorId = DS.DoctorId
+    INNER JOIN DAP_Users U
+        ON D.UserId = U.UserId
+    INNER JOIN DAP_Roles R
+        ON U.RoleId = R.RoleId
+    LEFT JOIN (
+        SELECT 
+            DQ.DoctorId,
+            STRING_AGG(Q.Degree, ', ') AS Qualifications
+        FROM DAP_DoctorQualifications DQ
+        INNER JOIN DAP_Qualifications Q
+            ON DQ.QualificationId = Q.QualificationId
+        WHERE DQ.IsActive = 1
+        GROUP BY DQ.DoctorId
+    ) AS QQ
+        ON D.DoctorId = QQ.DoctorId
+    WHERE
+        D.IsActive = 1
+        AND DS.IsActive = 1
+        AND R.IsActive = 1
+        AND (@SpecializationId IS NULL OR DS.SpecializationId = @SpecializationId)
+    GROUP BY
+        D.DoctorId,
+        D.FirstName,
+        D.LastName,
+        D.ConsultancyFee,
+        D.ExperienceStartDate,
+        QQ.Qualifications
+    ORDER BY
+        D.ExperienceStartDate ASC;
+END;
 GO
 
-CREATE  PROCEDURE dap_doctorsGetAll           
+CREATE OR ALTER   PROCEDURE dap_doctorsGetAll           
 /*  
 -----------------------------------------------------------------------------------------------------------------  
 Date			Created By		Purpose of creation  
@@ -581,11 +626,11 @@ BEGIN
 END;
 GO
 
-CREATE   PROCEDURE dap_doctorInsertOrUpdate        
+CREATE OR ALTER   PROCEDURE dap_doctorInsertOrUpdate        
 /*       
 ----------------------------------------------------------------------------------       
 Create Date  Created By		Purpose Of Creation       
-10OCT2025	 Lokesh Patil	To insert data into doctor related       
+10OCT2025	 Lokesh Patil	To insert or update data related to doctor        
 ----------------------------------------------------------------------------------       
 */      
 @DoctorId INT = NULL,        
@@ -627,12 +672,15 @@ BEGIN
         ----------------------------------------------------------------------------------      
         -- USER TABLE (DAP_Users)      
         ----------------------------------------------------------------------------------      
-        SELECT @RoleId = RoleId       
-        FROM DAP_Roles       
-        WHERE ShortCode = @RoleShortCode;        
+             
         
         IF @UserId IS NULL  OR @UserId=0      
         BEGIN        
+			
+			 SELECT @RoleId = RoleId       
+			 FROM DAP_Roles       
+			 WHERE ShortCode = @RoleShortCode;  
+
             INSERT INTO DAP_Users ([Password], Email, RoleId, CreatedBy, CreatedOn)        
             VALUES (@Password, @Email, @RoleId, @CreatedBy, SYSDATETIME());        
       
@@ -641,8 +689,7 @@ BEGIN
         ELSE        
         BEGIN        
             UPDATE DAP_Users        
-            SET        
-                RoleId = @RoleId,        
+            SET               
                 Email = @Email,        
                 ModifiedBy = @ModifiedBy,        
                 ModifiedOn = GETDATE()        
@@ -655,42 +702,42 @@ BEGIN
      
   
       
-   SELECT TOP 1 @ExistingAddressId = AddressId  
-   FROM DAP_Addresses  
-   WHERE   
-    LOWER(AddressLine1) = LOWER(@AddressLine1)  
-    AND TalukaId = @TalukaId  
-    AND Pincode = @Pincode  
-    AND IsActive = 1;   
+	   SELECT TOP 1 @ExistingAddressId = AddressId  
+	   FROM DAP_Addresses  
+	   WHERE   
+		LOWER(AddressLine1) = LOWER(@AddressLine1)  
+		AND TalukaId = @TalukaId  
+		AND Pincode = @Pincode  
+		AND IsActive = 1;   
   
-   IF @ExistingAddressId>0 AND @ExistingAddressId  IS NOT NULL  
-    BEGIN  
-     SET @AddressId=@ExistingAddressId  
-    END  
-   ELSE  
-    BEGIN  
+	   IF @ExistingAddressId>0 AND @ExistingAddressId  IS NOT NULL  
+		BEGIN  
+		 SET @AddressId=@ExistingAddressId  
+		END  
+	   ELSE  
+		BEGIN  
   
-      IF @AddressId IS NULL OR @AddressId=0       
+		  IF @AddressId IS NULL OR @AddressId=0       
   
-     BEGIN   
+			 BEGIN   
        
-      INSERT INTO DAP_Addresses (AddressLine1, TalukaId, Pincode, CreatedBy, CreatedOn)        
-      VALUES (@AddressLine1, @TalukaId, @Pincode, @CreatedBy, GETDATE());        
+				  INSERT INTO DAP_Addresses (AddressLine1, TalukaId, Pincode, CreatedBy, CreatedOn)        
+				  VALUES (@AddressLine1, @TalukaId, @Pincode, @CreatedBy, GETDATE());        
       
-      SET @AddressId = SCOPE_IDENTITY();        
-     END        
-     ELSE        
-		 BEGIN        
-		  UPDATE DAP_Addresses        
-		  SET AddressLine1 = @AddressLine1,        
-		   TalukaId = @TalukaId,        
-		   Pincode = @Pincode,        
-		   ModifiedBy = @ModifiedBy,        
-		   ModifiedOn = GETDATE()        
-		  WHERE AddressId = @AddressId;        
-		 END     
-  
-	END  
+				  SET @AddressId = SCOPE_IDENTITY();        
+			 END 
+			 
+			 ELSE        
+				 BEGIN        
+					  UPDATE DAP_Addresses        
+					  SET AddressLine1 = @AddressLine1,        
+					   TalukaId = @TalukaId,        
+					   Pincode = @Pincode,        
+					   ModifiedBy = @ModifiedBy,        
+					   ModifiedOn = GETDATE()        
+					  WHERE AddressId = @AddressId;        
+				 END     
+		END  
             
         
         ----------------------------------------------------------------------------------      
@@ -841,7 +888,7 @@ BEGIN
 END
 GO
 
-CREATE  PROC dap_doctorGetAvailabilityAndAcceptedSlots  
+CREATE OR ALTER   PROCEDURE dap_doctorGetAvailabilityAndAcceptedSlots  
 /*  
 --------------------------------------------------------------------------------------------------------------------  
  Date			Created By		Purpose of creation  
@@ -907,7 +954,7 @@ BEGIN
 END;
 GO
 
-CREATE  PROCEDURE dap_doctorDeleteById  
+CREATE OR ALTER   PROCEDURE dap_doctorDeleteById  
 (  
     @DoctorId INT,  
     @DeletedBy INT  
@@ -981,7 +1028,7 @@ BEGIN
 END;
 GO
 
-CREATE   PROC dap_appointmentInsert  
+CREATE OR ALTER   PROCEDURE dap_appointmentInsert  
 /*  
 ------------------------------------------------------------------------------------------  
 Date  Create By  Purpose Of Creation  
@@ -1025,12 +1072,12 @@ BEGIN
 		SELECT @AddressId = AddressId  
 		FROM DAP_Addresses  
 		WHERE   
-	   LOWER(AddressLine1) = LOWER(@AddressLine1)  
-	   AND Pincode = @Pincode  
-	   AND TalukaId = @TalukaId  
-	   AND IsActive = 1;
+		   LOWER(AddressLine1) = LOWER(@AddressLine1)  
+		   AND Pincode = @Pincode  
+		   AND TalukaId = @TalukaId  
+		   AND IsActive = 1;
 	   
-	  IF @AddressId IS NULL  
+	  IF @AddressId IS NULL 
 		BEGIN  
 		   INSERT INTO DAP_Addresses  
 			(  
@@ -1189,7 +1236,7 @@ BEGIN
 END;
 GO
 
- CREATE     PROC dap_appointmentsGetAllOrByDoctorId   
+ CREATE OR ALTER   PROCEDURE dap_appointmentsGetAllOrByDoctorId   
 /*  
 -----------------------------------------------------------------------------------------------------  
 DATE		 Created By      Purpose of creation  
@@ -1384,7 +1431,7 @@ BEGIN
 END
 GO
 
- CREATE    PROC dap_appointmentsGetById   
+ CREATE OR ALTER   PROCEDURE dap_appointmentsGetById   
 /*  
 -----------------------------------------------------------------------------------------------------------------  
 Date		 Created By		Purpose of creation  
@@ -1459,7 +1506,7 @@ BEGIN
 END
 GO
 
-CREATE   PROC dap_appointmentStatusGetList  
+CREATE OR ALTER   PROCEDURE dap_appointmentStatusGetList  
 /*  
 ---------------------------------------------------------------------------------------  
 Date		  Created By		Purpose of creation  
@@ -1488,7 +1535,7 @@ BEGIN
 END;
 GO
 
-CREATE     PROCEDURE dap_appointmentUpdateStatus
+CREATE OR ALTER   PROCEDURE dap_appointmentUpdateStatus
 /*
 ----------------------------------------------------------------------------------------------------------------------------
 Date			Created By		Purpose of creation
@@ -1862,7 +1909,6 @@ BEGIN
     ORDER BY Degree;
 END
 GO
-
 
 CREATE OR ALTER   PROCEDURE dap_specializationsGetAll
 /*    

@@ -31,6 +31,7 @@
                 [ngModel]="appointmentFilters.FromDate | date : 'yyyy-MM-dd'"
                 (ngModelChange)="appointmentFilters.FromDate = $event"
                 name="fromDate"
+                [max]="appointmentFilters.ToDate | date : 'yyyy-MM-dd'"
                 placeholder="From"
               />
             </div>
@@ -294,6 +295,8 @@
           <input
             type="date"
             class="form-control border-start-0"
+            [min]="altMinDate | date:'yyyy-MM-dd'"
+            [max]="altMaxDate | date:'yyyy-MM-dd'"
             [(ngModel)]="altSlotDate"
             (change)="onAltSlotDateChange()"
           />

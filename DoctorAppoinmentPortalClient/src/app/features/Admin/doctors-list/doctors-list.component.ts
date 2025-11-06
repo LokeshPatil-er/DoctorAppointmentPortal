@@ -189,4 +189,10 @@ export class DoctorsListComponent {
       (this.doctorFilter.PageNumber - 1) * this.doctorFilter.PageSize + 1;
     this.endRecord = this.doctorFilter.PageNumber * this.doctorFilter.PageSize;
   }
+
+  getExprienceInYear(experience: string): number {
+    const Expe = new Date(experience);
+    const diff = Date.now() - Expe.getTime();
+    return Math.floor(diff / (1000 * 60 * 60 * 24 * 365.25));
+  }
 }

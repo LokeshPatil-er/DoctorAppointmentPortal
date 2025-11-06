@@ -35,7 +35,9 @@ export class AppointmentsListComponent {
   altSlotModalRef: NgbModalRef | null = null;
   altSlotDate: string = '';
   availableAltSlots: AvailableSlots[] = [];
-
+  altMaxDate: Date = new Date();
+  altMinDate:Date=new Date();
+  
   appointmentStatusList = [];
 
   constructor(
@@ -54,6 +56,8 @@ export class AppointmentsListComponent {
 
     this.loadAppointmentStatusList();
     this.loadAppointments();
+
+    this.altMaxDate.setDate(new Date().getDate() + 14);
   }
 
   loadAppointmentStatusList() {
@@ -202,7 +206,7 @@ export class AppointmentsListComponent {
     }
 
 
-    const confirmSave =await this.alertService.confirm("Appointment Reject","Are you sure you want to save this alternate slot?","Yes","Cancel") 
+    const confirmSave =await this.alertService.confirm("Slot Suggest","Are you sure you want to save this alternate slot?","Yes","Cancel") 
 
     if (!confirmSave) {
       this.toastService.infoToastr(
@@ -230,7 +234,7 @@ export class AppointmentsListComponent {
   }
 
  async resetFilters() {
-    const confirmReset =await this.alertService.confirm("Appointment Reject","Are you sure you want to  reset all filters?","Yes","Cancel") 
+    const confirmReset =await this.alertService.confirm("Filter Reset","Are you sure you want to  reset all filters?","Yes","Cancel") 
     if (!confirmReset) {
       this.toastService.infoToastr('Filter reset cancelled.', 'Cancelled');
       return;

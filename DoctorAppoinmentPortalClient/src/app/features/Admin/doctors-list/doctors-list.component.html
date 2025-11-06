@@ -75,7 +75,7 @@
               <th>Email</th>
               <th>Contact</th>
               <th>Specialization</th>
-              <th>Experience (Years)</th>
+              <th>Experience (Yr.)</th>
               <th>Consultancy Fee (₹)</th>
               <th class="text-center">Actions</th>
             </tr>
@@ -89,7 +89,7 @@
               <td>{{ doc.ContactNo }}</td>
               <td>{{ doc.DoctorspecializationsString }}</td>
 
-              <td>{{ doc.ExperienceStartDate | date:"yyyy-MM-dd" }}</td>
+              <td>{{getExprienceInYear(doc.ExperienceStartDate.toString())}}</td>
               <td>{{ doc.ConsultancyFee }}</td>
               <td class="text-center">
                 <div ngbDropdown container="body">

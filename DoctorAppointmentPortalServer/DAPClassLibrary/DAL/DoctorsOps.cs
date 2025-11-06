@@ -268,7 +268,7 @@ namespace DAPClassLibrary
                         db.AddInParameter(dbCommand, "@ModifiedBy", DbType.Int32, DBNull.Value);
 
 
-                TVPTableService objTVPTableService = new TVPTableService();
+                    TVPTableService objTVPTableService = new TVPTableService();
 
                     DataTable availableSlotsTable = objTVPTableService.CreateAvailableSlotsDataTable(doctorModel.DoctorAvailableSlots);
                     db.AddParameter(dbCommand, "@AvailableSlotList", DbType.Object, ParameterDirection.Input,null, DataRowVersion.Current, availableSlotsTable);

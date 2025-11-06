@@ -37,20 +37,18 @@
             <strong>{{ item.Specialization }}</strong> - {{ item.Description }}
           </ng-template>
         </ng-select>
-        <div
-          class="error-message"
-          *ngIf="
-            specializationId.invalid &&
-            (specializationId.touched || appointmentForm.submitted)
-          "
-        >
-          Please select a specialization.
+        <div class="error-message" *ngIf=" specializationId.invalid && (specializationId.touched || appointmentForm.submitted) " > Please select a specialization.
         </div>
       </div>
       <div class="col-md-6 mb-3" *ngIf="isSpecializationSelected">
-        <label class="form-label fw-semibold text-secondary">
+        <label class="form-label fw-semibold text-secondary d-flex align-items-center gap-1">
           Select Doctor <span class="text-danger">*</span>
+          <small class="text-muted ms-1" style="font-weight: 500;">
+            (Listed by experience — most experienced first)
+          </small>
         </label>
+        
+        
 
         <ng-select
           name="doctorId"
@@ -94,13 +92,7 @@
         </ng-template>
         </ng-select>
 
-        <div
-          class="error-message text-danger mt-1"
-          *ngIf="
-            doctorId.invalid && (doctorId.touched || appointmentForm.submitted)
-          "
-        >
-          Please select a doctor.
+        <div class="error-message text-danger mt-1" *ngIf="doctorId.invalid && (doctorId.touched || appointmentForm.submitted) "> Please select a doctor.
         </div>
       </div>
     </div>
@@ -131,25 +123,10 @@
           />
 
           <!-- Validation Messages -->
-          <div
-            *ngIf="
-              firstName.invalid &&
-              (firstName.dirty ||
-                firstName.touched ||
-                appointmentForm.submitted)
-            "
-            class="text-danger mt-1"
-          >
-            <small *ngIf="firstName.errors?.['required']"
-              >First Name is required.</small
-            >
-            <small *ngIf="firstName.errors?.['pattern']"
-              >Only letters, spaces, hyphens, and apostrophes are
-              allowed.</small
-            >
-            <small *ngIf="firstName.errors?.['maxlength']"
-              >Max 50 letter is allowed in first name</small
-            >
+          <div *ngIf="firstName.invalid && (firstName.dirty || firstName.touched || appointmentForm.submitted) " class="text-danger mt-1" >
+            <small *ngIf="firstName.errors?.['required']" >First Name is required.</small>
+            <small *ngIf="firstName.errors?.['pattern']" >Only letters, spaces, hyphens, and apostrophes are allowed.</small >
+            <small *ngIf="firstName.errors?.['maxlength']">Max 50 letter is allowed in first name</small>
           </div>
         </div>
 
@@ -173,23 +150,10 @@
           />
 
           <!-- Validation Messages -->
-          <div
-            *ngIf="
-              lastName.invalid &&
-              (lastName.dirty || lastName.touched || appointmentForm.submitted)
-            "
-            class="text-danger mt-1"
-          >
-            <small *ngIf="lastName.errors?.['required']"
-              >Last Name is required.</small
-            >
-            <small *ngIf="lastName.errors?.['pattern']"
-              >Only letters, spaces, hyphens, and apostrophes are
-              allowed.</small
-            >
-            <small *ngIf="lastName.errors?.['maxlength']"
-              >Max 50 letter is allowed in last name.</small
-            >
+          <div *ngIf=" lastName.invalid && (lastName.dirty || lastName.touched || appointmentForm.submitted) " class="text-danger mt-1" >
+            <small *ngIf="lastName.errors?.['required']" >Last Name is required.</small >
+            <small *ngIf="lastName.errors?.['pattern']" >Only letters, spaces, hyphens, and apostrophes are allowed.</small>
+            <small *ngIf="lastName.errors?.['maxlength']" >Max 50 letter is allowed in last name.</small>
           </div>
         </div>
       </div>
@@ -214,16 +178,8 @@
           >
           </ng-select>
           <!-- Validation Message -->
-          <div
-            *ngIf="
-              genderId.invalid &&
-              (genderId.dirty || genderId.touched || appointmentForm.submitted)
-            "
-            class="text-danger mt-1"
-          >
-            <small *ngIf="genderId.errors?.['required']"
-              >Gender is required.</small
-            >
+          <div  *ngIf=" genderId.invalid && (genderId.dirty || genderId.touched || appointmentForm.submitted) " class="text-danger mt-1" >
+            <small *ngIf="genderId.errors?.['required']" >Gender is required.</small>
           </div>
         </div>
 
@@ -241,23 +197,14 @@
                 isFutureDOB(dob.value)
             }"
             [max]="today | date : 'yyyy-MM-dd'"
+            [min]="minDateForAge100 | date:'yyyy-MM-dd'"
             required
           />
 
-          <div
-            *ngIf="
-              (dob.invalid &&
-                (dob.dirty || dob.touched || appointmentForm.submitted)) ||
-              isFutureDOB(dob.value)
-            "
-            class="text-danger mt-1"
-          >
-            <small *ngIf="dob.errors?.['required']"
-              >Date of Birth is required.</small
-            >
-            <small *ngIf="isFutureDOB(dob.value)"
-              >Date of Birth cannot be in the future.</small
-            >
+          <div *ngIf="(dob.invalid && (dob.dirty || dob.touched || appointmentForm.submitted)) || isFutureDOB(dob.value) " class="text-danger mt-1" >
+            <small *ngIf="dob.errors?.['required']">Date of Birth is required.</small>
+            <small *ngIf="isFutureDOB(dob.value)">Date of Birth cannot be in the future.</small>
+            <small *ngIf="isTooOldDOB(dob.value)">Date of Birth cannot be older than 100 years.</small>
           </div>
         </div>
       </div>
@@ -282,20 +229,11 @@
             required
           />
 
-          <div
-            *ngIf="
-              email.invalid &&
-              (email.dirty || email.touched || appointmentForm.submitted)
-            "
-            class="text-danger mt-1"
-          >
+          <div *ngIf="email.invalid && (email.dirty || email.touched || appointmentForm.submitted)" class="text-danger mt-1" >
             <small *ngIf="email.errors?.['required']">Email is required.</small>
-            <small *ngIf="email.errors?.['maxlength']"
-              >Max 320 characters allowed in email address.</small
-            >
-            <small *ngIf="email.errors?.['email'] || email.errors?.['pattern']"
-              >Please enter a valid email address.</small
-            >
+            <small *ngIf="email.errors?.['maxlength']">Max 320 characters allowed in email address.</small>
+            <small *ngIf="email.errors?.['email'] || email.errors?.['pattern']" >Please enter a valid email address.</small>
+           
           </div>
         </div>
 
@@ -318,22 +256,9 @@
             required
           />
           
-          <div
-            *ngIf="
-              contactNo.invalid &&
-              (contactNo.dirty ||
-                contactNo.touched ||
-                appointmentForm.submitted)
-            "
-            class="text-danger mt-1"
-          >
-            <small *ngIf="contactNo.errors?.['required']"
-              >Contact Number is required.</small
-            >
-            <small *ngIf="contactNo.errors?.['pattern']"
-              >Contact Number must be exactly 10 digits (should start with
-              6–9).</small
-            >
+          <div *ngIf=" contactNo.invalid && (contactNo.dirty || contactNo.touched || appointmentForm.submitted) " class="text-danger mt-1" >
+            <small *ngIf="contactNo.errors?.['required']" >Contact Number is required.</small >
+            <small *ngIf="contactNo.errors?.['pattern']" >Contact Number must be exactly 10 digits (should start with 6–9).</small >
           </div>
         </div>
       </div>
@@ -358,18 +283,8 @@
           >
           </ng-select>
 
-          <div
-            *ngIf="
-              bloodGroupId.invalid &&
-              (bloodGroupId.dirty ||
-                bloodGroupId.touched ||
-                appointmentForm.submitted)
-            "
-            class="text-danger mt-1"
-          >
-            <small *ngIf="bloodGroupId.errors?.['required']"
-              >Blood Group is required.</small
-            >
+          <div *ngIf=" bloodGroupId.invalid && (bloodGroupId.dirty || bloodGroupId.touched || appointmentForm.submitted) " class="text-danger mt-1" >
+            <small *ngIf="bloodGroupId.errors?.['required']" >Blood Group is required.</small>
           </div>
         </div>
       </div>
@@ -399,24 +314,10 @@
           }"
         />
 
-        <div
-          *ngIf="
-            addressLine1.invalid &&
-            (addressLine1.dirty ||
-              addressLine1.touched ||
-              appointmentForm.submitted)
-          "
-          class="text-danger mt-1"
-        >
-          <small *ngIf="addressLine1.errors?.['required']"
-            >Building Name/Flat No./Street is required.</small
-          >
-          <small *ngIf="addressLine1.errors?.['pattern']"
-            >Invalid characters in address.</small
-          >
-          <small *ngIf="addressLine1.errors?.['maxlength']"
-            >Max 200 letters allowed.</small
-          >
+        <div *ngIf=" addressLine1.invalid && (addressLine1.dirty || addressLine1.touched || appointmentForm.submitted) " class="text-danger mt-1" >
+          <small *ngIf="addressLine1.errors?.['required']" >Building Name/Flat No./Street is required.</small>
+          <small *ngIf="addressLine1.errors?.['pattern']" >Invalid characters in address.</small >
+          <small *ngIf="addressLine1.errors?.['maxlength']">Max 200 letters allowed.</small>
         </div>
       </div>
 
