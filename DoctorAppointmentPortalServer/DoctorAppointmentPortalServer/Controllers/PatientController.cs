@@ -198,24 +198,25 @@ namespace DoctorAppointmentPortalServer.Controllers
                 fileService.MoveTempFilesToFinalFolder(objAppointmentOps.AppointmentId);
                 fileService.ClearTempFolder();
 
+                bool emailSent = true;
                 try
                 {
                     AppointmentEmailNotifier objAppointmentEmailNotifier = new AppointmentEmailNotifier();
                     patientAppointmentModel.Appointment.AppointmentId = objAppointmentOps.AppointmentId;
-
                     await objAppointmentEmailNotifier.NotifyAppointmentSubmittedAsync(patientAppointmentModel);
                 }
                 catch (Exception emailEx)
                 {
+                    emailSent = false;
                     ExceptionLogService.LogExceptionInDB(emailEx, nameof(PatientController), nameof(InsertPatientAppointmentRequest));
-                   
                 }
 
                 response = Request.CreateResponse(HttpStatusCode.OK, new
                 {
                     success = true,
-                    message = "Appointment submitted successfully and notification sent.",
-               
+                    message = emailSent
+                        ? "Appointment submitted successfully and notification sent."
+                        : "Appointment submitted successfully, but notification email could not be sent."
                 });
             }
             catch (Exception ex)

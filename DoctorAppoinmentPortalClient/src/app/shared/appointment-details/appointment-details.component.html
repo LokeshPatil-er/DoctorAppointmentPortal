@@ -22,7 +22,7 @@
     </div>
 
     <!-- Modal Body -->
-    <div class="modal-body">
+    <div class="modal-body m-4">
       <!-- Patient Information Section -->
       <div class="section-card mb-4">
         <div class="section-header">
@@ -127,6 +127,14 @@
               <label class="info-label">Reason for Visit</label>
               <p class="info-value">
                 {{ selectedAppointment.Appointment.ReasonOfAppointment }}
+              </p>
+            </div>
+          </div>
+           <div class="col-md-6">
+            <div class="info-group">
+              <label class="info-label">Medical History</label>
+              <p class="info-value">
+                {{ selectedAppointment.Patient.MedicalHistory ?  selectedAppointment.Patient.MedicalHistory:"-"}}
               </p>
             </div>
           </div>

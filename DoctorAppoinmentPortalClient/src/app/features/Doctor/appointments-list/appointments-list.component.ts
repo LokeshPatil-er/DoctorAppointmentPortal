@@ -10,6 +10,7 @@ import { ToastService } from '../../../core/services/toast.service';
 import { AppointmentStatus } from '../../../core/enums/appointment-status.enum';
 import { AppointmentStatusHelper } from '../../../core/helper/appointment-status-helper';
 import { AppointmentDetailsComponent } from '../../../shared/appointment-details/appointment-details.component';
+import { AlertService } from '../../../core/services/alert.service';
 
 @Component({
   selector: 'app-appointments-list',
@@ -19,21 +20,18 @@ import { AppointmentDetailsComponent } from '../../../shared/appointment-details
 export class AppointmentsListComponent {
   appointments: PatientAppointmentRequest[] = [];
   appointmentFilters: AppointmentsListFilters = new AppointmentsListFilters();
-  appointmentStatusUpdate: AppointmentStatusUpdate =
-    new AppointmentStatusUpdate();
+  appointmentStatusUpdate: AppointmentStatusUpdate = new AppointmentStatusUpdate();
 
   totalAppointmentRecord: number;
   startRecord = 0;
   endRecord = 0;
 
-  selectedAppointment: PatientAppointmentRequest =
-    new PatientAppointmentRequest();
+  selectedAppointment: PatientAppointmentRequest = new PatientAppointmentRequest();
   selectedPreferredSlotId: number | null = null;
   selectedAlternateSlotId: number | null = null;
   userId: number;
 
-  alternateSlotAppointment: PatientAppointmentRequest =
-    new PatientAppointmentRequest();
+  alternateSlotAppointment: PatientAppointmentRequest = new PatientAppointmentRequest();
   altSlotModalRef: NgbModalRef | null = null;
   altSlotDate: string = '';
   availableAltSlots: AvailableSlots[] = [];
@@ -44,7 +42,8 @@ export class AppointmentsListComponent {
     private modalService: NgbModal,
     private appointmentListService: AppointmentsListService,
     private authService: AuthService,
-    private toastService: ToastService
+    private toastService: ToastService,
+    private alertService:AlertService
   ) {}
 
   appointmentStatus = AppointmentStatus;
@@ -173,7 +172,7 @@ export class AppointmentsListComponent {
     this.loadAvailableSlots();
   }
 
-  saveAlternateSlot(actionId: number) {
+  async saveAlternateSlot(actionId: number) {
     if (!this.altSlotDate) {
       this.toastService.errorToastr(
         'Please select an alternate slot date.',
@@ -202,9 +201,8 @@ export class AppointmentsListComponent {
       return;
     }
 
-    const confirmSave = window.confirm(
-      'Are you sure you want to save this alternate slot?'
-    );
+
+    const confirmSave =await this.alertService.confirm("Appointment Reject","Are you sure you want to save this alternate slot?","Yes","Cancel") 
 
     if (!confirmSave) {
       this.toastService.infoToastr(
@@ -231,11 +229,8 @@ export class AppointmentsListComponent {
     );
   }
 
-  resetFilters() {
-    const confirmReset = window.confirm(
-      'Are you sure you want to reset all filters?'
-    );
-
+ async resetFilters() {
+    const confirmReset =await this.alertService.confirm("Appointment Reject","Are you sure you want to  reset all filters?","Yes","Cancel") 
     if (!confirmReset) {
       this.toastService.infoToastr('Filter reset cancelled.', 'Cancelled');
       return;
@@ -250,7 +245,7 @@ export class AppointmentsListComponent {
     );
   }
 
-  acceptAppointment(appt: any, actionId: number) {
+ async acceptAppointment(appt: any, actionId: number) {
     if (this.selectedPreferredSlotId == null) {
       this.toastService.errorToastr(
         'Select preferred slot first',
@@ -259,9 +254,7 @@ export class AppointmentsListComponent {
       return;
     }
 
-    const confirmAccept = window.confirm(
-      'Are you sure you want to accept this appointment?'
-    );
+    const confirmAccept=await this.alertService.confirm("Appointment Accept","Are you sure you want to accept this appointment?","Yes","Cancel")
 
     if (!confirmAccept) {
       this.toastService.infoToastr(
@@ -282,10 +275,9 @@ export class AppointmentsListComponent {
    
   }
 
-  rejectAppointment(appt: any, actionId: number) {
-    const confirmReject = window.confirm(
-      'Are you sure you want to reject this appointment?'
-    );
+  async rejectAppointment(appt: any, actionId: number) {
+  
+    const confirmReject=await this.alertService.confirm("Appointment Reject","Are you sure you want to reject this appointment?","Yes","Cancel")
 
     if (!confirmReject) {
       this.toastService.infoToastr(
@@ -366,7 +358,7 @@ export class AppointmentsListComponent {
       case this.appointmentStatus.PENDING:
       case this.appointmentStatus.REJECT:
         filteredSlots = slots;
-        this.selectedPreferredSlotId = null;
+      
         
         break;
 

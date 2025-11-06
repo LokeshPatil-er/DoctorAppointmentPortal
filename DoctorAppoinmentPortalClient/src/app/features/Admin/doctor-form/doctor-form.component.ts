@@ -136,7 +136,7 @@ export class DoctorFormComponent {
 
   addSlot() {
     if (this.hasTooManySlots()) {
-      alert('You cannot add more slots. No day should have more than 3 slots.');
+      this.toastService.errorToastr('You cannot add more slots. No day should have more than 3 slots.',"Slot Error");
       return;
     }
     this.doctorDetails.DoctorAvailableSlots.push({
@@ -340,10 +340,13 @@ export class DoctorFormComponent {
     this.showPassword = !this.showPassword;
   }
 
-  resetDoctorInfo(doctorId: number) {
-    const confirmReset = window.confirm(
-      'Are you sure you want to reset the doctor information to the last saved data?'
-    );
+ async resetDoctorInfo(doctorId: number) {
+    const confirmReset =await this.alertService.confirm(
+      'Please Confirm',
+      "Are you sure you want to reset the doctor information to the last saved data?",
+      'Yes, Proceed',
+      'Cancel'
+    ); 
 
     if (!confirmReset) {
       this.toastService.infoToastr('Doctor info reset cancelled.', 'Cancelled');
@@ -424,9 +427,13 @@ export class DoctorFormComponent {
     return diffHours > 0;
   }
 
-  clearDoctorForm(form: any) {
-    const confirmClear = window.confirm(
-      'Are you sure you want to clear all entered details?'
+  async clearDoctorForm(form: any) {
+
+    const confirmClear =await this.alertService.confirm(
+      'Please Confirm',
+      "Are you sure you want to clear all entered details?",
+      'Yes, Proceed',
+      'Cancel'
     );
 
     if (!confirmClear) {

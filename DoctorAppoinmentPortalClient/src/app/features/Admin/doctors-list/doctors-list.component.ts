@@ -4,6 +4,7 @@ import { DoctorInfo } from '../../../core/models/doctor-info.model';
 import { DoctorListFilter } from '../../../core/models/doctor-list-filter.model';
 import { ToastService } from '../../../core/services/toast.service';
 import { AuthService } from '../../../core/services/auth.service';
+import { AlertService } from '../../../core/services/alert.service';
 
 @Component({
   selector: 'app-doctors-list',
@@ -24,6 +25,7 @@ export class DoctorsListComponent {
   constructor(
     private doctorListService: DoctorsListService,
     private toastService: ToastService,
+    private alertService:AlertService,
     private authService: AuthService
   ) {}
 
@@ -106,10 +108,13 @@ export class DoctorsListComponent {
     return false;
   }
 
-  resetFilter() {
-    const confirmReset = window.confirm(
-      'Are you sure you want to reset all doctor filters?'
-    );
+  async resetFilter() {
+    const confirmReset =await this.alertService.confirm(
+      'Please Confirm',
+      'Are you sure you want to reset all doctor filters?',
+      'Yes, Proceed',
+      'Cancel'
+    ); 
 
     if (!confirmReset) {
       this.toastService.infoToastr(
@@ -128,10 +133,23 @@ export class DoctorsListComponent {
     );
   }
 
-  deleteDoctor(doctorId: number) {
-    if (!confirm('Are you sure you want to delete this doctor?')) {
+  async deleteDoctor(doctorId: number) {
+  
+    const confirmRemove =await this.alertService.confirm(
+      'Please Confirm',
+      'Are you sure you want to remove this doctor?',
+      'Yes, Proceed',
+      'Cancel'
+    ); 
+
+    if (!confirmRemove) {
+      this.toastService.infoToastr(
+        'Doctor remove cancelled.',
+        'Cancelled'
+      );
       return;
     }
+
 
     this.doctorListService
       .deleteDoctorById(doctorId, this.authService.getUserId())

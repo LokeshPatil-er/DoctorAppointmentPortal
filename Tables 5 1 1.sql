@@ -54,7 +54,7 @@ CREATE  TABLE DAP_Countries (
 
 
 --4
-CREATE  TABLE DELETE FROM  DAP_States (
+CREATE  TABLE  DAP_States (
     StateId INT IDENTITY(1,1) PRIMARY KEY,
     StateName NVARCHAR(100) NOT NULL UNIQUE,
     CountryId INT NOT NULL FOREIGN KEY REFERENCES DAP_Countries(CountryId),
@@ -68,7 +68,7 @@ CREATE  TABLE DELETE FROM  DAP_States (
 
 
 --5
-CREATE  TABLE DELETE FROM DAP_Districts (
+CREATE  TABLE DAP_Districts (
     DistrictId INT IDENTITY(1,1) PRIMARY KEY,
     DistrictName NVARCHAR(100) NOT NULL UNIQUE,
     StateId INT NOT NULL FOREIGN KEY REFERENCES DAP_States(StateId),
@@ -79,7 +79,7 @@ CREATE  TABLE DELETE FROM DAP_Districts (
 	ModifiedOn DATETIME2 NULL,
 );
 
-DBCC CHECKIDENT ('dbo.DAP_Districts', RESEED, 0);
+
 
 --6
 CREATE  TABLE DAP_Talukas (
@@ -110,7 +110,7 @@ CREATE  TABLE DAP_Addresses (
 CREATE  TABLE DAP_Specializations (
     SpecializationId INT IDENTITY PRIMARY KEY,
     Specialization NVARCHAR(150) NOT NULL UNIQUE, 
-	[Description] NVARCHAR(MAX) NOT NULL,
+	[Description] NVARCHAR(255) NOT NULL,
 	IsActive BIT,
 	CreatedBy INT FOREIGN KEY REFERENCES DAP_Users(UserId),
 	CreatedOn DATETIME2,
@@ -128,8 +128,7 @@ CREATE  TABLE DAP_BloodGroups (
 	CreatedOn DATETIME2 NOT NULL,
 );
 
-ALTER TABLE DAP_BloodGroups
-ALTER COLUMN BloodGroupName NVARCHAR(10) NOT NULL;
+
 
 
 --10
@@ -149,7 +148,7 @@ CREATE  TABLE DAP_DoctorQualifications (
     DoctorQualificationId INT PRIMARY KEY IDENTITY(1,1),
     DoctorId INT FOREIGN KEY REFERENCES DAP_Doctors(DoctorId) NOT NULL,
     QualificationId INT FOREIGN KEY REFERENCES DAP_Qualifications(QualificationId) NOT NULL,
-	[Description] NVARCHAR(MAX) NULL,
+	[Description] NVARCHAR(255) NULL,
 	IsActive BIT DEFAULT 1,
 	CreatedBy INT FOREIGN KEY REFERENCES DAP_Users(UserId) NULL,
 	CreatedOn DATETIME2 NULL,
@@ -237,8 +236,6 @@ CREATE TABLE DAP_AppointmentStatus
 );
 
 
-
-
 --16
 CREATE TABLE DAP_PatientInsurancesInfo (
     InsuranceId INT PRIMARY KEY IDENTITY(1,1),
@@ -282,6 +279,7 @@ CREATE TABLE DAP_PreferredSlots
 	PreferredEndTime TIME NOT NULL,
 	IsApproved BIT DEFAULT 0,
 	IsActive BIT DEFAULT 1,
+	IsAlternate BIT DEFAULT 0,
 	CreatedBy INT FOREIGN KEY REFERENCES DAP_Users(UserId) NULL,
 	CreatedOn DATETIME2 NULL,
 	ModifiedBy INT FOREIGN KEY REFERENCES DAP_Users(UserId) NULL,

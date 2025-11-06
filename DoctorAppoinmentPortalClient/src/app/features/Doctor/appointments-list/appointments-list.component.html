@@ -118,7 +118,7 @@
             </td>
             <td>
               <ng-container
-                *ngIf="getSlotListByStatus(appt)?.length; else noSlot"
+                *ngIf="getSlotListByStatus(appt).length; else noSlot"
               >
                 <ng-select
                   [items]="getSlotListByStatus(appt)"
