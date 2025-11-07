@@ -149,9 +149,18 @@ export class DoctorFormComponent {
     this.slotOverlaps.push(false);
   }
 
-  removeSlot(index: any) {
+ async removeSlot(index: any) {
+      const slotRemoveConform=await this.alertService.confirm("Slot Remove","Are you sure to remove slot selected?","Yes","Cancel");
+      if(!slotRemoveConform)
+      {
+        this.toastService.infoToastr("Slot remove cancelled..","Slot Removed Cancel");
+        return;
+      }
+
     this.doctorDetails.DoctorAvailableSlots.splice(index, 1);
     this.slotOverlaps.splice(index, 1);
+
+    this.toastService.successToastr("Slot removed successfully","Slot Removed");
   }
 
   getSlotCountForDay(day: string | null): number {

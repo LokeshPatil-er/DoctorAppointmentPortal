@@ -275,10 +275,12 @@
       </div>
 
       <nav
+      
         aria-label="Appointment pagination"
         class="d-flex justify-content-center"
       >
         <ngb-pagination
+          *ngIf="totalAppointmentRecord > 0"
           [(page)]="appointmentFilters.PageNumber"
           [pageSize]="appointmentFilters.PageSize"
           [collectionSize]="totalAppointmentRecord"

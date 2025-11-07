@@ -3,12 +3,12 @@
   "WorkspaceRootPath": "D:\\WebAPI-And-Angular-Assignment\\DoctorAppointmentPortal\\DoctorAppointmentPortalServer\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{4C95264C-FC38-4673-9571-2714732090B1}|DAPClassLibrary\\DAPServerLibrary.csproj|d:\\webapi-and-angular-assignment\\doctorappointmentportal\\doctorappointmentportalserver\\dapclasslibrary\\helpers\\services\\jwtauthorizationattribute.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{4C95264C-FC38-4673-9571-2714732090B1}|DAPClassLibrary\\DAPServerLibrary.csproj|solutionrelative:dapclasslibrary\\helpers\\services\\jwtauthorizationattribute.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{0250BBC7-B282-434F-9996-C5D924F136FC}|DoctorAppointmentPortalServer\\DoctorAppointmentPortalServer.csproj|D:\\WebAPI-And-Angular-Assignment\\DoctorAppointmentPortal\\DoctorAppointmentPortalServer\\doctorappointmentportalserver\\controllers\\accountcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{0250BBC7-B282-434F-9996-C5D924F136FC}|DoctorAppointmentPortalServer\\DoctorAppointmentPortalServer.csproj|solutionrelative:doctorappointmentportalserver\\controllers\\accountcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{0250BBC7-B282-434F-9996-C5D924F136FC}|DoctorAppointmentPortalServer\\DoctorAppointmentPortalServer.csproj|d:\\webapi-and-angular-assignment\\doctorappointmentportal\\doctorappointmentportalserver\\doctorappointmentportalserver\\controllers\\accountcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{0250BBC7-B282-434F-9996-C5D924F136FC}|DoctorAppointmentPortalServer\\DoctorAppointmentPortalServer.csproj|solutionrelative:doctorappointmentportalserver\\controllers\\accountcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{4C95264C-FC38-4673-9571-2714732090B1}|DAPClassLibrary\\DAPServerLibrary.csproj|d:\\webapi-and-angular-assignment\\doctorappointmentportal\\doctorappointmentportalserver\\dapclasslibrary\\helpers\\services\\jwtauthorizationattribute.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4C95264C-FC38-4673-9571-2714732090B1}|DAPClassLibrary\\DAPServerLibrary.csproj|solutionrelative:dapclasslibrary\\helpers\\services\\jwtauthorizationattribute.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -18,7 +18,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 96,
-          "SelectedChildIndex": 6,
+          "SelectedChildIndex": 7,
           "Children": [
             {
               "$type": "Bookmark",
@@ -46,7 +46,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 1,
               "Title": "JwtAuthorizationAttribute.cs",
               "DocumentMoniker": "D:\\WebAPI-And-Angular-Assignment\\DoctorAppointmentPortal\\DoctorAppointmentPortalServer\\DAPClassLibrary\\Helpers\\Services\\JwtAuthorizationAttribute.cs",
               "RelativeDocumentMoniker": "DAPClassLibrary\\Helpers\\Services\\JwtAuthorizationAttribute.cs",
@@ -59,13 +59,13 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 0,
               "Title": "AccountController.cs",
               "DocumentMoniker": "D:\\WebAPI-And-Angular-Assignment\\DoctorAppointmentPortal\\DoctorAppointmentPortalServer\\DoctorAppointmentPortalServer\\Controllers\\AccountController.cs",
               "RelativeDocumentMoniker": "DoctorAppointmentPortalServer\\Controllers\\AccountController.cs",
               "ToolTip": "D:\\WebAPI-And-Angular-Assignment\\DoctorAppointmentPortal\\DoctorAppointmentPortalServer\\DoctorAppointmentPortalServer\\Controllers\\AccountController.cs",
               "RelativeToolTip": "DoctorAppointmentPortalServer\\Controllers\\AccountController.cs",
-              "ViewState": "AgIAABEAAAAAAAAAAAAQwBsAAAARAAAAAAAAAA==",
+              "ViewState": "AgIAABIAAAAAAAAAAAAzwDIAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-11-06T10:35:53.965Z",
               "EditorCaption": ""

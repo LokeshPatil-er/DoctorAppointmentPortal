@@ -27,6 +27,8 @@ export class AppointmentsListComponent {
   startRecord = 0;
   endRecord = 0;
 
+  isLoadData:boolean=false;
+
   constructor(
     private modalService: NgbModal,
     private appointmentListService: AppointmentsListService,
@@ -36,6 +38,7 @@ export class AppointmentsListComponent {
   ngOnInit() {
     this.loadSearchDropDrowns();
     this.loadAppointments();
+    this.isLoadData=true;
   }
 
   loadAppointments() {
